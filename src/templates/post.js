@@ -10,19 +10,36 @@ export const query = graphql`
       frontmatter {
         title
         author
+        date
       }
       body
     }
   }
 `
 
-const PostTemplate = ({ data: { mdx: post } }) => (
-  <Layout>
-    <h1>{post.frontmatter.title}</h1>
-    <p>Posted by {post.frontmatter.author}</p>
-    <MDXRenderer>{post.body}</MDXRenderer>
-    <Link to="/">&larr; Go Back</Link>
-  </Layout>
-)
+const formatDate = date => {
+  return new Date(date).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  })
+}
+
+const PostTemplate = ({ data: { mdx: post } }) => {
+  if (!post) return null
+  return (
+    <Layout>
+      <h1>{post.frontmatter.title}</h1>
+      <MDXRenderer>{post.body}</MDXRenderer>
+      <p>Posted by {post.frontmatter.author}</p>
+      <p>{formatDate(post.frontmatter.date)}</p>
+      <Link to="/blog" replace>
+        &larr; Go Back
+      </Link>
+    </Layout>
+  )
+}
 
 export default PostTemplate

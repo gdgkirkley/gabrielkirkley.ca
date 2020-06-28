@@ -56,7 +56,7 @@ const ImageLink = styled(Link)`
   margin: 0 2rem 0 0;
   padding: 0.25rem;
   min-width: 120px;
-  transition: 0.1s ease-in-out;
+  transition: 1s ease-in-out;
   & img {
     min-width: 60px;
   }
@@ -85,7 +85,7 @@ const Header = ({ siteTitle }) => {
           <NavLink to="/portfolio" activeClassName="current">
             Portfolio
           </NavLink>
-          <NavLink to="/skills" activeClassName="current">
+          <NavLink to="/blog" activeClassName="current">
             Blog
           </NavLink>
         </NavGroup>

@@ -2,7 +2,6 @@ import React from "react"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
 import Helmet from "react-helmet"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 import useSiteMetadata from "../hooks/useSiteMetadata"
 
 import Header from "./header"
@@ -18,7 +17,7 @@ const theme = {
   primary8: "#B9A3F5",
   primary9: "#DBCFFC",
   primary10: "#F8CA9D", // Updated
-  accent1: "#C5D7C0", // Updated
+  accent1: "#8EC9BB", // Updated
   accent2: "#651301",
   accent3: "#981C01",
   accent4: "#CA2602",
@@ -54,7 +53,8 @@ const theme = {
     display: "51px",
     banner: "68px",
   },
-  maxWidth: "800px",
+  maxWidth: "900px",
+  gridGap: "24px",
   bs: "0 12px 24px 0 rgba(0,0,0,0.09)",
   borderRadius: "4px",
 }
@@ -72,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         font-size: 1.8rem;
         color: ${theme.grey1};
-        line-height: 1;
+        line-height: 1.5;
         font-family: "Roboto", Arial, Helvetica, sans-serif;
     }
     /* Remove margin for the main div that Gatsby mounts into*/
@@ -98,28 +98,24 @@ const GlobalStyle = createGlobalStyle`
     h1 {
       font-size: ${theme.fontSize.title}
     }
+    h2 {
+      font-size: ${theme.fontSize.subHeading}
+    }
     strong {
         color: ${theme.grey3};
     }
     main {
         margin: 2rem auto 4rem;
         max-width: 90vw;
-        width: 640px;
+        width: ${theme.maxWidth};
+    }
+    footer {
+      text-align: center;
     }
 `
 
 const Layout = ({ children }) => {
   const { title, description } = useSiteMetadata()
-
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
 
   return (
     <ThemeProvider theme={theme}>
