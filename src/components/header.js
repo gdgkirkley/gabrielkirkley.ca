@@ -60,9 +60,6 @@ const ImageLink = styled(Link)`
   & img {
     min-width: 60px;
   }
-  & :hover {
-    min-width: 130px;
-  }
 `
 
 const Header = ({ siteTitle }) => {

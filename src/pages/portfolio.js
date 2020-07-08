@@ -36,7 +36,9 @@ const PortfolioContent = styled.div`
       return columns
     }};
     grid-gap: 24px;
-    grid-template-rows: repeat(2, 400px);
+    grid-template-rows: ${props => {
+      return "repeat(" + props.rows + ", 400px)"
+    }};
   }
 `
 
@@ -128,6 +130,7 @@ const Portfolio = () => {
     schedulingapp,
     castmyshowGIF,
     secondaryCharGIF,
+    dice,
   } = useStaticQuery(graphql`
     query {
       image1: file(relativePath: { eq: "600px-JavaScript-logo.png" }) {
@@ -178,6 +181,13 @@ const Portfolio = () => {
           }
         }
       }
+      dice: allFile(filter: { publicURL: { regex: "/dice/" } }) {
+        edges {
+          node {
+            publicURL
+          }
+        }
+      }
     }
   `)
 
@@ -186,10 +196,10 @@ const Portfolio = () => {
       <PortfolioBlock>
         <PortfolioTitle>
           <PortfolioTitleDecorator />
-          <h2>Web</h2>
+          <h2>Projects</h2>
           <PortfolioTitleDecorator />
         </PortfolioTitle>
-        <PortfolioContent columns={2}>
+        <PortfolioContent columns={2} rows={2}>
           <PortfolioFeatureBlock to="digitaledition">
             <PortfolioFeature background={digitalGIF.edges[0].node.publicURL}>
               <Overlay>
@@ -249,10 +259,25 @@ const Portfolio = () => {
       <PortfolioBlock>
         <PortfolioTitle>
           <PortfolioTitleDecorator />
+          <h2>Coding Challenges</h2>
+          <PortfolioTitleDecorator />
+        </PortfolioTitle>
+        <PortfolioContent columns={3} rows={1}>
+          <PortfolioFeatureBlock to="skunkgame">
+            <img src={dice.edges[0].node.publicURL} width="100%" />
+            <h3>SKUNK Game</h3>
+          </PortfolioFeatureBlock>
+          <div>Coming soon</div>
+          <div>Coming soon</div>
+        </PortfolioContent>
+      </PortfolioBlock>
+      <PortfolioBlock>
+        <PortfolioTitle>
+          <PortfolioTitleDecorator />
           <h2>Technical Expertise</h2>
           <PortfolioTitleDecorator />
         </PortfolioTitle>
-        <PortfolioContent columns={3}>
+        <PortfolioContent columns={3} rows={3}>
           <div>
             <Img fluid={image1.sharp.fluid} alt="Javascript" />
             <h3>Javascript</h3>
