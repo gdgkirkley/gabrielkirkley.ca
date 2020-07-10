@@ -10,7 +10,7 @@ const Form = styled.form`
     margin: 8px 0px;
     font-weight: bold;
     font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
-    color: ${props => props.theme.grey6};
+    color: ${props => props.theme.grey3};
     & input,
     textarea {
       width: 100%;
@@ -25,7 +25,7 @@ const Form = styled.form`
       font-size: ${props => props.theme.fontSize.reading};
       &:hover,
       :focus {
-        border: 1px solid ${props => props.theme.primary5};
+        border: 1px solid ${props => props.theme.grey3};
         background: white;
       }
       &:focus {

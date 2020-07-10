@@ -9,17 +9,8 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: "gatsby-plugin-mdx",
-      options: {
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout.js"),
-        },
-        gatsbyRemarkPlugins: [{ resolve: "gatsby-remark-images" }],
-        plugins: [{ resolve: "gatsby-remark-images" }],
-      },
-    },
     "gatsby-plugin-optimize-svgs",
+    "gatsby-plugin-transition-link",
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
@@ -32,7 +23,14 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "posts",
-        path: "posts",
+        path: `posts`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: `${__dirname}/src/pages`,
       },
     },
     {
@@ -40,6 +38,14 @@ module.exports = {
       options: {
         name: "images",
         path: "images",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [{ resolve: "gatsby-remark-images" }],
+        plugins: [{ resolve: "gatsby-remark-images" }],
       },
     },
     {

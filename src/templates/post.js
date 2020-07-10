@@ -6,13 +6,17 @@ import Layout from "../components/layout"
 
 export const query = graphql`
   query($slug: String!) {
-    mdx(frontmatter: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        author
-        date
+    postData: allMdx(filter: { frontmatter: { slug: { eq: $slug } } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            author
+            date
+          }
+          body
+        }
       }
-      body
     }
   }
 `
@@ -27,17 +31,20 @@ const formatDate = date => {
   })
 }
 
-const PostTemplate = ({ data: { mdx: post } }) => {
+const PostTemplate = ({ data: { postData } }) => {
+  const post = postData.edges[0].node
   if (!post) return null
   return (
-    <Layout>
-      <h1>{post.frontmatter.title}</h1>
-      <MDXRenderer>{post.body}</MDXRenderer>
-      <p>Posted by {post.frontmatter.author}</p>
-      <p>{formatDate(post.frontmatter.date)}</p>
-      <Link to="/blog" replace>
-        &larr; Go Back
-      </Link>
+    <Layout colour="blog" invert={true}>
+      <main>
+        <h1>{post.frontmatter.title}</h1>
+        <MDXRenderer>{post.body}</MDXRenderer>
+        <p>Posted by {post.frontmatter.author}</p>
+        <p>{formatDate(post.frontmatter.date)}</p>
+        <Link to="/blog" replace>
+          &larr; Go Back
+        </Link>
+      </main>
     </Layout>
   )
 }

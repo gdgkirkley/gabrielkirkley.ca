@@ -4,9 +4,11 @@ import ContactForm from "../components/contactform"
 
 const Contact = () => {
   return (
-    <Layout>
-      <h1>Contact</h1>
-      <ContactForm />
+    <Layout colour="contact" invert={true}>
+      <main>
+        <h1>Contact</h1>
+        <ContactForm />
+      </main>
     </Layout>
   )
 }

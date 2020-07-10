@@ -1,6 +1,7 @@
 ---
+templateKey: post
 title: Hello World
-slug: hello-world
+slug: /blog/hello-world
 author: Gabriel Kirkley
 image: ./kevin-butz-hello.jpg
 date: 2020-06-28

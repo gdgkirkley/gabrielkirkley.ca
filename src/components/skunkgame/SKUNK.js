@@ -611,6 +611,7 @@ class Skunk extends Game {
         if (input === Controls.YES) {
           this.getPlayers().map(player => {
             player.getScore().setScore(this.INITIAL_SCORE_VALUE)
+            return player
           })
 
           this.currentRound = this.INITIAL_ROUND_VALUE

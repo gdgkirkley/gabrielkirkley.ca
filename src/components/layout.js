@@ -1,5 +1,5 @@
 import React from "react"
-import { ThemeProvider, createGlobalStyle } from "styled-components"
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 import Helmet from "react-helmet"
 import PropTypes from "prop-types"
 import useSiteMetadata from "../hooks/useSiteMetadata"
@@ -7,16 +7,21 @@ import useSiteMetadata from "../hooks/useSiteMetadata"
 import Header from "./header"
 
 const theme = {
-  primary1: "#FA6E4F", // Updated
+  home: "#BE4242",
+  portfolio: "#FFE67C",
+  blog: "#F6F6F6",
+  about: "#9494FF",
+  contact: "#FFE263",
+  primary1: "#231c42", // Updated
   primary2: "#200A5C",
-  primary3: "#341782",
+  primary3: "#52419C", // Updated
   primary4: "#4A29A3",
-  primary5: "#FB8E7E", // Updated
+  primary5: "#866BFF", // Updated
   primary6: "#7D5CD6",
   primary7: "#9A7DE8",
-  primary8: "#B9A3F5",
+  primary8: "#866BFF", // Updated
   primary9: "#DBCFFC",
-  primary10: "#F8CA9D", // Updated
+  primary10: "#FBDADE", // Updated
   accent1: "#8EC9BB", // Updated
   accent2: "#651301",
   accent3: "#981C01",
@@ -71,9 +76,11 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-size: 1.8rem;
-        color: ${theme.grey1};
+        color: ${theme.grey10};
         line-height: 1.5;
         font-family: "Roboto", Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        background: #231c42;
     }
     /* Remove margin for the main div that Gatsby mounts into*/
     > div {
@@ -84,13 +91,18 @@ const GlobalStyle = createGlobalStyle`
       height: 1%;
       margin: 0px 8px;
     }
+    nav {
+      a {
+        color: ${theme.grey3};
+      }
+    }
     a {
         text-decoration: none;
-        color: ${theme.primary5};
+        color: ${theme.grey8};
     }
     h1, h2, h3, h4, h5, h6 {
       font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
-      color: ${theme.primary1};
+      color: ${theme.grey10};
       & * {
           margin-top: 0.5rem;
       }
@@ -102,19 +114,49 @@ const GlobalStyle = createGlobalStyle`
       font-size: ${theme.fontSize.subHeading}
     }
     strong {
-        color: ${theme.grey3};
+        color: ${theme.grey1};
     }
     main {
         margin: 2rem auto 4rem;
         max-width: 90vw;
         width: ${theme.maxWidth};
+        z-index: 2;
     }
     footer {
       text-align: center;
+      color: ${props => props.theme.grey8};
+      padding: 20px 0px;
     }
 `
 
-const Layout = ({ children }) => {
+const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+`
+
+const Wrapper = styled.div`
+  height: 100%;
+  display: flex;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  flex: 1 1 auto;
+  overflow: hidden;
+  z-index: 1;
+  background: ${props => props.colour};
+  color: ${props => (props.invert ? props.theme.grey1 : "inherit")};
+  & h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: ${props => (props.invert ? props.theme.grey1 : "inherit")};
+  }
+`
+
+const Layout = ({ children, colour = "none", invert = false }) => {
   const { title, description } = useSiteMetadata()
 
   return (
@@ -124,11 +166,18 @@ const Layout = ({ children }) => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Helmet>
-      <Header siteTitle={title} />
-      <div>
-        <main>{children}</main>
+      <Page>
+        <Header
+          siteTitle={title}
+          theme={theme}
+          socialColour={theme[colour]}
+          invertSocial={invert}
+        />
+        <Wrapper colour={theme[colour]} invert={invert}>
+          {children}
+        </Wrapper>
         <footer>© {new Date().getFullYear()}, Gabe Kirkley</footer>
-      </div>
+      </Page>
       <GlobalStyle />
     </ThemeProvider>
   )

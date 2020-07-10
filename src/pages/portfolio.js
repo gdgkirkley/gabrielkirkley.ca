@@ -192,126 +192,128 @@ const Portfolio = () => {
   `)
 
   return (
-    <Layout>
-      <PortfolioBlock>
-        <PortfolioTitle>
-          <PortfolioTitleDecorator />
-          <h2>Projects</h2>
-          <PortfolioTitleDecorator />
-        </PortfolioTitle>
-        <PortfolioContent columns={2} rows={2}>
-          <PortfolioFeatureBlock to="digitaledition">
-            <PortfolioFeature background={digitalGIF.edges[0].node.publicURL}>
-              <Overlay>
-                <div>
-                  <h3>Arts Club: Digital Edition</h3>
-                  <p>React, NodeJS, PostgreSQL</p>
-                </div>
-                <Button>Learn more</Button>
-              </Overlay>
-            </PortfolioFeature>
-            <Title>Arts Club: Digital Edition</Title>
-          </PortfolioFeatureBlock>
-          <PortfolioFeatureBlock to="secondarycharacters">
-            <PortfolioFeature
-              background={secondaryCharGIF.edges[0].node.publicURL}
-            >
-              <Overlay>
-                <div>
-                  <h3>Secondary Characters</h3>
-                  <p>Gatsby, NetlifyCMS</p>
-                </div>
-                <Button>Learn more</Button>
-              </Overlay>
-            </PortfolioFeature>
-            <Title>Secondary Characters</Title>
-          </PortfolioFeatureBlock>
-          <PortfolioFeatureBlock to="castmyshow">
-            <PortfolioFeature
-              background={castmyshowGIF.edges[1].node.publicURL}
-            >
-              <Overlay>
-                <div>
-                  <h3>Cast My Show</h3>
-                  <p>React, Firebase</p>
-                </div>
-                <Button>Learn more</Button>
-              </Overlay>
-            </PortfolioFeature>
-            <Title>Cast My Show</Title>
-          </PortfolioFeatureBlock>
-          <PortfolioFeatureBlock to="staffscheduling">
-            <PortfolioFeature
-              background={schedulingapp.edges[0].node.publicURL}
-            >
-              <Overlay>
-                <div>
-                  <h3>Staff Shift Scheduling Application</h3>
-                  <p>React, NodeJS, PostgreSQL</p>
-                </div>
-                <Button>Learn more</Button>
-              </Overlay>
-            </PortfolioFeature>
-            <Title>Staff Shift Scheduling Application</Title>
-          </PortfolioFeatureBlock>
-        </PortfolioContent>
-      </PortfolioBlock>
-      <PortfolioBlock>
-        <PortfolioTitle>
-          <PortfolioTitleDecorator />
-          <h2>Coding Challenges</h2>
-          <PortfolioTitleDecorator />
-        </PortfolioTitle>
-        <PortfolioContent columns={3} rows={1}>
-          <PortfolioFeatureBlock to="skunkgame">
-            <img src={dice.edges[0].node.publicURL} width="100%" />
-            <h3>SKUNK Game</h3>
-          </PortfolioFeatureBlock>
-          <div>Coming soon</div>
-          <div>Coming soon</div>
-        </PortfolioContent>
-      </PortfolioBlock>
-      <PortfolioBlock>
-        <PortfolioTitle>
-          <PortfolioTitleDecorator />
-          <h2>Technical Expertise</h2>
-          <PortfolioTitleDecorator />
-        </PortfolioTitle>
-        <PortfolioContent columns={3} rows={3}>
-          <div>
-            <Img fluid={image1.sharp.fluid} alt="Javascript" />
-            <h3>Javascript</h3>
-          </div>
-          <div>
-            <ReactLogo />
-            <h3>React</h3>
-          </div>
-          <div>
-            <NodeJS />
-            <h3>NodeJS</h3>
-          </div>
-          <div>
-            <PostgreSQL />
-            <h3>PostgreSQL</h3>
-          </div>
-          <div>
-            <Java />
-            <h3>Java</h3>
-          </div>
-          <div>
-            <HTML5 />
-            <h3>HTML5</h3>
-          </div>
-          <div>
-            <CSS />
-            <h3>CSS</h3>
-          </div>
-          <div>
-            <Img fluid={image2.sharp.fluid} alt="R" />
-            <h3>R</h3>
-          </div>
-        </PortfolioContent>
-      </PortfolioBlock>
+    <Layout colour={"portfolio"} invert={true}>
+      <main>
+        <PortfolioBlock>
+          <PortfolioTitle>
+            <PortfolioTitleDecorator />
+            <h2>Projects</h2>
+            <PortfolioTitleDecorator />
+          </PortfolioTitle>
+          <PortfolioContent columns={2} rows={2}>
+            <PortfolioFeatureBlock to="digitaledition">
+              <PortfolioFeature background={digitalGIF.edges[0].node.publicURL}>
+                <Overlay>
+                  <div>
+                    <h3>Arts Club: Digital Edition</h3>
+                    <p>React, NodeJS, PostgreSQL</p>
+                  </div>
+                  <Button>Learn more</Button>
+                </Overlay>
+              </PortfolioFeature>
+              <Title>Arts Club: Digital Edition</Title>
+            </PortfolioFeatureBlock>
+            <PortfolioFeatureBlock to="secondarycharacters">
+              <PortfolioFeature
+                background={secondaryCharGIF.edges[0].node.publicURL}
+              >
+                <Overlay>
+                  <div>
+                    <h3>Secondary Characters</h3>
+                    <p>Gatsby, NetlifyCMS</p>
+                  </div>
+                  <Button>Learn more</Button>
+                </Overlay>
+              </PortfolioFeature>
+              <Title>Secondary Characters</Title>
+            </PortfolioFeatureBlock>
+            <PortfolioFeatureBlock to="castmyshow">
+              <PortfolioFeature
+                background={castmyshowGIF.edges[1].node.publicURL}
+              >
+                <Overlay>
+                  <div>
+                    <h3>Cast My Show</h3>
+                    <p>React, Firebase</p>
+                  </div>
+                  <Button>Learn more</Button>
+                </Overlay>
+              </PortfolioFeature>
+              <Title>Cast My Show</Title>
+            </PortfolioFeatureBlock>
+            <PortfolioFeatureBlock to="staffscheduling">
+              <PortfolioFeature
+                background={schedulingapp.edges[0].node.publicURL}
+              >
+                <Overlay>
+                  <div>
+                    <h3>Staff Shift Scheduling Application</h3>
+                    <p>React, NodeJS, PostgreSQL</p>
+                  </div>
+                  <Button>Learn more</Button>
+                </Overlay>
+              </PortfolioFeature>
+              <Title>Staff Shift Scheduling Application</Title>
+            </PortfolioFeatureBlock>
+          </PortfolioContent>
+        </PortfolioBlock>
+        <PortfolioBlock>
+          <PortfolioTitle>
+            <PortfolioTitleDecorator />
+            <h2>Coding Challenges</h2>
+            <PortfolioTitleDecorator />
+          </PortfolioTitle>
+          <PortfolioContent columns={3} rows={1}>
+            <PortfolioFeatureBlock to="skunkgame">
+              <img src={dice.edges[0].node.publicURL} width="100%" alt="dice" />
+              <h3>SKUNK Game</h3>
+            </PortfolioFeatureBlock>
+            <div>Coming soon</div>
+            <div>Coming soon</div>
+          </PortfolioContent>
+        </PortfolioBlock>
+        <PortfolioBlock>
+          <PortfolioTitle>
+            <PortfolioTitleDecorator />
+            <h2>Technical Expertise</h2>
+            <PortfolioTitleDecorator />
+          </PortfolioTitle>
+          <PortfolioContent columns={3} rows={3}>
+            <div>
+              <Img fluid={image1.sharp.fluid} alt="Javascript" />
+              <h3>Javascript</h3>
+            </div>
+            <div>
+              <ReactLogo />
+              <h3>React</h3>
+            </div>
+            <div>
+              <NodeJS />
+              <h3>NodeJS</h3>
+            </div>
+            <div>
+              <PostgreSQL />
+              <h3>PostgreSQL</h3>
+            </div>
+            <div>
+              <Java />
+              <h3>Java</h3>
+            </div>
+            <div>
+              <HTML5 />
+              <h3>HTML5</h3>
+            </div>
+            <div>
+              <CSS />
+              <h3>CSS</h3>
+            </div>
+            <div>
+              <Img fluid={image2.sharp.fluid} alt="R" />
+              <h3>R</h3>
+            </div>
+          </PortfolioContent>
+        </PortfolioBlock>
+      </main>
     </Layout>
   )
 }

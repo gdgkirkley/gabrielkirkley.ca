@@ -1,30 +1,43 @@
-import { Link, useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
+import Hamburger from "hamburger-react"
 import PropTypes from "prop-types"
-import React from "react"
 import styled from "styled-components"
+import Social from "./social"
+import useWindowSize from "../hooks/useWindowSize"
 
 const HeaderStyles = styled.header`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
   min-height: 80px;
-  margin-top: 5px;
+  background: white;
+  justify-content: space-between;
   & nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    height: 80px;
     margin-top: 0;
-    margin: 0px 32px;
+    margin: 0px 32px 0px 0px;
+  }
+
+  @media (min-width: 768px) {
+    & nav {
+      margin: 0px 0px 0px 32px;
+      flex-direction: row;
+    }
   }
 `
 
 const NavGroup = styled.div`
-  display: grid;
-  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 24px;
+  background: ${props => (props.colour ? props.colour : "none")};
+
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+    flex-direction: row;
   }
 `
 
@@ -32,7 +45,7 @@ const NavLink = styled(Link)`
   font-size: ${props => props.theme.fontSize.emphasis};
   font-weight: bold;
   line-height: 1;
-  margin: 0 2rem 0 0;
+  margin: 80px 2rem 0 0;
   padding: 0.25rem;
   text-decoration: none;
   border-bottom: 2px solid white;
@@ -50,53 +63,123 @@ const NavLink = styled(Link)`
   & :hover {
     border-bottom: 2px solid ${props => props.theme.accent5};
   }
-`
 
-const ImageLink = styled(Link)`
-  margin: 0 2rem 0 0;
-  padding: 0.25rem;
-  min-width: 120px;
-  transition: 1s ease-in-out;
-  & img {
-    min-width: 60px;
+  @media (min-width: 768px) {
+    margin: 0 2rem 0 0;
   }
 `
 
-const Header = ({ siteTitle }) => {
-  const { image } = useStaticQuery(graphql`
-    query {
-      image: file(relativePath: { eq: "plant-header.png" }) {
-        sharp: childImageSharp {
-          fluid(quality: 80) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+const SiteTitle = styled(Link)`
+  margin: 0 2rem 0 0;
+  padding: 0.25rem;
+  min-width: 120px;
+  transition: all 0.4s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0px 0px 0px 32px;
+
+  font-weight: bolder;
+  font-size: 22px;
+  z-index: 2;
+  color: ${props => props.theme.grey8};
+  border-radius: 1000px;
+  padding: 8px 12px;
+
+  & :hover {
+    color: ${props => props.theme.grey3};
+  }
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+`
+
+const MobileIcon = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: ${props => props.theme.grey1};
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+
+const MobileNav = styled.div`
+  display: none;
+
+  &.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 80px;
+    z-index: 999;
+    background: ${props => props.theme.grey10};
+
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+  }
+
+  @media (min-width: 768px) {
+    height: inherit;
+    width: auto;
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+  }
+`
+
+const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
+  const [open, setOpen] = useState(false)
+
+  const { width } = useWindowSize()
+
+  useEffect(() => {
+    if (width !== undefined && width > 768) {
+      setOpen(false)
     }
-  `)
+  }, [width])
+
+  const handleMenuButtonClick = () => {
+    if (width && width !== undefined && width > 768) {
+      return
+    }
+
+    setOpen(!open)
+  }
 
   return (
     <HeaderStyles>
       <nav>
-        <NavGroup>
-          <NavLink to="/portfolio" activeClassName="current">
-            Portfolio
-          </NavLink>
-          <NavLink to="/blog" activeClassName="current">
-            Blog
-          </NavLink>
-        </NavGroup>
-        <ImageLink to="/" fontWeight="bold">
-          <Img fluid={image.sharp.fluid} alt={siteTitle} />
-        </ImageLink>
-        <NavGroup>
-          <NavLink to="/about" activeClassName="current">
-            About
-          </NavLink>
-          <NavLink to="/contact" activeClassName="current">
-            Contact
-          </NavLink>
-        </NavGroup>
+        <SiteTitle to="/" fontWeight="bold">
+          Gabe Kirkley.
+        </SiteTitle>
+        <MobileIcon>
+          <Hamburger toggled={open} toggle={handleMenuButtonClick} />
+        </MobileIcon>
+        <MobileNav className={open ? "open" : ""}>
+          <NavGroup>
+            <NavLink to="/" activeClassName="current">
+              Home
+            </NavLink>
+            <NavLink to="/portfolio" activeClassName="current">
+              Portfolio
+            </NavLink>
+            <NavLink to="/blog" activeClassName="current">
+              Blog
+            </NavLink>
+            <NavLink to="/about" activeClassName="current">
+              About
+            </NavLink>
+            <NavLink to="/contact" activeClassName="current">
+              Contact
+            </NavLink>
+          </NavGroup>
+          <NavGroup colour={socialColour}>
+            <Social invertSocial={invertSocial} />
+          </NavGroup>
+        </MobileNav>
       </nav>
     </HeaderStyles>
   )
