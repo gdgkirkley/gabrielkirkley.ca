@@ -19,6 +19,7 @@ const HeaderStyles = styled.header`
     height: 80px;
     margin-top: 0;
     margin: 0px 32px 0px 0px;
+    position: relative;
   }
 
   @media (min-width: 768px) {
@@ -35,8 +36,10 @@ const NavGroup = styled.div`
   align-items: center;
   padding: 0px 24px;
   background: ${props => (props.colour ? props.colour : "none")};
+  margin-bottom: 24px;
 
   @media (min-width: 768px) {
+    margin-bottom: 0px;
     flex-direction: row;
   }
 `
@@ -107,22 +110,24 @@ const MobileIcon = styled.div`
 
 const MobileNav = styled.div`
   display: none;
-  overflow: hidden;
 
   &.open {
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 80px;
+    bottom: 0;
     z-index: 999;
+    overflow-y: scroll;
+    overflow-x: hidden;
     background: ${props => props.theme.grey10};
 
     width: 100%;
-    height: 100%;
     justify-content: space-evenly;
   }
 
   @media (min-width: 768px) {
+    overflow-y: auto;
     height: inherit;
     width: auto;
     display: inherit;
@@ -134,7 +139,7 @@ const MobileNav = styled.div`
 const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
   const [open, setOpen] = useState(false)
 
-  const { width, height } = useWindowSize()
+  const { width } = useWindowSize()
 
   useEffect(() => {
     if (width !== undefined && width > 768) {
@@ -147,14 +152,17 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
       return
     }
 
-    setOpen(!open)
     if (!open) {
       document.body.style.position = "fixed"
       document.body.style.top = `-${window.scrollY}px`
+      document.body.style.width = "100%"
     } else {
       document.body.style.position = ""
       document.body.style.top = ""
+      document.body.style.width = ""
     }
+
+    setOpen(!open)
   }
 
   return (

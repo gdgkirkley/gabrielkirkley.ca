@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Button from "./button"
 
 const CardLink = styled(Link)`
-  display: grid;
+  display: flex;
   transition: 0.1s linear;
   border-radius: 4px;
   border: 3px solid white;
@@ -14,6 +14,7 @@ const CardLink = styled(Link)`
   background-color: #f2f8f9;
   z-index: 0;
   height: 100%;
+  margin-top: 10px;
 
   &::before {
     content: "";
@@ -48,7 +49,7 @@ const CardLink = styled(Link)`
   }
 `
 const CardContainer = styled.div`
-  width: 100%;
+  width: 400px;
   height: 100%;
   background: url(${props => props.background}) center center/cover;
   transition: 0.4s linear;
@@ -68,9 +69,8 @@ const Card = ({ image, title, description, url }) => {
             <h3>{title}</h3>
             <p>{description}</p>
           </div>
-          <Link to={url}>
-            <Button tabIndex="-1">Learn more</Button>
-          </Link>
+
+          <Button>See more</Button>
         </CardContent>
       </CardContainer>
     </CardLink>

@@ -28,7 +28,7 @@ const MainTitle = styled.h1`
   margin-bottom: 0px;
 `
 
-const Title = styled.h3`
+const Title = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;

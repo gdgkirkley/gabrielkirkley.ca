@@ -1,7 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactLogo from "../../images/react-icon.svg"
 import NodeJS from "../../images/node.js_logo.svg"
@@ -11,7 +9,6 @@ import CSS from "../../images/CSS3_logo.svg"
 import HTML5 from "../../images/HTML5_logo.svg"
 import JavascriptLogo from "../../images/javascript-logo.svg"
 import RLogo from "../../images/r-logo.svg"
-import Button from "../components/button"
 import Card from "../components/card"
 import useExamples from "../hooks/useExamples"
 
@@ -20,11 +17,9 @@ const PortfolioBlock = styled.div`
 `
 
 const PortfolioContent = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 400px);
-  row-gap: 24px;
-  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
 
@@ -34,17 +29,6 @@ const PortfolioContent = styled.div`
   }
 
   @media (min-width: 768px) {
-    grid-template-columns: ${props => {
-      let columns = ""
-      for (let i = 0; i < props.columns; i++) {
-        columns += "1fr "
-      }
-      return columns
-    }};
-    grid-gap: 24px;
-    grid-template-rows: ${props => {
-      return "repeat(" + props.rows + ", 400px)"
-    }};
   }
 `
 

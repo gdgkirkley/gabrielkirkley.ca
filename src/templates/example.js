@@ -2,8 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Button from "../components/button"
-import { setUpGame } from "../components/skunkgame/SKUNK"
-import styled from "styled-components"
+// import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -30,6 +29,7 @@ const ExamplePage = ({ data: { pageData } }) => {
 
   return (
     <Layout colour="portfolio" invert="true">
+      <SEO title={page.title} />
       <main>
         <h1>{page.title}</h1>
         <MDXRenderer components={shortcodes}>{page.body}</MDXRenderer>

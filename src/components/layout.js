@@ -4,6 +4,15 @@ import Helmet from "react-helmet"
 import PropTypes from "prop-types"
 import useSiteMetadata from "../hooks/useSiteMetadata"
 
+import Inter300Woff from "../../fonts/inter-v2-latin-300.woff"
+import Inter300Woff2 from "../../fonts/inter-v2-latin-300.woff2"
+import InterRegularWoff from "../../fonts/inter-v2-latin-regular.woff"
+import InterRegularWoff2 from "../../fonts/inter-v2-latin-regular.woff2"
+import Inter600Woff from "../../fonts/inter-v2-latin-600.woff"
+import Inter600Woff2 from "../../fonts/inter-v2-latin-600.woff2"
+import Inter800Woff from "../../fonts/inter-v2-latin-800.woff"
+import Inter800Woff2 from "../../fonts/inter-v2-latin-800.woff2"
+
 import Header from "./header"
 
 const theme = {
@@ -68,6 +77,42 @@ const theme = {
 }
 
 const GlobalStyle = createGlobalStyle`
+    /* inter-300 - latin */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 300;
+      src: local(''),
+          url(${Inter300Woff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+          url(${Inter300Woff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+    /* inter-regular - latin */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      src: local(''),
+          url(${InterRegularWoff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+          url(${InterRegularWoff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+    /* inter-600 - latin */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      src: local(''),
+          url(${Inter600Woff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+          url(${Inter600Woff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+    /* inter-800 - latin */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 800;
+      src: local(''),
+          url(${Inter800Woff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+          url(${Inter800Woff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
     html {
         box-sizing: border-box;
         font-size: 10px;
@@ -81,7 +126,8 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.8rem;
         color: ${theme.grey10};
         line-height: 1.5;
-        font-family: "Roboto", Arial, Helvetica, sans-serif;
+        font-family: "Inter", Arial, Helvetica, sans-serif;
+        font-weight: 400;
         min-height: 100vh;
         background: #231c42;
     }
@@ -104,7 +150,8 @@ const GlobalStyle = createGlobalStyle`
         color: ${theme.grey8};
     }
     h1, h2, h3, h4, h5, h6 {
-      font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-weight: 800;
       color: ${theme.grey10};
       & * {
           margin-top: 0.5rem;
@@ -129,6 +176,7 @@ const GlobalStyle = createGlobalStyle`
       text-align: center;
       color: ${props => props.theme.grey8};
       padding: 20px 0px;
+      font-weight: 300;
     }
 `
 
