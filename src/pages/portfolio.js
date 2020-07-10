@@ -10,6 +10,8 @@ import Java from "../../images/java_logo.svg"
 import CSS from "../../images/CSS3_logo.svg"
 import HTML5 from "../../images/HTML5_logo.svg"
 import Button from "../components/button"
+import Card from "../components/card"
+import useExamples from "../hooks/useExamples"
 
 const PortfolioBlock = styled.div``
 
@@ -42,62 +44,6 @@ const PortfolioContent = styled.div`
   }
 `
 
-const Overlay = styled.div`
-  width: 100%;
-  height: 100%;
-  background: white;
-  padding: 20px;
-  opacity: 0;
-  transition: 0.1s linear;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-
-  & h3 {
-    margin: 0;
-  }
-`
-
-const Title = styled.h3`
-  opacity: 1;
-  transition: 0.1s linear;
-`
-
-const PortfolioFeatureBlock = styled(Link)`
-  display: grid;
-  grid-template-rows: 4fr 1fr;
-  transition: 0.1s linear;
-  border-radius: 4px;
-  border: 3px solid white;
-
-  & ${Overlay} {
-    opacity: 0;
-  }
-
-  & ${Title} {
-    opacity: 1;
-  }
-
-  & :hover,
-  :focus,
-  :focus-within {
-    border: 3px solid ${props => props.theme.accent5};
-    & ${Overlay} {
-      opacity: 1;
-    }
-    & ${Title} {
-      opacity: 0;
-    }
-  }
-`
-
-const PortfolioFeature = styled.div`
-  width: 100%;
-  height: 100%;
-  background: url(${props => props.background}) center center/cover;
-  transition: 0.4s linear;
-`
-
 const PortfolioTitle = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -118,78 +64,12 @@ const PortfolioTitle = styled.div`
 `
 
 const PortfolioTitleDecorator = styled.div`
-  border-top: 1px solid ${props => props.theme.accent5};
+  border-top: 1px solid ${props => props.theme.grey10};
   width: 100%;
 `
 
 const Portfolio = () => {
-  const {
-    image1,
-    image2,
-    digitalGIF,
-    schedulingapp,
-    castmyshowGIF,
-    secondaryCharGIF,
-    dice,
-  } = useStaticQuery(graphql`
-    query {
-      image1: file(relativePath: { eq: "600px-JavaScript-logo.png" }) {
-        sharp: childImageSharp {
-          fluid(quality: 80) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      image2: file(relativePath: { eq: "Rlogo.png" }) {
-        sharp: childImageSharp {
-          fluid(quality: 80) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      digitalGIF: allFile(
-        filter: { publicURL: { regex: "/digitaledition/" } }
-      ) {
-        edges {
-          node {
-            publicURL
-          }
-        }
-      }
-      schedulingapp: allFile(
-        filter: { publicURL: { regex: "/schedulingapp/" } }
-      ) {
-        edges {
-          node {
-            publicURL
-          }
-        }
-      }
-      castmyshowGIF: allFile(filter: { publicURL: { regex: "/castmyshow/" } }) {
-        edges {
-          node {
-            publicURL
-          }
-        }
-      }
-      secondaryCharGIF: allFile(
-        filter: { publicURL: { regex: "/secondarycharacters/" } }
-      ) {
-        edges {
-          node {
-            publicURL
-          }
-        }
-      }
-      dice: allFile(filter: { publicURL: { regex: "/dice/" } }) {
-        edges {
-          node {
-            publicURL
-          }
-        }
-      }
-    }
-  `)
+  const examples = useExamples()
 
   return (
     <Layout colour={"portfolio"} invert={true}>
@@ -201,60 +81,18 @@ const Portfolio = () => {
             <PortfolioTitleDecorator />
           </PortfolioTitle>
           <PortfolioContent columns={2} rows={2}>
-            <PortfolioFeatureBlock to="digitaledition">
-              <PortfolioFeature background={digitalGIF.edges[0].node.publicURL}>
-                <Overlay>
-                  <div>
-                    <h3>Arts Club: Digital Edition</h3>
-                    <p>React, NodeJS, PostgreSQL</p>
-                  </div>
-                  <Button>Learn more</Button>
-                </Overlay>
-              </PortfolioFeature>
-              <Title>Arts Club: Digital Edition</Title>
-            </PortfolioFeatureBlock>
-            <PortfolioFeatureBlock to="secondarycharacters">
-              <PortfolioFeature
-                background={secondaryCharGIF.edges[0].node.publicURL}
-              >
-                <Overlay>
-                  <div>
-                    <h3>Secondary Characters</h3>
-                    <p>Gatsby, NetlifyCMS</p>
-                  </div>
-                  <Button>Learn more</Button>
-                </Overlay>
-              </PortfolioFeature>
-              <Title>Secondary Characters</Title>
-            </PortfolioFeatureBlock>
-            <PortfolioFeatureBlock to="castmyshow">
-              <PortfolioFeature
-                background={castmyshowGIF.edges[1].node.publicURL}
-              >
-                <Overlay>
-                  <div>
-                    <h3>Cast My Show</h3>
-                    <p>React, Firebase</p>
-                  </div>
-                  <Button>Learn more</Button>
-                </Overlay>
-              </PortfolioFeature>
-              <Title>Cast My Show</Title>
-            </PortfolioFeatureBlock>
-            <PortfolioFeatureBlock to="staffscheduling">
-              <PortfolioFeature
-                background={schedulingapp.edges[0].node.publicURL}
-              >
-                <Overlay>
-                  <div>
-                    <h3>Staff Shift Scheduling Application</h3>
-                    <p>React, NodeJS, PostgreSQL</p>
-                  </div>
-                  <Button>Learn more</Button>
-                </Overlay>
-              </PortfolioFeature>
-              <Title>Staff Shift Scheduling Application</Title>
-            </PortfolioFeatureBlock>
+            {examples.map(example => {
+              if (example.type !== "project") return null
+              return (
+                <Card
+                  key={example.title}
+                  image={example.image}
+                  title={example.title}
+                  description={example.excerpt}
+                  url={example.slug}
+                />
+              )
+            })}
           </PortfolioContent>
         </PortfolioBlock>
         <PortfolioBlock>
@@ -264,12 +102,18 @@ const Portfolio = () => {
             <PortfolioTitleDecorator />
           </PortfolioTitle>
           <PortfolioContent columns={3} rows={1}>
-            <PortfolioFeatureBlock to="skunkgame">
-              <img src={dice.edges[0].node.publicURL} width="100%" alt="dice" />
-              <h3>SKUNK Game</h3>
-            </PortfolioFeatureBlock>
-            <div>Coming soon</div>
-            <div>Coming soon</div>
+            {examples.map(example => {
+              if (example.type !== "challenge") return null
+              return (
+                <Card
+                  key={example.title}
+                  image={example.image}
+                  title={example.title}
+                  description={example.excerpt}
+                  url={example.slug}
+                />
+              )
+            })}
           </PortfolioContent>
         </PortfolioBlock>
         <PortfolioBlock>
@@ -280,7 +124,6 @@ const Portfolio = () => {
           </PortfolioTitle>
           <PortfolioContent columns={3} rows={3}>
             <div>
-              <Img fluid={image1.sharp.fluid} alt="Javascript" />
               <h3>Javascript</h3>
             </div>
             <div>
@@ -308,7 +151,6 @@ const Portfolio = () => {
               <h3>CSS</h3>
             </div>
             <div>
-              <Img fluid={image2.sharp.fluid} alt="R" />
               <h3>R</h3>
             </div>
           </PortfolioContent>

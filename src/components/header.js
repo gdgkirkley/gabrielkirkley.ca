@@ -55,13 +55,13 @@ const NavLink = styled(Link)`
     min-width: 60px;
   }
   &.current {
-    border-bottom: 2px solid ${props => props.theme.accent5};
+    border-bottom: 2px solid ${props => props.colour};
   }
   /* &:last-of-type {
     margin: 0;
   } */
   & :hover {
-    border-bottom: 2px solid ${props => props.theme.accent5};
+    border-bottom: 2px solid ${props => props.theme.grey5};
   }
 
   @media (min-width: 768px) {
@@ -82,7 +82,7 @@ const SiteTitle = styled(Link)`
   font-weight: bolder;
   font-size: 22px;
   z-index: 2;
-  color: ${props => props.theme.grey8};
+  color: ${props => props.theme.grey5};
   border-radius: 1000px;
   padding: 8px 12px;
 
@@ -160,19 +160,31 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
         </MobileIcon>
         <MobileNav className={open ? "open" : ""}>
           <NavGroup>
-            <NavLink to="/" activeClassName="current">
+            <NavLink to="/" activeClassName="current" colour={socialColour}>
               Home
             </NavLink>
-            <NavLink to="/portfolio" activeClassName="current">
+            <NavLink
+              to="/portfolio"
+              activeClassName="current"
+              colour={socialColour}
+            >
               Portfolio
             </NavLink>
-            <NavLink to="/blog" activeClassName="current">
+            <NavLink to="/blog" activeClassName="current" colour={socialColour}>
               Blog
             </NavLink>
-            <NavLink to="/about" activeClassName="current">
+            <NavLink
+              to="/about"
+              activeClassName="current"
+              colour={socialColour}
+            >
               About
             </NavLink>
-            <NavLink to="/contact" activeClassName="current">
+            <NavLink
+              to="/contact"
+              activeClassName="current"
+              colour={socialColour}
+            >
               Contact
             </NavLink>
           </NavGroup>

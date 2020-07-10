@@ -7,11 +7,14 @@ import useSiteMetadata from "../hooks/useSiteMetadata"
 import Header from "./header"
 
 const theme = {
-  home: "#BE4242",
-  portfolio: "#FFE67C",
-  blog: "#F6F6F6",
-  about: "#9494FF",
-  contact: "#FFE263",
+  home: { bg: "#BE4242" },
+  portfolio: {
+    bg: "#FFE67C",
+    a: "#000",
+  },
+  blog: { bg: "#F6F6F6", a: "#BE4242" },
+  about: { bg: "#9494FF", a: "#fff" },
+  contact: { bg: "#FFE263" },
   primary1: "#231c42", // Updated
   primary2: "#200A5C",
   primary3: "#52419C", // Updated
@@ -154,6 +157,9 @@ const Wrapper = styled.div`
   h6 {
     color: ${props => (props.invert ? props.theme.grey1 : "inherit")};
   }
+  & a {
+    color: ${props => props.link};
+  }
 `
 
 const Layout = ({ children, colour = "none", invert = false }) => {
@@ -170,10 +176,14 @@ const Layout = ({ children, colour = "none", invert = false }) => {
         <Header
           siteTitle={title}
           theme={theme}
-          socialColour={theme[colour]}
+          socialColour={theme[colour].bg}
           invertSocial={invert}
         />
-        <Wrapper colour={theme[colour]} invert={invert}>
+        <Wrapper
+          colour={theme[colour].bg}
+          invert={invert}
+          link={theme[colour].a}
+        >
           {children}
         </Wrapper>
         <footer>© {new Date().getFullYear()}, Gabe Kirkley</footer>
