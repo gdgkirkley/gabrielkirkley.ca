@@ -25,7 +25,13 @@ const SocialLink = styled.a`
 `
 
 export const Github = ({ url = `${config.github}`, invert }) => (
-  <SocialLink href={url} aria-label="Visit my Github" invert={invert}>
+  <SocialLink
+    href={url}
+    aria-label="Visit my Github"
+    invert={invert}
+    target="_blank"
+    rel="noreferrer noopener"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
       <path
         fill="currentColor"
@@ -36,7 +42,13 @@ export const Github = ({ url = `${config.github}`, invert }) => (
 )
 
 export const Twitter = ({ url = `${config.twitter}`, invert }) => (
-  <SocialLink href={url} aria-label="Visit my Twitter" invert={invert}>
+  <SocialLink
+    href={url}
+    aria-label="Visit my Twitter"
+    invert={invert}
+    target="_blank"
+    rel="noreferrer noopener"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
       <path
         fill="currentColor"
@@ -47,7 +59,13 @@ export const Twitter = ({ url = `${config.twitter}`, invert }) => (
 )
 
 export const Linkedin = ({ url = `${config.linkedin}`, invert }) => (
-  <SocialLink href={url} aria-label="Visit my Linkedin" invert={invert}>
+  <SocialLink
+    href={url}
+    aria-label="Visit my Linkedin"
+    invert={invert}
+    target="_blank"
+    rel="noreferrer noopener"
+  >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
       <path
         fill="currentColor"

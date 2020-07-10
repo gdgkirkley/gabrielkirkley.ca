@@ -1,11 +1,12 @@
 module.exports = {
-  siteTitle: "Gabriel Kirkley",
-  siteTitleAlt: "The personal site of Gabriel Kirkley",
+  siteTitle: "Gabe Kirkley",
+  siteTitleShort: "gabekirkley",
+  siteTitleAlt: "The personal site of Gabe Kirkley",
   siteUrl: process.env.ROOT_URL || "https://gabrielkirkley.ca",
   lang: "en",
   siteDescription:
     "Gabe Kirkley is a creative software/web developer and theatre nerd.",
-  author: "Gabriel Kirkley",
+  author: "Gabe Kirkley",
 
   ogSiteName: "Gabe Kirkley",
   ogLanguage: "en_US",

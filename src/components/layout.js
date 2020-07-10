@@ -164,7 +164,8 @@ const GlobalStyle = createGlobalStyle`
       font-size: ${theme.fontSize.subHeading}
     }
     strong {
-        color: ${theme.grey1};
+        color: ${theme.grey2};
+        font-weight: 600;
     }
     main {
         margin: 2rem auto 4rem;

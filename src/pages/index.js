@@ -43,8 +43,8 @@ const Title = styled.div`
 `
 
 const MainList = styled.ul`
-  border-top: 1px solid ${props => props.theme.grey5};
-  border-bottom: 1px solid ${props => props.theme.grey5};
+  border-top: 1px solid ${props => props.theme.grey10};
+  border-bottom: 1px solid ${props => props.theme.grey10};
   padding: 20px 0px;
   list-style: none;
   display: grid;
@@ -53,6 +53,10 @@ const MainList = styled.ul`
   & li {
     padding: 10px 0px;
     line-height: 1.8;
+  }
+
+  & strong {
+    color: #fff;
   }
 `
 
@@ -100,22 +104,22 @@ const IndexPage = () => {
             />
             <MainList>
               <li>
-                <strong>I am</strong> a software developer with 3+ years of
-                experience
+                <strong>Also...</strong>
               </li>
               <li>
-                <strong>I love</strong> problem solving, math, coffee, and books
+                <strong>I love</strong> problem solving, math, coffee, and
+                books.
               </li>
               <li>
-                <strong>I am interested</strong> in animation, game development,
-                performing, and film production
+                <strong>I am interested</strong> in tech, animation, game
+                development, performing, and film production.
               </li>
               <li>
-                <strong>I studied</strong> History, Theatre, and English at the
-                University of the Fraser Valley
+                <strong>I studied</strong> History, Theatre, and English.
               </li>
               <li>
-                <strong>I would walk 500 miles</strong> for stawberry yogurt
+                <strong>I was born in</strong> St. John's, Newfoundland and live
+                in Vancouver!
               </li>
             </MainList>
           </MainContent>

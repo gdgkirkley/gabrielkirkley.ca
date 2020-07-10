@@ -54,17 +54,43 @@ const NavLink = styled(Link)`
   border-bottom: 2px solid white;
   box-sizing: border-box;
   transition: 0.1s ease-in-out;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: ${props =>
+      props.invert ? props.theme.portfolio.bg : props.colour};
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+
   & img {
     min-width: 60px;
   }
   &.current {
-    border-bottom: 2px solid ${props => props.colour};
+    border-bottom: 2px solid
+      ${props => (props.invert ? props.theme.portfolio.bg : props.colour)};
+    & :hover {
+      &::before {
+        visibility: hidden;
+      }
+    }
   }
   /* &:last-of-type {
     margin: 0;
   } */
   & :hover {
-    border-bottom: 2px solid ${props => props.theme.grey5};
+    color: ${props => (props.invert ? props.theme.portfolio.bg : props.colour)};
+    &::before {
+      visibility: visible;
+      transform: scaleX(1);
+    }
   }
 
   @media (min-width: 768px) {
@@ -191,6 +217,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               activeClassName="current"
               colour={socialColour}
               onClick={handleLinkClick}
+              invert={invertSocial}
             >
               Home
             </NavLink>
@@ -200,6 +227,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               colour={socialColour}
               partiallyActive={true}
               onClick={handleLinkClick}
+              invert={invertSocial}
             >
               Portfolio
             </NavLink>
@@ -209,6 +237,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               colour={socialColour}
               partiallyActive={true}
               onClick={handleLinkClick}
+              invert={invertSocial}
             >
               Blog
             </NavLink>
@@ -217,6 +246,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               activeClassName="current"
               colour={socialColour}
               onClick={handleLinkClick}
+              invert={invertSocial}
             >
               About
             </NavLink>
@@ -225,6 +255,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               activeClassName="current"
               colour={socialColour}
               onClick={handleLinkClick}
+              invert={invertSocial}
             >
               Contact
             </NavLink>

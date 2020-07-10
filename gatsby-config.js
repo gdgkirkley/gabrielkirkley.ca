@@ -1,8 +1,10 @@
+const config = require("./config/website")
+
 module.exports = {
   siteMetadata: {
-    title: `Gabe Kirkley`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `Gabe Kirkley`,
+    title: config.siteTitle,
+    description: config.siteDescription,
+    author: config.author,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -51,13 +53,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: config.siteTitle,
+        short_name: config.siteTitleShort,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `images/gk.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
