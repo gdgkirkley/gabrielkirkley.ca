@@ -165,6 +165,16 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
     setOpen(!open)
   }
 
+  const handleLinkClick = () => {
+    if (width && width !== undefined && width > 768) {
+      return
+    }
+
+    document.body.style.position = ""
+    document.body.style.top = ""
+    document.body.style.width = ""
+  }
+
   return (
     <HeaderStyles>
       <nav className={open ? "open" : ""}>
@@ -176,23 +186,37 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
         </MobileIcon>
         <MobileNav className={open ? "open" : ""}>
           <NavGroup>
-            <NavLink to="/" activeClassName="current" colour={socialColour}>
+            <NavLink
+              to="/"
+              activeClassName="current"
+              colour={socialColour}
+              onClick={handleLinkClick}
+            >
               Home
             </NavLink>
             <NavLink
               to="/portfolio"
               activeClassName="current"
               colour={socialColour}
+              partiallyActive={true}
+              onClick={handleLinkClick}
             >
               Portfolio
             </NavLink>
-            <NavLink to="/blog" activeClassName="current" colour={socialColour}>
+            <NavLink
+              to="/blog"
+              activeClassName="current"
+              colour={socialColour}
+              partiallyActive={true}
+              onClick={handleLinkClick}
+            >
               Blog
             </NavLink>
             <NavLink
               to="/about"
               activeClassName="current"
               colour={socialColour}
+              onClick={handleLinkClick}
             >
               About
             </NavLink>
@@ -200,6 +224,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               to="/contact"
               activeClassName="current"
               colour={socialColour}
+              onClick={handleLinkClick}
             >
               Contact
             </NavLink>
