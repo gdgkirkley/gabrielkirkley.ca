@@ -16,7 +16,8 @@ const usePosts = () => {
                   fluid(
                     maxWidth: 900
                     maxHeight: 400
-                    duotone: { shadow: "#FA6E4F", highlight: "#F8CA9D" }
+                    duotone: { highlight: "#f00e2e", shadow: "#192550" }
+                    toFormat: PNG
                   ) {
                     ...GatsbyImageSharpFluid_withWebp
                   }

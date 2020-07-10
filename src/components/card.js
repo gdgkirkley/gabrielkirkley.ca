@@ -13,6 +13,7 @@ const CardLink = styled(Link)`
   overflow: hidden;
   background-color: #f2f8f9;
   z-index: 0;
+  height: 100%;
 
   &::before {
     content: "";
@@ -59,7 +60,7 @@ const CardContent = styled.div`
 
 const Card = ({ image, title, description, url }) => {
   return (
-    <CardLink to="digitaledition">
+    <CardLink to={url}>
       <CardContainer>
         {image && <Img fluid={image.sharp.fluid} />}
         <CardContent>

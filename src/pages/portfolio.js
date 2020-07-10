@@ -9,11 +9,15 @@ import PostgreSQL from "../../images/postgresql_elephant.svg"
 import Java from "../../images/java_logo.svg"
 import CSS from "../../images/CSS3_logo.svg"
 import HTML5 from "../../images/HTML5_logo.svg"
+import JavascriptLogo from "../../images/javascript-logo.svg"
+import RLogo from "../../images/r-logo.svg"
 import Button from "../components/button"
 import Card from "../components/card"
 import useExamples from "../hooks/useExamples"
 
-const PortfolioBlock = styled.div``
+const PortfolioBlock = styled.div`
+  padding: 20px 0px;
+`
 
 const PortfolioContent = styled.div`
   display: grid;
@@ -47,7 +51,7 @@ const PortfolioContent = styled.div`
 const PortfolioTitle = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  margin: 20px 0px;
+  margin-bottom: 20px;
 
   & h2 {
     margin: 10px 0px;
@@ -124,6 +128,7 @@ const Portfolio = () => {
           </PortfolioTitle>
           <PortfolioContent columns={3} rows={3}>
             <div>
+              <JavascriptLogo />
               <h3>Javascript</h3>
             </div>
             <div>
@@ -151,6 +156,7 @@ const Portfolio = () => {
               <h3>CSS</h3>
             </div>
             <div>
+              <RLogo />
               <h3>R</h3>
             </div>
           </PortfolioContent>

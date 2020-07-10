@@ -12,8 +12,8 @@ const theme = {
     bg: "#FFE67C",
     a: "#000",
   },
-  blog: { bg: "#F6F6F6", a: "#BE4242" },
-  about: { bg: "#9494FF", a: "#fff" },
+  blog: { bg: "#F6F6F6", a: "#9494FF" },
+  about: { bg: "#9494FF", a: "#222222" },
   contact: { bg: "#FFE263" },
   primary1: "#231c42", // Updated
   primary2: "#200A5C",

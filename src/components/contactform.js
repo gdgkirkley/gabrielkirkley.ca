@@ -18,7 +18,7 @@ const Form = styled.form`
       padding: 16px 24px;
       min-height: 36px;
       border: 1px solid ${props => props.theme.grey6};
-      border-radius: 16px;
+      border-radius: 4px;
       background: ${props => props.theme.grey10};
       transition: 0.3s linear;
       font-family: "Roboto", Arial, Helvetica, sans-serif;

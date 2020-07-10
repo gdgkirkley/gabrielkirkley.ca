@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
+import Button from "../components/button"
 
 const Preview = styled.article`
   border-bottom: 1px solid ${props => props.theme.accent5};
@@ -30,7 +31,9 @@ const PostPreview = ({ post }) => (
         <Link to={post.slug}>{post.title}</Link>
       </h3>
       <p>{post.excerpt}</p>
-      <Link to={post.slug}>Read more &rarr;</Link>
+      <Link to={post.slug}>
+        <Button tabIndex="-1">Read more &rarr;</Button>
+      </Link>
     </div>
   </Preview>
 )

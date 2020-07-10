@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
+import Button from "../components/button"
 
 export const query = graphql`
   query($slug: String!) {
@@ -42,7 +43,7 @@ const PostTemplate = ({ data: { postData } }) => {
         <p>Posted by {post.frontmatter.author}</p>
         <p>{formatDate(post.frontmatter.date)}</p>
         <Link to="/blog" replace>
-          &larr; Go Back
+          <Button tabIndex="-1">&larr; Go Back</Button>
         </Link>
       </main>
     </Layout>

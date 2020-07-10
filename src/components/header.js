@@ -107,6 +107,7 @@ const MobileIcon = styled.div`
 
 const MobileNav = styled.div`
   display: none;
+  overflow: hidden;
 
   &.open {
     display: flex;
@@ -133,7 +134,7 @@ const MobileNav = styled.div`
 const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
   const [open, setOpen] = useState(false)
 
-  const { width } = useWindowSize()
+  const { width, height } = useWindowSize()
 
   useEffect(() => {
     if (width !== undefined && width > 768) {
@@ -147,11 +148,18 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
     }
 
     setOpen(!open)
+    if (!open) {
+      document.body.style.position = "fixed"
+      document.body.style.top = `-${window.scrollY}px`
+    } else {
+      document.body.style.position = ""
+      document.body.style.top = ""
+    }
   }
 
   return (
     <HeaderStyles>
-      <nav>
+      <nav className={open ? "open" : ""}>
         <SiteTitle to="/" fontWeight="bold">
           Gabe Kirkley.
         </SiteTitle>
