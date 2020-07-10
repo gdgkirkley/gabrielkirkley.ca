@@ -104,10 +104,10 @@ const IndexPage = () => {
             />
             <MainList>
               <li>
-                <strong>Also...</strong>
+                <strong>I built</strong> my first website at 13 years old.
               </li>
               <li>
-                <strong>I love</strong> problem solving, math, coffee, and
+                <strong>I love</strong> problem solving, gardening, coffee, and
                 books.
               </li>
               <li>
@@ -115,11 +115,11 @@ const IndexPage = () => {
                 development, performing, and film production.
               </li>
               <li>
-                <strong>I studied</strong> History, Theatre, and English.
+                <strong>I studied</strong> software development, history,
+                theatre, and english.
               </li>
               <li>
-                <strong>I was born in</strong> St. John's, Newfoundland and live
-                in Vancouver!
+                <strong>I live</strong> in beautiful Vancouver, BC!
               </li>
             </MainList>
           </MainContent>

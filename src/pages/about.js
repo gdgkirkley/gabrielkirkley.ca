@@ -10,6 +10,12 @@ const TwoCol = styled.div`
 `
 
 const About = () => {
+  const getAge = () => {
+    let diff_ms = Date.now() - new Date("1991-09-26").getTime()
+    let age_dt = new Date(diff_ms)
+    return Math.abs(age_dt.getFullYear() - 1970)
+  }
+
   return (
     <Layout colour="about">
       <main>
@@ -17,9 +23,10 @@ const About = () => {
         <TwoCol>
           <div>
             <p>
-              I'm a software/web developer and theatre nerd. I was born in 1991
-              and grew up just outside of Vancouver, BC. After graduating high
-              school, I went to{" "}
+              I'm a software/web developer and theatre nerd. I'm {getAge()}{" "}
+              years old and grew up just outside of Vancouver. As a teenager, I
+              designed and built my first websites for friends. But at the time,
+              I had different goals. So, after graduating high school, I went to{" "}
               <a
                 href="https://ufv.ca"
                 target="_blank"
@@ -28,17 +35,22 @@ const About = () => {
                 UFV
               </a>{" "}
               where I graduated with a Bachelor of Arts degree, majoring in
-              History and minoring in Theatre.
+              History and minoring in Theatre. I built a few more websites along
+              the way for various companies and even developed a few Wordpress
+              themes, but ultimately, my coding skills became mainly a
+              "nice-to-have" and a hobby.
             </p>
 
             <p>
-              Over the last three years, I fell in love with and worked my{" "}
+              Three and a half years ago, I picked up where I left off and fell
+              back in love with coding. Since then I've worked my{" "}
               <span role="img" aria-label="peach">
                 🍑
-              </span>
-              off to learn everything I can about writing code. That's led me
-              from R to Javascript, from React to NodeJS, and even to doing a
-              part-time certificate in Software Application Development at{" "}
+              </span>{" "}
+              off to learn everything I can about software development. That's
+              led me from R to Javascript, from React to NodeJS, and even to
+              doing a part-time certificate in Software Application Development
+              at{" "}
               <a
                 href="https://www.bcit.ca/"
                 target="_blank"
@@ -101,10 +113,10 @@ const About = () => {
               >
                 Goodreads
               </a>{" "}
-              reading challenge goal (seriously, how do people read 100 books
-              per year?!), improving Wikipedia pages on history, growing plants,
-              cooking, and building games in Unity. My partner, Paige, and I
-              would also desperately love to be cat parents, but... Vancouver.
+              reading challenge goal, improving Wikipedia pages on history,
+              growing plants, cooking, and building games in Unity. My partner,
+              Paige, and I would also desperately love to be cat parents, but...
+              Vancouver.
             </p>
           </div>
         </TwoCol>
