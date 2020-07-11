@@ -2,13 +2,48 @@
 templateKey: example
 type: project
 title: Arts Club Digital Edition
+tagline: The Arts Club's digital content at your fingertips
 slug: /portfolio/digitaledition
 author: Gabriel Kirkley
 image: ./digitaledition.jpg
 using: React, NodeJS, PostgreSQL
+link: https://digital.artsclub.com/
 date: 2020-06-28
 ---
 
-# Arts Club Digital Edition
+### The Idea
 
-Content coming soon!
+In March 2020, the global pandemic due to COVID-19 and subsequent lockdowns sent
+the entertainment industry into a spiral. Suddenly, all of our theatres were
+empty and shows were cancelled.
+
+From the crisis, I built the **Digital Edition**.
+
+### The Tech
+
+It's a React application on the frontend, and a Node/Express application on the
+backend with a PostgreSQL database.
+
+It features:
+
+- Full **authentication** with web tokens and session management
+- Stable **integration with third-party software** like Tessitura and Zoom
+- **Social interactions** with likes and comments
+- **Workshop/event registration**
+
+### The Best Part
+
+My favourite part of building the site was developing the algorithm for
+retrieving randomized but repeatable results for getting videos from the API.
+
+It was a tough problem because I knew that developing a true recommendation
+engine was outside the scope of this project. Therefore, I needed to be able to
+retrieve data from the database at random, but also allow for pagination through
+those results.
+
+The solution was to order the videos by their id **and** a modulo of the id and
+a randomizer variable sent from the frontend.
+
+```js
+query.orderByRaw(`video.id % ${randomizer}, video.id`)
+```

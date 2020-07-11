@@ -1,10 +1,26 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
+import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import CodeBlock from "../components/codeblock"
 import Button from "../components/button"
-// import styled from "styled-components"
+import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { ExternalLink } from "../components/icons"
+import { Github } from "../components/social"
+
+const ExampleBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+
+  & p {
+    font-weight: 300;
+  }
+`
 
 export const query = graphql`
   query($slug: String!) {
@@ -13,6 +29,17 @@ export const query = graphql`
         node {
           frontmatter {
             title
+            tagline
+            using
+            link
+            source
+            image {
+              sharp: childImageSharp {
+                fluid(maxWidth: 1200, maxHeight: 600) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           body
           excerpt
@@ -22,19 +49,49 @@ export const query = graphql`
   }
 `
 
-const shortcodes = { Button }
-
 const ExamplePage = ({ data: { pageData } }) => {
   const page = pageData.edges[0].node
 
   return (
     <Layout colour="portfolio" invert="true">
-      <SEO title={page.title} />
+      <SEO title={page.frontmatter.title} />
       <main>
-        <h1>{page.title}</h1>
-        <MDXRenderer components={shortcodes}>{page.body}</MDXRenderer>
+        <h1>{page.frontmatter.title}</h1>
+        {page.frontmatter.tagline && (
+          <p>
+            <strong>{page.frontmatter.tagline}</strong>
+          </p>
+        )}
+        <Img fluid={page.frontmatter.image.sharp.fluid} />
+        <ExampleBar>
+          {page.frontmatter.using && <p>{page.frontmatter.using}</p>}
+
+          {page.frontmatter.source && (
+            <a
+              href={page.frontmatter.source}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Github url={page.frontmatter.source} />
+            </a>
+          )}
+          {page.frontmatter.link && (
+            <a
+              href={page.frontmatter.link}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Button tabIndex="-1">
+                Take Me There <ExternalLink />
+              </Button>
+            </a>
+          )}
+        </ExampleBar>
+
+        <MDXRenderer>{page.body}</MDXRenderer>
+
         <Link to="/portfolio" replace>
-          &larr; Go Back
+          <Button tabIndex="-1">&larr; Go Back</Button>
         </Link>
       </main>
     </Layout>
