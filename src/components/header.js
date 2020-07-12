@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
-import Hamburger from "hamburger-react"
-import PropTypes from "prop-types"
-import styled from "styled-components"
-import Social from "./social"
-import useWindowSize from "../hooks/useWindowSize"
+import React, { useState, useEffect } from "react";
+import { Link } from "gatsby";
+import Hamburger from "hamburger-react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import Social from "./social";
+import useWindowSize from "../hooks/useWindowSize";
 
 const HeaderStyles = styled.header`
   display: flex;
@@ -28,11 +28,12 @@ const HeaderStyles = styled.header`
       flex-direction: row;
     }
   }
-`
+`;
 
 const NavGroup = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   padding: 0px 24px;
   background: ${props => (props.colour ? props.colour : "none")};
@@ -42,19 +43,25 @@ const NavGroup = styled.div`
     margin-bottom: 0px;
     flex-direction: row;
   }
-`
+`;
 
 const NavLink = styled(Link)`
   font-size: ${props => props.theme.fontSize.emphasis};
   font-weight: bold;
   line-height: 1;
-  margin: 80px 2rem 0 0;
+  margin: 0;
+  margin-top: 30px;
   padding: 0.25rem;
   text-decoration: none;
   border-bottom: 2px solid white;
   box-sizing: border-box;
   transition: 0.1s ease-in-out;
   position: relative;
+  height: 100%;
+
+  &:first-of-type {
+    margin-top: 80px;
+  }
 
   &::before {
     content: "";
@@ -94,9 +101,13 @@ const NavLink = styled(Link)`
   }
 
   @media (min-width: 768px) {
+    height: auto;
     margin: 0 2rem 0 0;
+    &:first-of-type {
+      margin-top: 0px;
+    }
   }
-`
+`;
 
 const SiteTitle = styled(Link)`
   margin: 0 2rem 0 0;
@@ -122,7 +133,7 @@ const SiteTitle = styled(Link)`
   @media (min-width: 768px) {
     justify-content: flex-start;
   }
-`
+`;
 
 const MobileIcon = styled.div`
   display: inline-flex;
@@ -132,14 +143,16 @@ const MobileIcon = styled.div`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;
 
 const MobileNav = styled.div`
   display: none;
 
   &.open {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 2fr 1fr;
     position: fixed;
     top: 80px;
     bottom: 0;
@@ -149,7 +162,6 @@ const MobileNav = styled.div`
     background: ${props => props.theme.grey10};
 
     width: 100%;
-    justify-content: space-evenly;
   }
 
   @media (min-width: 768px) {
@@ -160,46 +172,46 @@ const MobileNav = styled.div`
     justify-content: inherit;
     align-items: inherit;
   }
-`
+`;
 
 const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  const { width } = useWindowSize()
+  const { width } = useWindowSize();
 
   useEffect(() => {
     if (width !== undefined && width > 768) {
-      setOpen(false)
+      setOpen(false);
     }
-  }, [width])
+  }, [width]);
 
   const handleMenuButtonClick = () => {
     if (width && width !== undefined && width > 768) {
-      return
+      return;
     }
 
     if (!open) {
-      document.body.style.position = "fixed"
-      document.body.style.top = `-${window.scrollY}px`
-      document.body.style.width = "100%"
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.width = "100%";
     } else {
-      document.body.style.position = ""
-      document.body.style.top = ""
-      document.body.style.width = ""
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
     }
 
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   const handleLinkClick = () => {
     if (width && width !== undefined && width > 768) {
-      return
+      return;
     }
 
-    document.body.style.position = ""
-    document.body.style.top = ""
-    document.body.style.width = ""
-  }
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+  };
 
   return (
     <HeaderStyles>
@@ -266,15 +278,15 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
         </MobileNav>
       </nav>
     </HeaderStyles>
-  )
-}
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;
