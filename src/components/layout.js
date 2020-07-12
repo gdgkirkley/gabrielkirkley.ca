@@ -1,19 +1,22 @@
-import React from "react"
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import Helmet from "react-helmet"
-import PropTypes from "prop-types"
-import useSiteMetadata from "../hooks/useSiteMetadata"
+import React from "react";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import Helmet from "react-helmet";
+import PropTypes from "prop-types";
+import { MDXProvider } from "@mdx-js/react";
+import useSiteMetadata from "../hooks/useSiteMetadata";
+import GifPlayer from "react-gif-player";
 
-import Inter300Woff from "../../fonts/inter-v2-latin-300.woff"
-import Inter300Woff2 from "../../fonts/inter-v2-latin-300.woff2"
-import InterRegularWoff from "../../fonts/inter-v2-latin-regular.woff"
-import InterRegularWoff2 from "../../fonts/inter-v2-latin-regular.woff2"
-import Inter600Woff from "../../fonts/inter-v2-latin-600.woff"
-import Inter600Woff2 from "../../fonts/inter-v2-latin-600.woff2"
-import Inter800Woff from "../../fonts/inter-v2-latin-800.woff"
-import Inter800Woff2 from "../../fonts/inter-v2-latin-800.woff2"
+import Inter300Woff from "../../fonts/inter-v2-latin-300.woff";
+import Inter300Woff2 from "../../fonts/inter-v2-latin-300.woff2";
+import InterRegularWoff from "../../fonts/inter-v2-latin-regular.woff";
+import InterRegularWoff2 from "../../fonts/inter-v2-latin-regular.woff2";
+import Inter600Woff from "../../fonts/inter-v2-latin-600.woff";
+import Inter600Woff2 from "../../fonts/inter-v2-latin-600.woff2";
+import Inter800Woff from "../../fonts/inter-v2-latin-800.woff";
+import Inter800Woff2 from "../../fonts/inter-v2-latin-800.woff2";
 
-import Header from "./header"
+import Header from "./header";
+import CodeBlock from "../components/codeblock";
 
 const theme = {
   home: { bg: "#BE4242" },
@@ -74,7 +77,7 @@ const theme = {
   gridGap: "24px",
   bs: "0 12px 24px 0 rgba(0,0,0,0.09)",
   borderRadius: "4px",
-}
+};
 
 const GlobalStyle = createGlobalStyle`
     /* inter-300 - latin */
@@ -179,14 +182,49 @@ const GlobalStyle = createGlobalStyle`
       padding: 20px 0px;
       font-weight: 300;
     }
-`
+    code {
+      padding: 2px 4px;
+      background: #f4f3fa;
+      color: ${theme.blog.a};
+      border-radius: 3px;
+    }
+    pre {
+      background-color: #061526;
+      border-radius: 4px;
+      font-size: 16px;
+      padding: 10px;
+      overflow-x: auto;
+      /* Track */
+      ::-webkit-scrollbar {
+        width: 100%;
+        height: 5px;
+        border-radius: 0 0 5px 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #061526;
+        border-radius: 0 0 4px 4px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+      }
+    }
+    .highlight-line {
+      background-color: rgba(201, 167, 255, 0.2);
+      margin: 0 -10px;
+      padding: 0 5px;
+      border-left: 5px solid #c9a7ff;
+    }
+`;
 
 const Page = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-`
+`;
 
 const Wrapper = styled.div`
   height: 100%;
@@ -209,10 +247,22 @@ const Wrapper = styled.div`
   & a {
     color: ${props => props.link};
   }
-`
+`;
+
+const components = {
+  img: props => {
+    console.log(props);
+    if (props.src.includes("gif")) {
+      return <GifPlayer gif={props.src} alt={props.alt} />;
+    } else {
+      return <img {...props} />;
+    }
+  },
+  code: CodeBlock,
+};
 
 const Layout = ({ children, colour = "none", invert = false }) => {
-  const { title, description } = useSiteMetadata()
+  const { title, description } = useSiteMetadata();
 
   return (
     <ThemeProvider theme={theme}>
@@ -233,17 +283,17 @@ const Layout = ({ children, colour = "none", invert = false }) => {
           invert={invert}
           link={theme[colour].a}
         >
-          {children}
+          <MDXProvider components={components}>{children}</MDXProvider>
         </Wrapper>
         <footer>© {new Date().getFullYear()}, Gabe Kirkley</footer>
       </Page>
       <GlobalStyle />
     </ThemeProvider>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

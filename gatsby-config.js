@@ -1,4 +1,4 @@
-const config = require("./config/website")
+const config = require("./config/website");
 
 module.exports = {
   siteMetadata: {
@@ -48,6 +48,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        remarkPlugins: [require("remark-unwrap-images")],
         gatsbyRemarkPlugins: [{ resolve: "gatsby-remark-images" }],
         plugins: [{ resolve: "gatsby-remark-images" }],
       },
@@ -68,4 +69,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

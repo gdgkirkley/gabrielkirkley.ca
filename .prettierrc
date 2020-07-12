@@ -1,5 +1,5 @@
 {
   "arrowParens": "avoid",
-  "semi": false,
+  "semi": true,
   "proseWrap": "always"
 }
