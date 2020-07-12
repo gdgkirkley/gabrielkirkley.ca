@@ -14,14 +14,14 @@ date: 2020-06-28
 ### The Idea
 
 In March 2020, the global pandemic due to COVID-19 and subsequent lockdowns sent
-the entertainment industry into a spiral. Suddenly, all of our theatres were
-empty and shows were cancelled.
+the entertainment industry into a spiral. Within days, the company I work for
+had to cancel all its shows, and the theatres were empty.
 
 From the crisis, I built the **Digital Edition**.
 
 ### The Tech
 
-It's a React application on the frontend, and a Node/Express application on the
+It's a React application on the frontend and a Node/Express application on the
 backend with a PostgreSQL database.
 
 It features:
@@ -37,32 +37,31 @@ My favourite part of building the site was adding pagination and randomization
 for getting videos from the API.
 
 When a user is on the site, we wanted to make sure that they wouldn't always see
-the same videos in each list. Plus, we had a feature section which displayed
-"more videos" to the user and it would be kinda boring if the same two videos
-were always listed there. A true machine learning model for recommending videos
-was outside the scope of this project (and totally unnecessary), so I needed to
-be able to retrieve data from the database at random, but also allow for
-pagination.
+the same videos in each group. Plus, we had a feature section that displayed
+"more videos" to the user, and it would be kinda boring if the same two videos
+were always listed there. A machine learning model for recommending videos was
+outside the scope of this project (and unnecessary), so I needed to be able to
+retrieve data from the database at random and allow for pagination.
 
-I knew that a potential solution was to order the videos by their id **and** a
-modulo of the id. In other words, retrieving truly random results isn't
+I knew that a potential solution was to order the videos by their ID **and** a
+modulo of the ID. In other words, retrieving truly random results isn't
 necessary - just a shuffled, repeatable order.
 
-Originally, I had it set up to just use a single modulus (7) but it quickly
-became apparent that this presented the same problem: the results were shuffled,
-but they were always shuffled exactly the same! Getting a truly random number as
-the modulus was key.
+Initially, I had it set up to use a single modulus (7), but it quickly became
+apparent that this presented the same problem: shuffled results, sure, but they
+were always the same! Getting a genuinely random number as the modulus was
+vital. Here is what I added on the backend:
 
 ```js
 query.orderByRaw(`video.id % ${randomizer}, video.id`);
 ```
 
-Now, the user got random videos - but they were duplicated again and again! In
-order to prevent duplicates, the order fetched from the database needed to be
-repeatable. So I knew that this was a job for some good old React state.
+Now, the user got random videos, but duplicated again and again! The order
+fetched from the database needed to be repeatable to prevent duplicates. So I
+knew that this was a job for some good old React state.
 
-Now, on the frontend, I get a random number between 2 and 11 and store it in
-state.
+In the final solution on the frontend, I get a random number between 2 and 11
+and store it in state. Here's what that looks like:
 
 ```js
 const [randomizer] = useState(Math.floor(Math.random() * 11) + 2);

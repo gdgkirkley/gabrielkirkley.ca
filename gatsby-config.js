@@ -44,12 +44,13 @@ module.exports = {
         path: "images",
       },
     },
+    "gatsby-remark-images",
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
         remarkPlugins: [require("remark-unwrap-images")],
-        gatsbyRemarkPlugins: [{ resolve: "gatsby-remark-images" }],
+        gatsbyRemarkPlugins: ["gatsby-remark-images"],
         plugins: [{ resolve: "gatsby-remark-images" }],
       },
     },
