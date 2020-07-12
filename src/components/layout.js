@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { MDXProvider } from "@mdx-js/react";
 import useSiteMetadata from "../hooks/useSiteMetadata";
-import GifPlayer from "react-gif-player";
 
 import Inter300Woff from "../../fonts/inter-v2-latin-300.woff";
 import Inter300Woff2 from "../../fonts/inter-v2-latin-300.woff2";
@@ -250,14 +249,6 @@ const Wrapper = styled.div`
 `;
 
 const components = {
-  img: props => {
-    console.log(props);
-    if (props.src.includes("gif")) {
-      return <GifPlayer gif={props.src} alt={props.alt} />;
-    } else {
-      return <img {...props} />;
-    }
-  },
   code: CodeBlock,
 };
 
