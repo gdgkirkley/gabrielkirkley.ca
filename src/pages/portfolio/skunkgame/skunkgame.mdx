@@ -12,13 +12,21 @@ date: 2020-06-28
 
 import SkunkGame from "../../../components/skunkgame";
 
-This is a console game written in Java which was built for BCIT's Introduction
-to Software Development II course. It was built before we learned about
-polymorphism, abstract classes, interfaces, etc. so it's mainly meant to
-demonstrate our understanding of inheritance.
+SKUNK is a console game written in Java built for BCIT's Introduction to
+Software Development II course meant to demonstrate our understanding of
+polymorphism and inheritance.
 
 You can see the original Java code
 [here](https://github.com/gdgkirkley/bcit-comp1451-skunk). But I've rewritten it
-in Javascript so that you can play it below!
+in JS so that you can play it below!
+
+The fun part of rewriting the JS game was that the original Java code relied
+heavily on while loops and iterators for the implementation. In JS, I had to
+change all of that to callbacks to allow user input.
+
+I built a new Render class to add new DOM nodes, rather than using React for
+updating. The original game wrote to the Java console, and the new
+implementation copies that pattern by successively adding new nodes to the game
+div.
 
 <SkunkGame />

@@ -30,7 +30,7 @@ class GameLibrary {
    * Run the introduction to the Game Library to choose a game.
    */
   introduction() {
-    Print.printNewLine("Welcome to SKUNK!", false, "h2");
+    Render.printNewLine("Welcome to SKUNK!", false, "h2");
 
     this.playerInput.createButton("Start Game", this.executeChoice.bind(this));
   }
@@ -41,7 +41,7 @@ class GameLibrary {
   }
 }
 
-class Print {
+class Render {
   static printNewLine(line, html = false, element = "p") {
     const fragment = document.createDocumentFragment();
     const newLine = document.createElement(element);
@@ -127,10 +127,10 @@ class Game {
   }
 
   displayAllScores() {
-    Print.printNewLine("Scores <br /> -------");
+    Render.printNewLine("Scores <br /> -------");
 
     for (let player in this.players) {
-      Print.printNewLine(player.getName() + ": " + player.getScore());
+      Render.printNewLine(player.getName() + ": " + player.getScore());
     }
   }
 
@@ -247,7 +247,7 @@ const Controls = {
 class SkunkControls {
   runOtherControls(input, board, players) {
     if (null == input) {
-      Print.printNewLine("Hmmm... input can't be null");
+      Render.printNewLine("Hmmm... input can't be null");
     }
 
     if (input === Controls.DISPLAY_BOARD) {
@@ -256,71 +256,71 @@ class SkunkControls {
       this.listControls();
     } else if (input === Controls.DISPLAY_SCORES) {
       for (let player in players) {
-        Print.printNewLine(player.getName() + ": " + player.getScoreValue());
+        Render.printNewLine(player.getName() + ": " + player.getScoreValue());
       }
     } else if (input === Controls.DISPLAY_RULES) {
       this.listRules(2);
     } else if (input === Controls.QUIT) {
-      Print.printNewLine("Goodbye");
+      Render.printNewLine("Goodbye");
     } else {
-      Print.printNewLine("Hmmm... " + input + " doesn't work here...");
+      Render.printNewLine("Hmmm... " + input + " doesn't work here...");
     }
   }
 
   listControls() {
-    Print.printNewLine("Display Board: " + Controls.DISPLAY_BOARD);
-    Print.printNewLine("Display Controls: " + Controls.DISPLAY_CONTROLS);
-    Print.printNewLine("Display Scores: " + Controls.DISPLAY_SCORES);
-    Print.printNewLine("Display Rules: " + Controls.DISPLAY_RULES);
-    Print.printNewLine("Answer Yes: " + Controls.YES);
-    Print.printNewLine("Answer No: " + Controls.NO);
-    Print.printNewLine("Quit: " + Controls.QUIT);
-    Print.printNewLine();
+    Render.printNewLine("Display Board: " + Controls.DISPLAY_BOARD);
+    Render.printNewLine("Display Controls: " + Controls.DISPLAY_CONTROLS);
+    Render.printNewLine("Display Scores: " + Controls.DISPLAY_SCORES);
+    Render.printNewLine("Display Rules: " + Controls.DISPLAY_RULES);
+    Render.printNewLine("Answer Yes: " + Controls.YES);
+    Render.printNewLine("Answer No: " + Controls.NO);
+    Render.printNewLine("Quit: " + Controls.QUIT);
+    Render.printNewLine();
   }
 
   listRules(numberOfDice) {
-    Print.printNewLine(
+    Render.printNewLine(
       "There are " +
         Skunk.ROUNDS +
         " rounds in the game. One round corresponds with each letter of the word SKUNK."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "Players start the game standing up. " +
         numberOfDice +
         " dice are rolled."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "The players have a choice before each roll whether to remain standing or whether to sit down."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "If a player is standing when a roll that does NOT contain a " +
         Skunk.SKUNK_ROLL +
         " is rolled, they get those points."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "If all players are standing when a " +
         Skunk.SKUNK_ROLL +
         " is rolled, the roll does not count."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "If a player sits down, they get to keep their total points from that round."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "If a player is standing when a " +
         Skunk.SKUNK_ROLL +
         " is rolled, they lose ALL their points for that round."
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "If a player is standing when two " +
         Skunk.SKUNK_ROLL +
         "s (snake eyes) are rolled, they lose ALL their points from ALL rounds!"
     );
-    Print.printNewLine(
+    Render.printNewLine(
       "Each round ends when a " +
         Skunk.SKUNK_ROLL +
         " is rolled or when all players are sitting."
     );
-    Print.printNewLine();
+    Render.printNewLine();
   }
 }
 
@@ -357,7 +357,7 @@ class Input {
   }
 
   createInput(message, callback) {
-    Print.printNewLine(message);
+    Render.printNewLine(message);
     this.textbox = document.createElement("input");
     gameRoot.appendChild(this.textbox);
     this.button = document.createElement("button");
@@ -417,8 +417,8 @@ class Input {
   }
 
   removeInput() {
-    Print.clearNode(this.textbox);
-    Print.clearNode(this.button);
+    Render.clearNode(this.textbox);
+    Render.clearNode(this.button);
   }
 }
 
@@ -555,7 +555,7 @@ class Skunk extends Game {
   }
 
   startGame() {
-    Print.printNewLine("Welcome to SKUNK!", false, "h2");
+    Render.printNewLine("Welcome to SKUNK!", false, "h2");
 
     this.playSkunkRound(true);
   }
@@ -563,19 +563,19 @@ class Skunk extends Game {
   endGame() {
     let winningPlayer = this.getWinningPlayer();
 
-    Print.clearLines();
+    Render.clearLines();
 
-    Print.printNewLine("==================");
+    Render.printNewLine("==================");
 
     if (winningPlayer.getName() === this.playerName) {
-      Print.printNewLine("|   YOU WIN!!!!  |", false, "h2");
+      Render.printNewLine("|   YOU WIN!!!!  |", false, "h2");
     } else {
-      Print.printNewLine("|   You lost...  |", false, "h2");
+      Render.printNewLine("|   You lost...  |", false, "h2");
     }
 
-    Print.printNewLine("==================");
+    Render.printNewLine("==================");
 
-    Print.printNewLine();
+    Render.printNewLine();
 
     this.playerInput.createInput(
       "Play again with the same dice and players? (" +
@@ -603,7 +603,7 @@ class Skunk extends Game {
           this.playSkunkRound(true);
         } else if (input === Controls.NO) {
           this.setPlaying(false);
-          Print.printNewLine("Goodbye!");
+          Render.printNewLine("Goodbye!");
         } else {
           this.controls.runOtherControls(input, this.board, this.getPlayers());
         }
@@ -622,6 +622,7 @@ class Skunk extends Game {
           winningPlayer = player;
         }
       }
+      return player;
     });
 
     return winningPlayer;
@@ -638,17 +639,17 @@ class Skunk extends Game {
 
     this.playerInput.removeListener();
     this.playerInput.clearInput();
-    Print.clearLines();
+    Render.clearLines();
 
-    Print.printNewLine("================");
-    Print.printNewLine(
+    Render.printNewLine("================");
+    Render.printNewLine(
       (newRound ? "Starting" : "Continuing") +
         " round " +
         (this.currentRound + 1),
       false,
       "h2"
     );
-    Print.printNewLine("================");
+    Render.printNewLine("================");
 
     await this.roll();
 
@@ -683,7 +684,7 @@ class Skunk extends Game {
 
     this.updateBoard(this.roundScore);
     let table = this.board.drawTable();
-    Print.addNode(table);
+    Render.addNode(table);
 
     if (playingRound) {
       this.playerChoice();
@@ -741,16 +742,16 @@ class Skunk extends Game {
 
   async roll() {
     for (let i = 0; i < this.numberOfDice; i++) {
-      let node = Print.printNewLine("Rolling", false, "h4");
+      let node = Render.printNewLine("Rolling", false, "h4");
 
       for (let j = 0; j < 3; j++) {
         await this.sleep(500);
 
-        Print.addToNode(node, ".");
+        Render.addToNode(node, ".");
       }
 
       this.currentRolls[i] = this.die.getNewRandom();
-      Print.printNewLine(
+      Render.printNewLine(
         "DIE #" + (i + 1) + ": " + this.currentRolls[i] + " ",
         false,
         "h3"
@@ -801,7 +802,7 @@ class Skunk extends Game {
     let allStanding = true;
 
     this.getPlayers().map(player => {
-      if (!allStanding) return;
+      if (!allStanding) return null;
       let skunkPlayer = player;
 
       if (!skunkPlayer.isStanding()) {
@@ -818,7 +819,7 @@ class Skunk extends Game {
     let allSitting = true;
 
     this.getPlayers().map(player => {
-      if (!allSitting) return;
+      if (!allSitting) return null;
       if (player.isStanding()) {
         allSitting = false;
       }
@@ -1004,7 +1005,7 @@ class Board {
 
     for (let i = 0; i < this.rows; i++) {
       // For each row, append a spacer
-      Print.printNewLine(spacer);
+      Render.printNewLine(spacer);
 
       this.drawColumns(i);
     }
@@ -1037,12 +1038,12 @@ class Board {
       }
       this.checkFinalRow(i);
     }
-    Print.printNewLine(columnString);
+    Render.printNewLine(columnString);
   }
 
   checkFinalRow(i) {
     if (i === this.columns - 1) {
-      Print.printNewLine("");
+      Render.printNewLine("");
     }
   }
 
@@ -1233,17 +1234,17 @@ class SkunkPlayer extends Player {
 
         if (input === Controls.YES) {
           this.setStanding(false);
-          Print.clearLines();
-          Print.printNewLine("You have chosen to sit");
+          Render.clearLines();
+          Render.printNewLine("You have chosen to sit");
           game.runContinue();
         } else if (input === Controls.NO) {
-          Print.clearLines();
-          Print.printNewLine("You have chosen to stay standing");
+          Render.clearLines();
+          Render.printNewLine("You have chosen to stay standing");
           game.runContinue();
         } else {
           controls.runOtherControls(input, board, players);
           this.playerInput.clearInput();
-          Print.printNewLine("Hmm... that doesn't work here");
+          Render.printNewLine("Hmm... that doesn't work here");
         }
       }
     }
@@ -1302,7 +1303,7 @@ class SkunkPlayer extends Player {
       message = "stay standing";
     }
 
-    Print.printNewLine(this.getName() + " has chosen to " + message);
+    Render.printNewLine(this.getName() + " has chosen to " + message);
 
     // if (playerStanding === false) {
     //   game.runContinue(false);
@@ -1327,9 +1328,9 @@ class SkunkConfig {
   startSkunk(playerInput) {
     this.playerInput = playerInput;
 
-    Print.clearLines();
-    Print.printNewLine("Aaaaaaaaaalright!", false, "h2");
-    Print.printNewLine("Let's get you set up");
+    Render.clearLines();
+    Render.printNewLine("Aaaaaaaaaalright!", false, "h2");
+    Render.printNewLine("Let's get you set up");
 
     this.setUpNumberOfDice();
   }
@@ -1355,10 +1356,10 @@ class SkunkConfig {
           this.numberOfDice = input;
           this.playerInput.removeListener();
           this.playerInput.removeInput();
-          Print.clearLine("Choose a number of dice");
+          Render.clearLine("Choose a number of dice");
           this.setUpNumberOfComputerPlayers();
         } else {
-          Print.printNewLine("Hmmm..." + input + " isn't an option.");
+          Render.printNewLine("Hmmm..." + input + " isn't an option.");
           this.playerInput.clearInput();
         }
       }
@@ -1389,10 +1390,10 @@ class SkunkConfig {
           this.numberOfComputerPlayers = input;
           this.playerInput.removeListener();
           this.playerInput.removeInput();
-          Print.clearLine("Choose a number of computer players");
+          Render.clearLine("Choose a number of computer players");
           this.setUpPlayerName();
         } else {
-          Print.printNewLine("Hmmm..." + input + " isn't an option.");
+          Render.printNewLine("Hmmm..." + input + " isn't an option.");
           this.playerInput.clearInput();
         }
       }
@@ -1422,7 +1423,7 @@ class SkunkConfig {
           this.playerName = input;
           this.startGame();
         } else {
-          Print.printNewLine("Hmmm..." + input + " is too long.");
+          Render.printNewLine("Hmmm..." + input + " is too long.");
           this.playerInput.clearInput();
         }
       }
@@ -1431,7 +1432,7 @@ class SkunkConfig {
 
   startGame() {
     this.playerInput.removeListener();
-    Print.clearLines();
+    Render.clearLines();
 
     let skunk = new Skunk(
       this.numberOfDice,
