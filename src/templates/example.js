@@ -1,13 +1,13 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
-import Img from "gatsby-image"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import Button from "../components/button"
-import styled from "styled-components"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { ExternalLink } from "../components/icons"
-import { Github } from "../components/social"
+import React from "react";
+import { graphql, Link } from "gatsby";
+import Img from "gatsby-image";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import Button from "../components/button";
+import styled from "styled-components";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { ExternalLink } from "../components/icons";
+import { Github } from "../components/social";
 
 const ExampleBar = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const ExampleBar = styled.div`
   & p {
     font-weight: 300;
   }
-`
+`;
 
 export const query = graphql`
   query($slug: String!) {
@@ -45,10 +45,10 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const ExamplePage = ({ data: { pageData } }) => {
-  const page = pageData.edges[0].node
+  const page = pageData.edges[0].node;
 
   return (
     <Layout colour="portfolio" invert="true">
@@ -93,7 +93,7 @@ const ExamplePage = ({ data: { pageData } }) => {
         </Link>
       </main>
     </Layout>
-  )
-}
+  );
+};
 
-export default ExamplePage
+export default ExamplePage;

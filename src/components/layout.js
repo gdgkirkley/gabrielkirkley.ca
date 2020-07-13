@@ -21,7 +21,7 @@ const theme = {
   home: { bg: "#BE4242" },
   portfolio: {
     bg: "#FFE67C",
-    a: "#000",
+    a: "#866BFF",
   },
   blog: { bg: "#F6F6F6", a: "#9494FF" },
   about: { bg: "#9494FF", a: "#FFE67C" },
