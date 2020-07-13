@@ -56,6 +56,10 @@ class Print {
     return newLine;
   }
 
+  static addNode(node) {
+    gameRoot.appendChild(node);
+  }
+
   static addToLine(line, textToAdd) {
     let node = this.getLine(line);
     node.textContent += textToAdd;
@@ -390,7 +394,7 @@ class Input {
   }
 
   getStringInput() {
-    return this.input;
+    return this.input.toUpperCase();
   }
 
   clearInput() {
@@ -590,14 +594,16 @@ class Skunk extends Game {
 
         if (input === Controls.YES) {
           this.getPlayers().map(player => {
-            player.getScore().setScore(this.INITIAL_SCORE_VALUE);
+            player.getScore().setScore(SkunkConstants.INITIAL_SCORE_VALUE);
             return player;
           });
 
-          this.currentRound = this.INITIAL_ROUND_VALUE;
+          this.currentRound = SkunkConstants.INITIAL_ROUND_VALUE;
           this.board = this.createSkunkBoard();
+          this.playSkunkRound(true);
         } else if (input === Controls.NO) {
           this.setPlaying(false);
+          Print.printNewLine("Goodbye!");
         } else {
           this.controls.runOtherControls(input, this.board, this.getPlayers());
         }
@@ -676,7 +682,8 @@ class Skunk extends Game {
     }
 
     this.updateBoard(this.roundScore);
-    this.board.drawBoard();
+    let table = this.board.drawTable();
+    Print.addNode(table);
 
     if (playingRound) {
       this.playerChoice();
@@ -956,6 +963,38 @@ class Board {
     this.setAllEmpty();
   }
 
+  drawTable() {
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tbody = document.createElement("tbody");
+
+    for (let row = 0; row < this.rows; row++) {
+      let tr = document.createElement("tr");
+      for (let col = 0; col < this.columns; col++) {
+        let td;
+        if (row === 0) {
+          td = document.createElement("th");
+        } else {
+          td = document.createElement("td");
+        }
+
+        td.textContent = this.board[row][col];
+
+        tr.appendChild(td);
+      }
+      if (row === 0) {
+        thead.appendChild(tr);
+      } else {
+        tbody.appendChild(tr);
+      }
+    }
+
+    table.appendChild(thead);
+    table.appendChild(tbody);
+
+    return table;
+  }
+
   drawBoard() {
     const longestRow =
       this.getLengthOfRows() +
@@ -1196,17 +1235,17 @@ class SkunkPlayer extends Player {
           this.setStanding(false);
           Print.clearLines();
           Print.printNewLine("You have chosen to sit");
+          game.runContinue();
         } else if (input === Controls.NO) {
           Print.clearLines();
           Print.printNewLine("You have chosen to stay standing");
+          game.runContinue();
         } else {
           controls.runOtherControls(input, board, players);
           this.playerInput.clearInput();
           Print.printNewLine("Hmm... that doesn't work here");
         }
       }
-
-      game.runContinue();
     }
   }
 
@@ -1265,9 +1304,9 @@ class SkunkPlayer extends Player {
 
     Print.printNewLine(this.getName() + " has chosen to " + message);
 
-    if (playerStanding === false) {
-      game.runContinue(false);
-    }
+    // if (playerStanding === false) {
+    //   game.runContinue(false);
+    // }
   }
 }
 

@@ -10,17 +10,20 @@ const Game = styled.div`
   padding: 10px;
   border: 2px solid #866bff;
   border-radius: 4px;
+  overflow-x: scroll;
 
   & .game-root {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 100%;
   }
 
   & p {
     margin: 5px 0px;
+    max-width: 100%;
   }
 
   & button {
@@ -87,7 +90,7 @@ const Game = styled.div`
 
   & input,
   textarea {
-    width: 100%;
+    width: calc(100% - 16px);
     margin: 8px 0px;
     padding: 16px 24px;
     min-height: 36px;
@@ -105,6 +108,30 @@ const Game = styled.div`
     }
     &:focus {
       outline: none;
+    }
+  }
+
+  & table {
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    & thead {
+      background-color: #866bff;
+      color: #fff;
+    }
+    & tbody {
+      margin: 0px;
+      padding: 0px;
+    }
+    & th,
+    td {
+      border-left: 1px solid #cbcbcb;
+      border-bottom-width: 0;
+      border-right-width: 0;
+      border-top-width: 0;
+      font-size: inherit;
+      margin: 0;
+      overflow: visible;
     }
   }
 `;
