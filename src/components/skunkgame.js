@@ -8,7 +8,7 @@ const Game = styled.div`
   align-items: center;
   margin: 20px;
   padding: 10px;
-  border: 2px solid ${props => props.theme.primary5};
+  border: 2px solid #866bff;
   border-radius: 4px;
 
   & .game-root {
@@ -27,19 +27,19 @@ const Game = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: ${props => props.theme.fontSize.emphasis};
+    font-size: 21px;
     line-height: 1;
     cursor: pointer;
     user-select: none;
     padding: 16px 32px;
     text-decoration: none;
-    color: ${props => props.theme.grey3};
+    color: #535353;
     border: none;
     background-color: transparent;
     position: relative;
 
     & svg {
-      width: ${props => props.theme.fontSize.information};
+      width: 14px;
       margin: 0;
       margin-left: 16px;
     }
@@ -91,16 +91,16 @@ const Game = styled.div`
     margin: 8px 0px;
     padding: 16px 24px;
     min-height: 36px;
-    border: 1px solid ${props => props.theme.grey6};
+    border: 1px solid #a1a1a1;
     border-radius: 4px;
-    background: ${props => props.theme.grey10};
+    background: #f6f6f6;
     transition: 0.3s linear;
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 400;
-    font-size: ${props => props.theme.fontSize.reading};
+    font-size: 17px;
     &:hover,
     :focus {
-      border: 1px solid ${props => props.theme.grey3};
+      border: 1px solid #535353;
       background: white;
     }
     &:focus {
