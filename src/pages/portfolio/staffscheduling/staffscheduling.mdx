@@ -9,4 +9,100 @@ using: ReactJS, NodeJS, PostgreSQL
 date: 2020-06-28
 ---
 
-Content coming soon!
+## The Idea
+
+One of the pain points for any company that relies on part-time labour is
+scheduling staff shifts. At the company that I work for, it's made even more
+complicated by the union agreements that regulate when specific staff can work
+and who gets priority for a given shift. Unfortunately, those rules make it
+impossible to use most of the available scheduling platforms out there.
+
+For a long time, that meant that the managers at my company would use a
+combination of paper and email to create schedules, post shifts, and track who
+was working.
+
+When I moved into the role that I'm in now, I knew that one of my priorities was
+building an application that would allow quick, painless and easy scheduling for
+staff and managers.
+
+## The Tech
+
+The application runs on React on for the frontend and NodeJS/Express for the
+backend with a PostgreSQL database. It's the first full-scale React application
+that I built, and I learned so much throughout the process!
+
+From building out an extensible database schema to designing well thought out
+user interfaces, from enforcing business rules in the API to debugging edge
+cases in complex interactions, this was a complicated project from beginning to
+end.
+
+## The Best Part
+
+My favourite part of developing the app was building out a release schedule,
+implementing semantic versioning, setting up issue tracking, and using Github's
+Kanban project boards to track progress.
+
+Although I was the primary developer on the project, I had several colleagues
+actively involved in the development process. We would meet regularly to discuss
+features, bugs, and design. From those meetings, I would detail technical
+requirements and create a roadmap for release in two weeks sprints.
+
+Here is an example release:
+
+---
+
+_Hi all –_
+
+_Version 0.5.0 of the scheduling app has just gone to test!_
+
+_This has three pretty big new features. Please logout and login again before
+taking a look in the app itself._
+
+## _New Features:_
+
+### _User Groups_
+
+_I've implemented user groups! That means that data across the whole application
+segments according to these groups – there is no way to see the schedules and
+data of other groups and vice versa._
+
+_Users can be part of multiple user groups (accounting for the case when we have
+someone who works in various departments), and they can select which user group
+they would like when logging in._
+
+_Only reference data lives between user groups (locations and statuses)_
+
+_Also, note that this is a significant change – let's be on the lookout for
+bugs!_
+
+### _Global Schedule Preferences_
+
+_Users can now specify global availability across all schedules – i.e., I can't
+ever work on Sundays._
+
+_This displays for admin users when creating schedules, so that they know why
+someone may or may not have added a bid._
+
+### _Seniority Calculation_
+
+_The app now has a screen for admin users to update the seniority points for a
+given user. It will automatically calculate how many points the app thinks
+should be added. Still, I recommend double-checking that manually against the
+schedule to ensure that it's correct, especially in the initial stages. Admin
+users can adjust the seniority points to add (or subtract) manually._
+
+### _Minor Updates:_
+
+- _Design updates throughout the application_
+
+- _Reports have a separate button to run each report instead of one main
+  buttonn_
+
+- _Major refactor of how modals work in the Shift page, which does not affect
+  how it works or appears, but makes it MUCH more maintainable._
+
+---
+
+At the end of the project, it was incredible to see how much easier it would
+make our team's lives, saving dozens of hours of staff time in just a single
+quarter.
