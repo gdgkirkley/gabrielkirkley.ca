@@ -11,4 +11,80 @@ source: https://github.com/gdgkirkley/castmyfriends
 date: 2020-06-28
 ---
 
-Content coming soon!
+### The Idea
+
+Casting hypothetical shows and movies is one of the favourite past times of the
+theatrically inclined. I knew that I wanted to try using Google Firebase as the
+backend on a project, and this seemed like a perfect opportunity to build out a
+fun little app. Users create accounts, search for shows (or add a new play if it
+doesn't exist), cast a show, and save their casts to their account!
+
+### The Tech
+
+I used React to develop the frontend of the site and integrated Firestore as the
+database. It was my first time working with a NoSQL database, and while I missed
+some of the advantages of a relational model, the flexibility and scalability of
+NoSQL are fantastic.
+
+I had a great time working on the drag and drop interface, accessibility for
+various components, and the search functionality.
+
+### The Best Part
+
+My favourite part of working on the app was building out the search
+functionality. I knew that I need to allow users to find the shows that they
+were looking for quickly, but one of the tradeoffs of a NoSQL database is that
+searching can be more complicated.
+
+To solve the problem, I researched common search patterns, especially those
+using keywords. When a user inputs a new play or musical into the database, I
+split the title into keywords, filter out stop words, and then create an array
+on the document. Plus, the user can add keywords of their choosing.
+
+When running a search query, I can use the "array-contains" method within
+Firestore to retrieve records containing that keyword. It's not a robust
+solution and might not hold up to scale, but for this project, it works like a
+charm.
+
+```js
+const handleSubmit = async e => {
+  e.preventDefault();
+  const lowerSearch = search.toLowerCase();
+  const titleSearch = titleCase(search);
+  let results = [];
+
+  let result = await Promise.all([
+    firestore
+      .collection("shows")
+      .where("keywords", "array-contains", lowerSearch)
+      .orderBy("title")
+      .limit(50)
+      .get(),
+    firestore
+      .collection("shows")
+      .where("title", "==", titleSearch)
+      .limit(5)
+      .get(),
+  ]).catch(err => {
+    setErr(err.message);
+  });
+  if (result) {
+    result.map(query => {
+      return query.docs.map(doc => {
+        const data = doc.data();
+        const id = doc.id;
+        return results.push({ ...data, id });
+      });
+    });
+    const finalResult = Array.from(new Set(results.map(show => show.id))).map(
+      id => {
+        return {
+          id: id,
+          ...results.find(show => show.id === id),
+        };
+      }
+    );
+    props.getResults(finalResult, search);
+  }
+};
+```

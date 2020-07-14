@@ -24,9 +24,9 @@ The fun part of rewriting the JS game was that the original Java code relied
 heavily on while loops and iterators for the implementation. In JS, I had to
 change all of that to callbacks to allow user input.
 
-I built a new Render class to add new DOM nodes, rather than using React for
-updating. The original game wrote to the Java console, and the new
-implementation copies that pattern by successively adding new nodes to the game
-div.
+I also built a new Render class with static methods to add new DOM nodes, rather
+than using React for updating. The original game wrote to the Java console, and
+the new implementation copies that pattern by successively adding new nodes to
+the game div.
 
 <SkunkGame />

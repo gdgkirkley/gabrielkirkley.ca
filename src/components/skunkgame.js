@@ -11,6 +11,7 @@ const Game = styled.div`
   border: 2px solid #866bff;
   border-radius: 4px;
   overflow-x: scroll;
+  min-height: 750px;
 
   & .game-root {
     display: flex;
@@ -24,6 +25,9 @@ const Game = styled.div`
   & p {
     margin: 5px 0px;
     max-width: 100%;
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
   }
 
   & button {
@@ -112,6 +116,7 @@ const Game = styled.div`
   }
 
   & table {
+    margin: 20px 0px;
     padding: 5px;
     text-align: center;
     width: 100%;

@@ -1,20 +1,20 @@
-import React from "react"
-import styled from "styled-components"
-import Layout from "../components/layout"
-import ReactLogo from "../../images/react-icon.svg"
-import NodeJS from "../../images/node.js_logo.svg"
-import PostgreSQL from "../../images/postgresql_elephant.svg"
-import Java from "../../images/java_logo.svg"
-import CSS from "../../images/CSS3_logo.svg"
-import HTML5 from "../../images/HTML5_logo.svg"
-import JavascriptLogo from "../../images/javascript-logo.svg"
-import RLogo from "../../images/r-logo.svg"
-import Card from "../components/card"
-import useExamples from "../hooks/useExamples"
+import React from "react";
+import styled from "styled-components";
+import Layout from "../components/layout";
+import ReactLogo from "../../images/react-icon.svg";
+import NodeJS from "../../images/node.js_logo.svg";
+import PostgreSQL from "../../images/postgresql_elephant.svg";
+import Java from "../../images/java_logo.svg";
+import CSS from "../../images/CSS3_logo.svg";
+import HTML5 from "../../images/HTML5_logo.svg";
+import JavascriptLogo from "../../images/javascript-logo.svg";
+import RLogo from "../../images/r-logo.svg";
+import Card from "../components/card";
+import useExamples from "../hooks/useExamples";
 
 const PortfolioBlock = styled.div`
   padding: 20px 0px;
-`
+`;
 
 const PortfolioContent = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const PortfolioContent = styled.div`
 
   @media (min-width: 768px) {
   }
-`
+`;
 
 const PortfolioTitle = styled.div`
   display: grid;
@@ -49,15 +49,15 @@ const PortfolioTitle = styled.div`
       margin: 0px;
     }
   }
-`
+`;
 
 const PortfolioTitleDecorator = styled.div`
   border-top: 1px solid ${props => props.theme.grey10};
   width: 100%;
-`
+`;
 
 const Portfolio = () => {
-  const examples = useExamples()
+  const examples = useExamples();
 
   return (
     <Layout colour={"portfolio"} invert={true}>
@@ -70,7 +70,7 @@ const Portfolio = () => {
           </PortfolioTitle>
           <PortfolioContent columns={2} rows={2}>
             {examples.map(example => {
-              if (example.type !== "project") return null
+              if (example.type !== "project") return null;
               return (
                 <Card
                   key={example.title}
@@ -79,19 +79,19 @@ const Portfolio = () => {
                   description={example.excerpt}
                   url={example.slug}
                 />
-              )
+              );
             })}
           </PortfolioContent>
         </PortfolioBlock>
         <PortfolioBlock>
           <PortfolioTitle>
             <PortfolioTitleDecorator />
-            <h2>Coding Challenges</h2>
+            <h2>Challenges</h2>
             <PortfolioTitleDecorator />
           </PortfolioTitle>
           <PortfolioContent columns={3} rows={1}>
             {examples.map(example => {
-              if (example.type !== "challenge") return null
+              if (example.type !== "challenge") return null;
               return (
                 <Card
                   key={example.title}
@@ -100,7 +100,7 @@ const Portfolio = () => {
                   description={example.excerpt}
                   url={example.slug}
                 />
-              )
+              );
             })}
           </PortfolioContent>
         </PortfolioBlock>
@@ -147,7 +147,7 @@ const Portfolio = () => {
         </PortfolioBlock>
       </main>
     </Layout>
-  )
-}
+  );
+};
 
-export default Portfolio
+export default Portfolio;

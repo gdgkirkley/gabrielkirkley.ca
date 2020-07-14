@@ -30,7 +30,7 @@ class GameLibrary {
    * Run the introduction to the Game Library to choose a game.
    */
   introduction() {
-    Render.printNewLine("Welcome to SKUNK!", false, "h2");
+    Render.printNewLine("Welcome to SKUNK!", "h2");
 
     this.playerInput.createButton("Start Game", this.executeChoice.bind(this));
   }
@@ -41,38 +41,67 @@ class GameLibrary {
   }
 }
 
+/**
+ * Render components to the DOM in <div id="game" />
+ */
 class Render {
-  static printNewLine(line, html = false, element = "p") {
-    const fragment = document.createDocumentFragment();
+  /**
+   * Render a new element to the DOM as a child of the game root
+   * @param {string} line the string or HTML string to add
+   * @param {string} element the element tag to add to the DOM. Defaults to <p>
+   */
+  static printNewLine(line, element = "p") {
     const newLine = document.createElement(element);
-    if (html) {
-      newLine.innerHTML = line;
-    } else {
-      newLine.textContent = line;
-    }
-    fragment.appendChild(newLine);
+
+    newLine.innerHTML = line;
+
     gameRoot.appendChild(newLine);
 
     return newLine;
   }
 
+  /**
+   * Add a new node to the DOM
+   * @param {HTMLElement} node an HTMLElement to add to the game root
+   */
   static addNode(node) {
+    this.isNode(node);
+
     gameRoot.appendChild(node);
   }
 
+  /**
+   * Add a string to a given line of text by searching in the DOM
+   * @param {string} line a string of existing text to search for in the DOM
+   * @param {string} textToAdd a string to add to the end of the found string
+   */
   static addToLine(line, textToAdd) {
     let node = this.getLine(line);
     node.textContent += textToAdd;
   }
 
+  /**
+   * Add text to a specific DOM element
+   * @param {HTMLElement} node the element to add to
+   * @param {string} textToAdd the text to add to the element
+   */
   static addToNode(node, textToAdd) {
+    this.isNode(node);
+
     node.textContent += textToAdd;
   }
 
+  /**
+   * Clear the game root
+   */
   static clearLines() {
     gameRoot.innerHTML = "";
   }
 
+  /**
+   * Search the DOM for an element containing text. Uses XPath.
+   * @param {string} search the text to search for within the DOM
+   */
   static getLine(search) {
     let nodes = document.evaluate(
       "//p[contains(.,'" + search + "')]",
@@ -84,14 +113,34 @@ class Render {
     return nodes.iterateNext();
   }
 
+  /**
+   * Remove an element from the DOM by its text
+   * @param {string} search the text of an element to remove
+   */
   static clearLine(search) {
     let node = this.getLine(search);
 
     gameRoot.removeChild(node);
   }
 
+  /**
+   * Remove an element from the game root
+   * @param {HTMLElement} node the HTML element to remove
+   */
   static clearNode(node) {
+    this.isNode(node);
+
     gameRoot.removeChild(node);
+  }
+
+  /**
+   * Check if a passed object is an HTMLElement
+   * @param {object} o the object to evaluate
+   */
+  static isNode(o) {
+    if (!(o instanceof HTMLElement)) {
+      throw new Error(o + " is not a valid HTMLElement");
+    }
   }
 }
 
@@ -555,7 +604,7 @@ class Skunk extends Game {
   }
 
   startGame() {
-    Render.printNewLine("Welcome to SKUNK!", false, "h2");
+    Render.printNewLine("Welcome to SKUNK!", "h2");
 
     this.playSkunkRound(true);
   }
@@ -565,15 +614,11 @@ class Skunk extends Game {
 
     Render.clearLines();
 
-    Render.printNewLine("==================");
-
     if (winningPlayer.getName() === this.playerName) {
-      Render.printNewLine("|   YOU WIN!!!!  |", false, "h2");
+      Render.printNewLine("YOU WIN!!!!", "h2");
     } else {
-      Render.printNewLine("|   You lost...  |", false, "h2");
+      Render.printNewLine("You lost...", "h2");
     }
-
-    Render.printNewLine("==================");
 
     Render.printNewLine();
 
@@ -646,7 +691,6 @@ class Skunk extends Game {
       (newRound ? "Starting" : "Continuing") +
         " round " +
         (this.currentRound + 1),
-      false,
       "h2"
     );
     Render.printNewLine("================");
@@ -666,10 +710,8 @@ class Skunk extends Game {
           (this.numberOfDice === SkunkConstants.MAX_DICE &&
             numberOfSkunkRolls === this.numberOfDice - 1)
         ) {
-          console.log("Skunk game");
           this.skunkPlayersGame();
         } else {
-          console.log("Skunk round");
           this.skunkPlayersRound(this.roundScore);
         }
       }
@@ -742,7 +784,7 @@ class Skunk extends Game {
 
   async roll() {
     for (let i = 0; i < this.numberOfDice; i++) {
-      let node = Render.printNewLine("Rolling", false, "h4");
+      let node = Render.printNewLine("Rolling", "h4");
 
       for (let j = 0; j < 3; j++) {
         await this.sleep(500);
@@ -1329,7 +1371,7 @@ class SkunkConfig {
     this.playerInput = playerInput;
 
     Render.clearLines();
-    Render.printNewLine("Aaaaaaaaaalright!", false, "h2");
+    Render.printNewLine("Aaaaaaaaaalright!", "h2");
     Render.printNewLine("Let's get you set up");
 
     this.setUpNumberOfDice();

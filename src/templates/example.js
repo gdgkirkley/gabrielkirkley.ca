@@ -11,12 +11,24 @@ import { Github } from "../components/social";
 
 const ExampleBar = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin: 10px 0px;
 
   & p {
     font-weight: 300;
+  }
+
+  & a {
+    margin: 10px 0;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    & a {
+      margin: 0;
+    }
   }
 `;
 
@@ -70,7 +82,7 @@ const ExamplePage = ({ data: { pageData } }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <Github url={page.frontmatter.source} />
+              View Source
             </a>
           )}
           {page.frontmatter.link && (
