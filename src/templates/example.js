@@ -49,6 +49,7 @@ export const query = graphql`
                 }
               }
             }
+            slug
           }
           body
           excerpt
@@ -67,6 +68,7 @@ const ExamplePage = ({ data: { pageData } }) => {
         title={page.frontmatter.title}
         description={page.frontmatter.excerpt}
         image={page.frontmatter.image.sharp.fluid.src}
+        slug={page.frontmatter.slug}
       />
       <main>
         <h1>{page.frontmatter.title}</h1>

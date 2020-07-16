@@ -82,6 +82,7 @@ const PostTemplate = ({ data: { postData } }) => {
         description={post.excerpt}
         image={post.frontmatter.image.sharp.fluid.src}
         isBlogPost={true}
+        slug={post.frontmatter.slug}
       />
       <main>
         <Post>

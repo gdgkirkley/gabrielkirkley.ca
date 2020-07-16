@@ -4,7 +4,16 @@ import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import SchemaOrg from "./schema-org";
 
-function SEO({ description, lang, meta, title, image, isBlogPost, date }) {
+function SEO({
+  description,
+  lang,
+  meta,
+  title,
+  image,
+  isBlogPost,
+  date,
+  slug,
+}) {
   const { site, defaultImage } = useStaticQuery(
     graphql`
       query {
@@ -39,6 +48,12 @@ function SEO({ description, lang, meta, title, image, isBlogPost, date }) {
     image || defaultImage.nodes[0].fixed.src
   }`;
 
+  const canonical = slug
+    ? `${site.siteMetadata.siteUrl}${slug}`
+    : site.siteMetadata.siteUrl;
+
+  console.log(slug);
+
   return (
     <>
       <Helmet
@@ -47,6 +62,7 @@ function SEO({ description, lang, meta, title, image, isBlogPost, date }) {
         }}
         title={title}
         titleTemplate={`%s | ${site.siteMetadata.title}`}
+        link={[{ rel: "canonical", href: canonical }]}
         meta={[
           {
             name: `description`,
@@ -58,7 +74,7 @@ function SEO({ description, lang, meta, title, image, isBlogPost, date }) {
           },
           {
             property: "og:url",
-            content: site.siteMetadata.siteUrl,
+            content: canonical,
           },
           {
             property: `og:title`,
@@ -70,11 +86,15 @@ function SEO({ description, lang, meta, title, image, isBlogPost, date }) {
           },
           {
             property: `og:type`,
-            content: `website`,
+            content: isBlogPost ? `article` : `website`,
           },
           {
             property: "og:image",
             content: seoImage,
+          },
+          {
+            property: "fb:app_id",
+            content: "",
           },
           {
             name: `twitter:card`,
