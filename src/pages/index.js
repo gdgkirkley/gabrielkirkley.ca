@@ -70,7 +70,7 @@ const Content = styled.div`
 const IndexPage = () => {
   const { image } = useStaticQuery(graphql`
     query {
-      image: file(relativePath: { eq: "churro.jpg" }) {
+      image: file(relativePath: { eq: "Gabe-Headshotbw.jpg" }) {
         sharp: childImageSharp {
           fluid(quality: 80) {
             ...GatsbyImageSharpFluid
