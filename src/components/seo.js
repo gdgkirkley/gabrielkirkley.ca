@@ -29,7 +29,7 @@ function SEO({
           }
         }
         defaultImage: allImageSharp(
-          filter: { fluid: { originalName: { eq: "churro.jpg" } } }
+          filter: { fluid: { originalName: { eq: "Gabe-Headshotbw.jpg" } } }
         ) {
           nodes {
             fixed {
