@@ -65,6 +65,7 @@ const ExamplePage = ({ data: { pageData } }) => {
     <Layout colour="portfolio" invert="true">
       <SEO
         title={page.frontmatter.title}
+        description={page.frontmatter.excerpt}
         image={page.frontmatter.image.sharp.fluid.src}
       />
       <main>
