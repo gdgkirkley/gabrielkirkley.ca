@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby";
 
 const usePosts = () => {
   const data = useStaticQuery(graphql`
@@ -13,12 +13,7 @@ const usePosts = () => {
               date
               image {
                 sharp: childImageSharp {
-                  fluid(
-                    maxWidth: 900
-                    maxHeight: 400
-                    duotone: { highlight: "#f00e2e", shadow: "#192550" }
-                    toFormat: PNG
-                  ) {
+                  fluid(maxWidth: 900, maxHeight: 400, toFormat: PNG) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
@@ -29,7 +24,7 @@ const usePosts = () => {
         }
       }
     }
-  `)
+  `);
 
   return data.allMdx.edges.map(post => ({
     title: post.node.frontmatter.title,
@@ -37,7 +32,7 @@ const usePosts = () => {
     slug: post.node.frontmatter.slug,
     image: post.node.frontmatter.image,
     excerpt: post.node.excerpt,
-  }))
-}
+  }));
+};
 
-export default usePosts
+export default usePosts;

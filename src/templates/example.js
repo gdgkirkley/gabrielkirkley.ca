@@ -7,7 +7,6 @@ import styled from "styled-components";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { ExternalLink } from "../components/icons";
-import { Github } from "../components/social";
 
 const ExampleBar = styled.div`
   display: flex;
@@ -64,7 +63,10 @@ const ExamplePage = ({ data: { pageData } }) => {
 
   return (
     <Layout colour="portfolio" invert="true">
-      <SEO title={page.frontmatter.title} />
+      <SEO
+        title={page.frontmatter.title}
+        image={page.frontmatter.image.sharp.fluid.src}
+      />
       <main>
         <h1>{page.frontmatter.title}</h1>
         {page.frontmatter.tagline && (

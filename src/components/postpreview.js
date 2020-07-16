@@ -1,8 +1,8 @@
-import React from "react"
-import styled from "styled-components"
-import { Link } from "gatsby"
-import Image from "gatsby-image"
-import Button from "../components/button"
+import React from "react";
+import styled from "styled-components";
+import { Link } from "gatsby";
+import Image from "gatsby-image";
+import Button from "../components/button";
 
 const Preview = styled.article`
   border-bottom: 1px solid ${props => props.theme.accent5};
@@ -19,7 +19,7 @@ const Preview = styled.article`
       width: 100%;
     }
   }
-`
+`;
 
 const PostPreview = ({ post }) => (
   <Preview>
@@ -27,15 +27,15 @@ const PostPreview = ({ post }) => (
       <Image fluid={post.image.sharp.fluid} alt={post.title} />
     </Link>
     <div>
-      <h3>
+      <h2>
         <Link to={post.slug}>{post.title}</Link>
-      </h3>
+      </h2>
       <p>{post.excerpt}</p>
       <Link to={post.slug}>
         <Button tabIndex="-1">Read more &rarr;</Button>
       </Link>
     </div>
   </Preview>
-)
+);
 
-export default PostPreview
+export default PostPreview;

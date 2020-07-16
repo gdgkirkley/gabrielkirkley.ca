@@ -1,23 +1,25 @@
-import React from "react"
-import styled from "styled-components"
-import Layout from "../components/layout"
+import React from "react";
+import styled from "styled-components";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const TwoCol = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 24px;
   line-height: 2.2;
-`
+`;
 
 const About = () => {
   const getAge = () => {
-    let diff_ms = Date.now() - new Date("1991-09-26").getTime()
-    let age_dt = new Date(diff_ms)
-    return Math.abs(age_dt.getFullYear() - 1970)
-  }
+    let diff_ms = Date.now() - new Date("1991-09-26").getTime();
+    let age_dt = new Date(diff_ms);
+    return Math.abs(age_dt.getFullYear() - 1970);
+  };
 
   return (
     <Layout colour="about">
+      <SEO title="About" />
       <main>
         <h1>Hi, I'm Gabe!</h1>
         <TwoCol>
@@ -122,7 +124,7 @@ const About = () => {
         </TwoCol>
       </main>
     </Layout>
-  )
-}
+  );
+};
 
-export default About
+export default About;

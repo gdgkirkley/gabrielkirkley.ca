@@ -1,32 +1,32 @@
-import React from "react"
-import styled from "styled-components"
-import { useStaticQuery, graphql, Link } from "gatsby"
-import Img from "gatsby-image"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Button from "../components/button"
-import { RightArrow } from "../components/icons"
+import React from "react";
+import styled from "styled-components";
+import { useStaticQuery, graphql, Link } from "gatsby";
+import Img from "gatsby-image";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import Button from "../components/button";
+import { RightArrow } from "../components/icons";
 
 const MainContent = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: ${props => props.theme.gridGap};
-  margin-top: 24px;
+  margin-top: 48px;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
-`
+`;
 
 const HeroImage = styled(Img)`
   border-radius: 50px;
-`
+`;
 
 const MainTitle = styled.h1`
   font-weight: 800;
   text-align: center;
   margin-bottom: 0px;
-`
+`;
 
 const Title = styled.div`
   text-align: center;
@@ -40,7 +40,7 @@ const Title = styled.div`
       max-width: 54%;
     }
   }
-`
+`;
 
 const MainList = styled.ul`
   border-top: 1px solid ${props => props.theme.grey10};
@@ -58,14 +58,14 @@ const MainList = styled.ul`
   & strong {
     color: #fff;
   }
-`
+`;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-`
+`;
 
 const IndexPage = () => {
   const { image } = useStaticQuery(graphql`
@@ -78,7 +78,7 @@ const IndexPage = () => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <Layout colour="home">
@@ -126,7 +126,7 @@ const IndexPage = () => {
         </Content>
       </main>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

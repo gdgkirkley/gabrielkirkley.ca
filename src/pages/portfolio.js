@@ -11,6 +11,7 @@ import JavascriptLogo from "../../images/javascript-logo.svg";
 import RLogo from "../../images/r-logo.svg";
 import Card from "../components/card";
 import useExamples from "../hooks/useExamples";
+import SEO from "../components/seo";
 
 const PortfolioBlock = styled.div`
   padding: 20px 0px;
@@ -22,13 +23,26 @@ const PortfolioContent = styled.div`
   justify-content: space-around;
   align-items: center;
   text-align: center;
-
-  & svg {
-    width: 220px;
-    height: 236px;
-  }
-
   @media (min-width: 768px) {
+  }
+`;
+
+const PortfolioTech = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 24px;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+  & svg {
+    width: 50%;
+    transition: all 0.4s ease-in-out;
+    filter: grayscale(1);
+
+    &:hover {
+      filter: grayscale(0);
+      transform: scale(1.1);
+    }
   }
 `;
 
@@ -61,6 +75,7 @@ const Portfolio = () => {
 
   return (
     <Layout colour={"portfolio"} invert={true}>
+      <SEO title="Portfolio" />
       <main>
         <PortfolioBlock>
           <PortfolioTitle>
@@ -110,40 +125,40 @@ const Portfolio = () => {
             <h2>Technical Expertise</h2>
             <PortfolioTitleDecorator />
           </PortfolioTitle>
-          <PortfolioContent columns={3} rows={3}>
+          <PortfolioTech>
             <div>
               <JavascriptLogo />
-              <h3>Javascript</h3>
+              <p>Javascript</p>
             </div>
             <div>
               <ReactLogo />
-              <h3>React</h3>
+              <p>React</p>
             </div>
             <div>
               <NodeJS />
-              <h3>NodeJS</h3>
+              <p>NodeJS</p>
             </div>
             <div>
               <PostgreSQL />
-              <h3>PostgreSQL</h3>
+              <p>PostgreSQL</p>
             </div>
             <div>
               <Java />
-              <h3>Java</h3>
+              <p>Java</p>
             </div>
             <div>
               <HTML5 />
-              <h3>HTML5</h3>
+              <p>HTML5</p>
             </div>
             <div>
               <CSS />
-              <h3>CSS</h3>
+              <p>CSS</p>
             </div>
             <div>
               <RLogo />
-              <h3>R</h3>
+              <p>R</p>
             </div>
-          </PortfolioContent>
+          </PortfolioTech>
         </PortfolioBlock>
       </main>
     </Layout>
