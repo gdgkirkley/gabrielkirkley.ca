@@ -84,11 +84,11 @@ month** and several other courses they offer. It was hard work, and a lot of
 long hours trying to remember which function did what and how to get the data to
 mutate in the right way.
 
-I'm incredibly lucky that one of the enormous privileges that I have is the time
-and freedom to devote to my ongoing education. I have no kids, and relatively
-few outside obligations to pull me away from learning. But I also have the drive
-to finish what I started. It meant giving up reading, video games, watching
-Netflix, and a lot of fun things. But it was worth it.
+**Acknowledgement:** I'm incredibly lucky that one of the enormous privileges
+that I have is the time and freedom to devote to my ongoing education. I have no
+kids, and relatively few outside obligations to pull me away from learning. But
+I also have the drive to finish what I started. It meant giving up reading,
+video games, watching Netflix, and a lot of fun things. But it was worth it.
 
 https://twitter.com/EmmaBostian/status/1270999138839207936?s=20
 
@@ -104,8 +104,14 @@ a model is getting clean data. Luckily, most voting data is public, but it still
 meant downloading dozens of Excel files, importing them into RStudio, and
 standardizing a workable dataset.
 
-What stuck with me about that little project was **how important it is to be
-able to communicate complexity**. As I got further and further into the weeds of
+I was helped a TON by the fantastic G. Elliot Morris and
+[the Economist's open source election model](https://github.com/TheEconomist/us-potus-model).
+Huge shout out to awesome folks at big companies who make open source!
+
+https://twitter.com/gelliottmorris/status/1271026014328586240?s=20
+
+Ultimately, what stuck with me was **how important it is to be able to
+communicate complexity**. As I got further and further into the weeds of
 building a predictive model, I saw that in many ways, FiveThirtyEight's
 brilliance is in how they simplify p-values, and r<sup>2</sup>, and MCMC chains
 into a universal language that's accessible to anyone. It would be SO easy for
@@ -134,7 +140,7 @@ and turned it into a MASSIVE R project. When I say massive, I mean that I didn't
 understand the power of a for loop, and I copied and pasted code for each
 separate product. The entire codebase for that one tracker was over 11,000 lines
 long. It worked, and it was game-changing for my company in many ways, but man -
-it was ugly.
+it was ugly. 😅
 
 **Side note**: when I came back to that code to set it up for the next fiscal
 year after learning WAY more, I was able to refactor it in to - get this -
