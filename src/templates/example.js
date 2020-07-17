@@ -7,6 +7,8 @@ import styled from "styled-components";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { ExternalLink } from "../components/icons";
+import Source from "../../images/code-branch-light.svg";
+import { SourceUnavailable } from "../components/card";
 
 const ExampleBar = styled.div`
   display: flex;
@@ -81,14 +83,20 @@ const ExamplePage = ({ data: { pageData } }) => {
         <ExampleBar>
           {page.frontmatter.using && <p>{page.frontmatter.using}</p>}
 
-          {page.frontmatter.source && (
-            <a
-              href={page.frontmatter.source}
+          {page.frontmatter.source ? (
+            <Button
+              as="a"
               target="_blank"
-              rel="noreferrer noopener"
+              href={page.frontmatter.source}
+              bgColour={"#866BFF"}
+              fontColour={"#fff"}
             >
-              View Source
-            </a>
+              View Code <Source />
+            </Button>
+          ) : (
+            <SourceUnavailable>
+              Source Unavailable <Source />
+            </SourceUnavailable>
           )}
           {page.frontmatter.link && (
             <a

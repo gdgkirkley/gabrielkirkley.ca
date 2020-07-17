@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
-const ButtonStyles = styled.button`
+export const ButtonStyles = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,8 @@ const ButtonStyles = styled.button`
   user-select: none;
   padding: 16px 32px;
   text-decoration: none;
-  color: ${props => props.theme.grey3};
+  color: ${props =>
+    props.fontColour ? props.fontColour : props.theme.grey3} !important;
   border: none;
   background-color: transparent;
   position: relative;
@@ -26,7 +27,7 @@ const ButtonStyles = styled.button`
     content: "";
     padding: 16px 32px;
     transition: 0.5s all;
-    background-color: #fff;
+    background-color: ${props => (props.bgColour ? props.bgColour : "#fff")};
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -61,7 +62,7 @@ const ButtonStyles = styled.button`
       cursor: initial;
     }
   }
-`
+`;
 
 const Button = ({
   classes,
@@ -86,7 +87,7 @@ const Button = ({
     >
       {children}
     </ButtonStyles>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

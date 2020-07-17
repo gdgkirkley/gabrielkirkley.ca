@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby";
 
 const useExamples = () => {
   const data = useStaticQuery(graphql`
@@ -13,6 +13,7 @@ const useExamples = () => {
               date
               using
               type
+              source
               image {
                 sharp: childImageSharp {
                   fluid(maxWidth: 900, maxHeight: 400) {
@@ -25,7 +26,7 @@ const useExamples = () => {
         }
       }
     }
-  `)
+  `);
 
   return data.allMdx.edges.map(post => ({
     title: post.node.frontmatter.title,
@@ -34,7 +35,8 @@ const useExamples = () => {
     image: post.node.frontmatter.image,
     excerpt: post.node.frontmatter.using,
     type: post.node.frontmatter.type,
-  }))
-}
+    source: post.node.frontmatter.source,
+  }));
+};
 
-export default useExamples
+export default useExamples;

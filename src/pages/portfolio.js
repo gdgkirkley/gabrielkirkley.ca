@@ -93,6 +93,7 @@ const Portfolio = () => {
                   title={example.title}
                   description={example.excerpt}
                   url={example.slug}
+                  source={example.source}
                 />
               );
             })}
@@ -114,6 +115,7 @@ const Portfolio = () => {
                   title={example.title}
                   description={example.excerpt}
                   url={example.slug}
+                  source={example.source}
                 />
               );
             })}

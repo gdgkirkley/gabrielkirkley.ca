@@ -1,8 +1,9 @@
-import React from "react"
-import { Link } from "gatsby"
-import Img from "gatsby-image"
-import styled from "styled-components"
-import Button from "./button"
+import React from "react";
+import { Link } from "gatsby";
+import Img from "gatsby-image";
+import styled from "styled-components";
+import Button from "./button";
+import Source from "../../images/code-branch-light.svg";
 
 const CardLink = styled(Link)`
   display: flex;
@@ -47,19 +48,37 @@ const CardLink = styled(Link)`
       transform: scale(51);
     }
   }
-`
+`;
 const CardContainer = styled.div`
   width: 400px;
   height: 100%;
   background: url(${props => props.background}) center center/cover;
   transition: 0.4s linear;
-`
+`;
 
 const CardContent = styled.div`
   padding: 16px 16px;
-`
+`;
 
-const Card = ({ image, title, description, url }) => {
+const CardButtons = styled.div`
+  display: grid;
+  grid-gap: 16px;
+  margin: 0px 10px;
+`;
+
+export const SourceUnavailable = styled.p`
+  font-size: ${props => props.theme.fontSize.information};
+  & svg {
+    width: 12px;
+  }
+`;
+
+const Card = ({ image, title, description, url, source }) => {
+  const handleSourceClick = e => {
+    e.preventDefault();
+    window.open(source, "_blank");
+  };
+
   return (
     <CardLink to={url}>
       <CardContainer>
@@ -70,11 +89,27 @@ const Card = ({ image, title, description, url }) => {
             <p>{description}</p>
           </div>
 
-          <Button>See more</Button>
+          <CardButtons>
+            <Button>See More</Button>
+            {source ? (
+              <Button
+                as="a"
+                onClick={handleSourceClick}
+                bgColour={"#866BFF"}
+                fontColour={"#fff"}
+              >
+                View Code <Source />
+              </Button>
+            ) : (
+              <SourceUnavailable>
+                Source Unavailable <Source />
+              </SourceUnavailable>
+            )}
+          </CardButtons>
         </CardContent>
       </CardContainer>
     </CardLink>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
