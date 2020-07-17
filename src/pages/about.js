@@ -25,10 +25,10 @@ const About = () => {
         <TwoCol>
           <div>
             <p>
-              I'm a software/web developer and theatre nerd. I'm {getAge()}{" "}
-              years old and grew up just outside of Vancouver. As a teenager, I
-              designed and built my first websites for friends. But at the time,
-              I had different goals. So, after graduating high school, I went to{" "}
+              I'm a software/web developer. I'm {getAge()} years old and grew up
+              just outside of Vancouver. As a teenager, I designed and built my
+              first websites for friends. But at the time, I had different
+              goals. So, after graduating high school, I went to{" "}
               <a
                 href="https://ufv.ca"
                 target="_blank"
