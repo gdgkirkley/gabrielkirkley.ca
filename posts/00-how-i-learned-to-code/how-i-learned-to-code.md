@@ -34,7 +34,7 @@ people in similar positions to those that I held**.
 
 I didn't just have to use the WYSIWYG editors to create marketing emails. I
 could _redesign the templates_. I didn't have to go to our web designer to make
-that WordPress page edit. I could just lay it out myself.
+that WordPress page edit. I could just _lay it out myself_.
 
 In other words, I had always been interested in and known the power of code, so
 my decision didn't come totally out of the blue. **But at the time, I didn't
@@ -125,11 +125,16 @@ was predicting that the B.C. Liberals would win another term in government. Even
 though I hadn't shared my work with anyone, it felt like a lot of pressure to be
 right!
 
-And I wasn't right.
+My final run of the model gave the Liberals a 68% chance of winning a majority
+of seats, with an average of 46 seats, meaning that they would win a 5th
+straight term in government.
 
-Or maybe, I wasn't totally wrong? My final run of the model gave the Liberals a
-68% chance of winning a majority of seats, with an average of 46 seats. In the
-end, they did win a majority of seats... by 43-41.
+[And at first, I was kinda right?](https://www.cbc.ca/news/canada/british-columbia/bc-election-2017-results-1.4107582)
+
+[Or maybe, I wasn't totally wrong?](https://www.cbc.ca/news/canada/british-columbia/horgan-government-guichon-2017-1.4185204)
+
+In the end, the Liberals did win a majority of seats... by 43-41... but they
+theoretically "lost" the election. The joys of parliamentary democracy.
 
 ## Bringing It Back
 
