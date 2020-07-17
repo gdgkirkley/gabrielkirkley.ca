@@ -29,7 +29,7 @@ const PortfolioContent = styled.div`
 
 const PortfolioTech = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 24px;
   justify-content: center;
   align-items: flex-end;
@@ -43,6 +43,10 @@ const PortfolioTech = styled.div`
       filter: grayscale(0);
       transform: scale(1.1);
     }
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
 
