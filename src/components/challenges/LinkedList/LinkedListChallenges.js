@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Button from "../../button";
 import { LinkedList } from "./LinkedList";
 
 const Display = styled.div`
@@ -30,24 +29,11 @@ const InlineInput = styled.div`
   width: 100%;
   flex-direction: column;
 
-  & button,
-  input {
+  & input {
     flex: 1;
     padding: 1em;
     border: 1px solid ${props => props.theme.grey3};
     font-size: 17px;
-  }
-
-  & button {
-    background: #866bff;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
-    &:hover {
-      background: #8e79ec;
-      cursor: pointer;
-    }
   }
 
   @media (min-width: 768px) {
@@ -58,6 +44,21 @@ const InlineInput = styled.div`
     & button {
       border-left: none;
     }
+  }
+`;
+
+const Button = styled.button`
+  background: #866bff;
+  padding: 1em;
+  border: 1px solid ${props => props.theme.grey3};
+  font-size: 17px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  &:hover {
+    background: #8e79ec;
+    cursor: pointer;
   }
 `;
 
@@ -117,7 +118,7 @@ const LinkedListChallenges = () => {
             value={value}
             onChange={handleChange}
           />
-          <button onClick={handleAdd}>Add</button>
+          <Button onClick={handleAdd}>Add</Button>
         </InlineInput>
       </Input>
 
