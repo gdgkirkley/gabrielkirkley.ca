@@ -39,7 +39,7 @@ const InlineInput = styled.div`
   }
 
   & button {
-    background: ${props => props.theme.portfolio.a};
+    background: #866bff;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
