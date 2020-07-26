@@ -1,0 +1,53 @@
+---
+templateKey: example
+type: challenge
+title: Linked List
+slug: /portfolio/linkedlist
+author: Gabriel Kirkley
+image: ./links.jpg
+using: JavaScript
+source: https://github.com/gdgkirkley/gabrielkirkley.ca/tree/master/src/components/challenges/linkedlist/linkedlist.js
+date: 2020-07-25
+---
+
+import LinkedListChallenges from "../../../components/challenges/LinkedList/LinkedListChallenges";
+
+This is a sample problem using a Linked List.
+
+<LinkedListChallenges />
+
+The duplicate removal algorithm is implemented with an O(n) solution using a
+Map:
+
+```js
+class LinkedList {
+ ...
+
+  removeDuplicates() {
+    let previouslySeen  = new Map();
+
+    let iterations      = this.count;
+    let current         = this.head;
+    let prev            = this.head;
+
+    for (let i = 0; i < iterations; i++) {
+      if (previouslySeen.has(current.value)) {
+        if (current.next) {
+          prev.next = current.next;
+        } else {
+          prev.next = null;
+        }
+
+        this.decrementCount();
+      } else {
+        previouslySeen.set(current.value, current);
+        prev = current;
+      }
+
+      current = current.next;
+    }
+  }
+
+ ...
+}
+```

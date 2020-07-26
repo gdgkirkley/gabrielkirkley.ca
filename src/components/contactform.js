@@ -1,8 +1,8 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-import Button from "./button"
+import React, { useState } from "react";
+import styled from "styled-components";
+import Button from "./button";
 
-const Form = styled.form`
+export const Form = styled.form`
   display: grid;
   grid-gap: 16px;
   & label {
@@ -12,53 +12,53 @@ const Form = styled.form`
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 600;
     color: ${props => props.theme.grey3};
-    & input,
-    textarea {
-      width: 100%;
-      margin: 8px 0px;
-      padding: 16px 24px;
-      min-height: 36px;
-      border: 1px solid ${props => props.theme.grey6};
-      border-radius: 4px;
-      background: ${props => props.theme.grey10};
-      transition: 0.3s linear;
-      font-family: "Inter", Arial, Helvetica, sans-serif;
-      font-weight: 400;
-      font-size: ${props => props.theme.fontSize.reading};
-      &:hover,
-      :focus {
-        border: 1px solid ${props => props.theme.grey3};
-        background: white;
-      }
-      &:focus {
-        outline: none;
-      }
+  }
+  & input,
+  textarea {
+    width: 100%;
+    margin: 8px 0px;
+    padding: 16px 24px;
+    min-height: 36px;
+    border: 1px solid ${props => props.theme.grey6};
+    border-radius: 4px;
+    background: ${props => props.theme.grey10};
+    transition: 0.3s linear;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: ${props => props.theme.fontSize.reading};
+    &:hover,
+    :focus {
+      border: 1px solid ${props => props.theme.grey3};
+      background: white;
     }
-    & textarea {
-      min-height: 150px;
-    }
-    &.checkbox {
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      align-items: center;
-      margin: 16px 0px;
+    &:focus {
+      outline: none;
     }
   }
-`
+  & textarea {
+    min-height: 150px;
+  }
+  &.checkbox {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    margin: 16px 0px;
+  }
+`;
 
 const ContactForm = () => {
   const [values, setValues] = useState({
     email: "",
     name: "",
     message: "",
-  })
+  });
 
   const handleChange = e => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <Form name="Contact Form" method="POST" data-netlify="true">
@@ -94,7 +94,7 @@ const ContactForm = () => {
       </label>
       <Button type="submit">Send your message!</Button>
     </Form>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;
