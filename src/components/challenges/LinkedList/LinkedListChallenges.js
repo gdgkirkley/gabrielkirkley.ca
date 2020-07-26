@@ -34,27 +34,30 @@ const InlineInput = styled.div`
   input {
     flex: 1;
     padding: 1em;
-    background: #fff;
     border: 1px solid ${props => props.theme.grey3};
-    font-size: ${props => props.theme.fontSize.emphasis};
-  }
-
-  &:not(:first-child) {
-    border-left: 0;
-  }
-  &:not(:last-child) {
-    border-left: 0;
+    font-size: 17px;
   }
 
   & button {
+    background: ${props => props.theme.portfolio.a};
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     &:hover {
-      background: ${props => props.theme.grey9};
+      background: #8e79ec;
       cursor: pointer;
     }
   }
 
   @media (min-width: 768px) {
     flex-direction: row;
+    & input {
+      border-right: none;
+    }
+    & button {
+      border-left: none;
+    }
   }
 `;
 
