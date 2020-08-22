@@ -15,14 +15,16 @@ const ExampleBar = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0px;
+  margin: 1rem 0;
 
   & p {
     font-weight: 300;
+    max-width: 30rem;
+    font-size: 1.7rem;
   }
 
   & a {
-    margin: 10px 0;
+    margin: 1rem 0;
   }
 
   @media (min-width: 768px) {
