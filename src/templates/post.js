@@ -10,6 +10,7 @@ import Button from "../components/button";
 import Author from "../components/author";
 import SEO from "../components/seo";
 import config from "../../config/website";
+import { formatDate } from "../lib/dates";
 
 const Post = styled.article`
   margin: 0px 10px;
@@ -62,16 +63,6 @@ export const query = graphql`
     }
   }
 `;
-
-const formatDate = date => {
-  return new Date(date).toLocaleDateString("en-US", {
-    timeZone: "UTC",
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-};
 
 const PostTemplate = ({ data: { postData } }) => {
   const post = postData.edges[0].node;

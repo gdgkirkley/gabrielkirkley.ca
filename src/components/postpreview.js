@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
 import Button from "../components/button";
+import { formatDate } from "../lib/dates";
 
 const Preview = styled.article`
   border-bottom: 1px solid ${props => props.theme.accent5};
@@ -32,6 +33,7 @@ const PostPreview = ({ post }) => (
       <h2>
         <Link to={post.slug}>{post.title}</Link>
       </h2>
+      <p>{formatDate(post.date)}</p>
       <p>{post.excerpt}</p>
       <Link to={post.slug}>
         <Button tabIndex="-1">Read more &rarr;</Button>
