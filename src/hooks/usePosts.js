@@ -4,7 +4,8 @@ const usePosts = () => {
   const data = useStaticQuery(graphql`
     query {
       allMdx(
-        filter: { frontmatter: { templateKey: { eq: "post" } } }
+        # prettier-ignore
+        filter: {frontmatter: { templateKey: { eq: "post" }, published: { ne: false }}}
         sort: { fields: frontmatter___date, order: DESC }
       ) {
         edges {
