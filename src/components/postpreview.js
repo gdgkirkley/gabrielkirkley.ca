@@ -23,9 +23,11 @@ const Preview = styled.article`
 
 const PostPreview = ({ post }) => (
   <Preview>
-    <Link to={post.slug} className="imageLink">
-      <Image fluid={post.image.sharp.fluid} alt={post.title} />
-    </Link>
+    {post.image ? (
+      <Link to={post.slug} className="imageLink">
+        <Image fluid={post.image.sharp.fluid} alt={post.title} />
+      </Link>
+    ) : null}
     <div>
       <h2>
         <Link to={post.slug}>{post.title}</Link>

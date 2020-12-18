@@ -80,17 +80,21 @@ const PostTemplate = ({ data: { postData } }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
-        image={post.frontmatter.image.sharp.fluid.src}
+        image={
+          post.frontmatter.image ? post.frontmatter.image.sharp.fluid.src : null
+        }
         isBlogPost={true}
         slug={post.frontmatter.slug}
       />
       <main>
         <Post>
           <h1>{post.frontmatter.title}</h1>
-          <Img
-            fluid={post.frontmatter.image.sharp.fluid}
-            alt={post.frontmatter.imageAltText}
-          />
+          {post.frontmatter.image ? (
+            <Img
+              fluid={post.frontmatter.image.sharp.fluid}
+              alt={post.frontmatter.imageAltText}
+            />
+          ) : null}
           <PostDate>{formatDate(post.frontmatter.date)}</PostDate>
           <MDXRenderer>{post.body}</MDXRenderer>
           <PostShare>

@@ -10,7 +10,6 @@
         "statusBar.background": "#c8fb3a",
         "statusBar.foreground": "#15202b",
         "statusBarItem.hoverBackground": "#bafa08",
-        "tab.activeBorder": "#d6fc6c",
         "titleBar.activeBackground": "#c8fb3a",
         "titleBar.activeForeground": "#15202b",
         "titleBar.inactiveBackground": "#c8fb3a99",
