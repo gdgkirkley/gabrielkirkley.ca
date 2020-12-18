@@ -7,6 +7,14 @@ image: ./stream.jpg
 imageAltText: A dashboard with percentages and trendlines
 imageCredit:
   <span>Photo by <a href="https://unsplash.com/@merchusey?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Merch HÜSEY</a> on <a href="https://unsplash.com/s/photos/theater?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+keywords:
+  - 'theatre'
+  - 'equipment'
+  - 'streaming'
+  - 'guide'
+  - 'camera'
+  - 'livestream'
+  - 'theatre production'
 date: 2020-12-16
 ---
 

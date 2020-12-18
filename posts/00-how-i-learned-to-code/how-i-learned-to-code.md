@@ -10,6 +10,13 @@ imageCredit:
   href="https://unsplash.com/@srd844?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Stephen
   Dawson</a> on <a
   href="https://unsplash.com/s/photos/data?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+keywords:
+  - "code"
+  - "R"
+  - "data"
+  - "learn to code"
+  - "election"
+  - "forecast model"
 date: 2020-07-16
 ---
 

@@ -45,14 +45,10 @@ const About = () => {
 
             <p>
               Three and a half years ago, I picked up where I left off and fell
-              back in love with coding. Since then I've worked my{" "}
-              <span role="img" aria-label="peach">
-                🍑
-              </span>{" "}
-              off to learn everything I can about software development. That's
-              led me from R to Javascript, from React to NodeJS, and even to
-              doing a part-time certificate in Software Application Development
-              at{" "}
+              back in love with coding. Since then I've worked hard to learn
+              everything I can about software development. That's led me from R
+              to Javascript, from React to NodeJS, and even to doing a part-time
+              certificate in Software Application Development at{" "}
               <a
                 href="https://www.bcit.ca/"
                 target="_blank"

@@ -14,6 +14,7 @@ const usePosts = () => {
               slug
               author
               date
+              keywords
               image {
                 sharp: childImageSharp {
                   fluid(maxWidth: 900, maxHeight: 400, toFormat: PNG) {

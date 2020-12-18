@@ -43,6 +43,7 @@ export const query = graphql`
             title
             author
             date
+            keywords
             image {
               sharp: childImageSharp {
                 fluid(quality: 80) {
@@ -83,6 +84,7 @@ const PostTemplate = ({ data: { postData } }) => {
         image={
           post.frontmatter.image ? post.frontmatter.image.sharp.fluid.src : null
         }
+        keywords={post.frontmatter.keywords}
         isBlogPost={true}
         slug={post.frontmatter.slug}
       />

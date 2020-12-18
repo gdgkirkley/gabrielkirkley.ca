@@ -13,6 +13,7 @@ function SEO({
   isBlogPost,
   date,
   slug,
+  keywords,
 }) {
   const { site, defaultImage } = useStaticQuery(
     graphql`
@@ -71,6 +72,12 @@ function SEO({
           {
             name: "image",
             content: seoImage,
+          },
+          {
+            name: "keywords",
+            content: keywords?.length
+              ? keywords.join(",")
+              : "gabriel kirkley,kirkley,developer,javascript,nodejs,react,theatre",
           },
           {
             property: "og:url",

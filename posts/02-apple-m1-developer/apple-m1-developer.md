@@ -10,6 +10,13 @@ imageCredt:
   href="https://unsplash.com/@neonbrand?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">NeONBRAND</a>
   on <a
   href="https://unsplash.com/s/photos/macbook-m1?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+keywords:
+  - "apple"
+  - "apple silicon"
+  - "apple m1"
+  - "developer"
+  - "review"
+  - "tools"
 date: 2020-12-17
 ---
 
