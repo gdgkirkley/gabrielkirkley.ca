@@ -18,22 +18,21 @@ keywords:
 date: 2020-12-16
 ---
 
-I've been getting asked a lot about how theatres can stream their
+Lately, many people have been asking me how theatres can stream their
 shows to ticket buyers and what equipment is needed to do this well.
+To help these people (and myself), I've put together this list for reference.
 
-Over the past eight months, I've worked on all aspects of a
-streaming production: in front of the camera as an actor, directing actors for
-the camera, controlling the cameras themselves, and managing the delivery of
+Like so many people who work in the entertainment industry, over the past eight months,
+I've worked on all aspects of a streaming production: in front of the camera as an actor,
+directing actors for the camera, controlling the cameras themselves, and managing the delivery of
 streaming or recorded content to patrons.
 
 Streaming theatre productions is unique: for the most part, we're working in
-spaces that have state-of-the-art lighting systems and audio equipment. We
-also need to have show control situated in a booth that might be a long
-distance from the action. This list is intended for a community or professional
-theatre company that is working in such a space.
+spaces that have state-of-the-art lighting systems and audio equipment. This list is
+intended for community or professional theatre companies that
+are working in a space that already has that equipment.
 
-In a future post, I'll talk a little about distributing your streams to
-ticket buyers, but for now, this is just about the equipment to get you up and running.
+Here are my recommendations for streaming equipment for theatre companies.
 
 ## Alternatives
 
