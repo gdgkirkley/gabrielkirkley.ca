@@ -3,7 +3,10 @@ import { graphql, useStaticQuery } from "gatsby";
 const usePosts = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMdx(filter: { frontmatter: { templateKey: { eq: "post" } } }) {
+      allMdx(
+        filter: { frontmatter: { templateKey: { eq: "post" } } }
+        sort: { fields: frontmatter___date, order: DESC }
+      ) {
         edges {
           node {
             frontmatter {
