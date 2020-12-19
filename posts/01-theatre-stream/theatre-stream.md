@@ -191,6 +191,22 @@ into your range extender. Note that there is a difference between **Mini** HDMI 
 If you want to allow multiple monitors to watch the live multiview output from your ATEM (for example,
 for a stage manager and a production table), then one of these little boxes will do the trick.
 
+**[Netgear 5-Port Gigabit Ethernet Switcher](https://www.amazon.ca/gp/product/B07S98YLHM/ref=as_li_ss_tl?smid=A3DWYIK6Y9EEQB&psc=1&linkCode=ll1&tag=readingly0f-20&linkId=fa482047a4f1c2a504239838d263f114&language=en_CA) - $23**
+
+A network switchers will allow you to hardwire your computer and your ATEM Mini into
+the same network (which you should definitely do!) with a single port. This means that
+you can connect to the ATEM Software Control over your network and allows you to use a Stream Deck.
+
+**[Elgato Stream Deck](https://www.amazon.ca/Elgato-Stream-Deck-Controller-customizable/dp/B06XKNZT1P/ref=as_li_ss_tl?dchild=1&keywords=stream+deck&qid=1608417326&s=electronics&sr=1-1&linkCode=ll1&tag=readingly0f-20&linkId=6056f081a134bfb2c1fe0a0440c7b624&language=en_CA) - $199**
+
+The Stream Deck is awesome for a lot of reasons, but for our purposes, the main use
+case is that it will allow you to control macros in the ATEM Software Control at the
+touch of a button. This opens up a whole new world of possibilities, including
+picture in picture effects, green screen keying, media background, audio effects,
+and much more. It's possible to run macros without the Stream Deck, but this 
+just makes it so much simpler when you are also trying to use other show control
+software like QLab at the same time!
+
 ## Conclusion
 
 When it comes to livestreaming your theatre production, having the right equipment for streaming is essential.
