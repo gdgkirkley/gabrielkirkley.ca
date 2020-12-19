@@ -1,6 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import config from "../../config/website"
+import React from "react";
+import styled from "styled-components";
+import config from "../../config/website";
+import Boop from "./boop";
 
 const SocialLink = styled.a`
   color: ${props => (props.invert ? props.theme.grey1 : "#fff")};
@@ -13,16 +14,16 @@ const SocialLink = styled.a`
   vertical-align: middle;
   width: 40px;
   border-radius: 4px;
-  &:hover {
+  /* &:hover {
     background: ${props =>
-      props.invert ? props.theme.grey9 : `rgba(255, 255, 255, 0.1)`};
+    props.invert ? props.theme.grey9 : `rgba(255, 255, 255, 0.1)`};
     cursor: pointer;
-  }
+  } */
   & svg {
     color: inherit;
     height: 32px;
   }
-`
+`;
 
 export const Github = ({ url = `${config.github}`, invert }) => (
   <SocialLink
@@ -39,7 +40,7 @@ export const Github = ({ url = `${config.github}`, invert }) => (
       ></path>
     </svg>
   </SocialLink>
-)
+);
 
 export const Twitter = ({ url = `${config.twitter}`, invert }) => (
   <SocialLink
@@ -56,7 +57,7 @@ export const Twitter = ({ url = `${config.twitter}`, invert }) => (
       ></path>
     </svg>
   </SocialLink>
-)
+);
 
 export const Linkedin = ({ url = `${config.linkedin}`, invert }) => (
   <SocialLink
@@ -73,16 +74,22 @@ export const Linkedin = ({ url = `${config.linkedin}`, invert }) => (
       ></path>
     </svg>
   </SocialLink>
-)
+);
 
 const Social = ({ invertSocial }) => {
   return (
     <div>
-      <Github invert={invertSocial} />
-      <Twitter invert={invertSocial} />
-      <Linkedin invert={invertSocial} />
+      <Boop rotation={20} timing={200}>
+        <Github invert={invertSocial} />
+      </Boop>
+      <Boop rotation={20} timing={200}>
+        <Twitter invert={invertSocial} />
+      </Boop>
+      <Boop rotation={20} timing={200}>
+        <Linkedin invert={invertSocial} />
+      </Boop>
     </div>
-  )
-}
+  );
+};
 
-export default Social
+export default Social;
