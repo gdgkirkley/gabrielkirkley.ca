@@ -1,7 +1,7 @@
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const result = await graphql(`
     {
-      allMdx {
+      allMdx(filter: { frontmatter: { published: { ne: false } } }) {
         edges {
           node {
             frontmatter {
@@ -12,15 +12,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) {
-    reporter.panic("failed to create posts", result.errors)
+    reporter.panic("failed to create posts", result.errors);
   }
 
-  const posts = result.data.allMdx.edges
+  const posts = result.data.allMdx.edges;
 
-  posts.forEach(post => {
+  posts.map(post => {
     actions.createPage({
       path: `${post.node.frontmatter.slug}`,
       component: require.resolve(
@@ -29,9 +29,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         slug: post.node.frontmatter.slug,
       },
-    })
-  })
-}
+    });
+  });
+};
 
 exports.onCreateWebpackConfig = ({ stage, actions }) => {
   if (stage.startsWith("develop")) {
@@ -41,6 +41,6 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
           "react-dom": "@hot-loader/react-dom",
         },
       },
-    })
+    });
   }
-}
+};

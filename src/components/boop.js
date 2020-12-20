@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { animated, useSpring } from "react-spring";
+import React from "react";
+import { animated } from "react-spring";
 import useBoop from "../hooks/useBoop";
 
 // Using an awesome tutorial from Josh W. Comeau
