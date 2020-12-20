@@ -67,7 +67,7 @@ const ExamplePage = ({ data: { pageData } }) => {
   const page = pageData.edges[0].node;
 
   return (
-    <Layout colour="portfolio" invert="true">
+    <Layout colour="blog" invert="true">
       <SEO
         title={page.frontmatter.title}
         description={page.frontmatter.excerpt}

@@ -20,8 +20,8 @@ import CodeBlock from "../components/codeblock";
 const theme = {
   home: { bg: "#BE4242" },
   portfolio: {
-    bg: "#FFE67C",
-    a: "#866BFF",
+    bg: "#45A9DE",
+    a: "#222222",
   },
   blog: { bg: "#F6F6F6", a: "#3a13d6" },
   about: { bg: "#9494FF", a: "#FFE67C" },
