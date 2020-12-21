@@ -11,12 +11,6 @@ const TwoCol = styled.div`
 `;
 
 const About = () => {
-  const getAge = () => {
-    let diff_ms = Date.now() - new Date("1991-09-26").getTime();
-    let age_dt = new Date(diff_ms);
-    return Math.abs(age_dt.getFullYear() - 1970);
-  };
-
   return (
     <Layout colour="about">
       <SEO title="About" />
@@ -25,16 +19,16 @@ const About = () => {
         <TwoCol>
           <div>
             <p>
-              I'm a software/web developer. I'm {getAge()} years old and grew up
-              just outside of Vancouver. As a teenager, I designed and built my
-              first websites for friends. But at the time, I had different
-              goals. So, after graduating high school, I went to{" "}
+              I'm a creative software developer who loves to make useful things
+              with code. As a teenager, I designed and built my first websites
+              for friends. But at the time, I had different goals. So, after
+              graduating high school, I went to the{" "}
               <a
                 href="https://ufv.ca"
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                UFV
+                University of the Fraser Valley
               </a>{" "}
               where I graduated with a Bachelor of Arts degree, majoring in
               History and minoring in Theatre. I built a few more websites along
@@ -44,10 +38,11 @@ const About = () => {
             </p>
 
             <p>
-              Three and a half years ago, I picked up where I left off and fell
-              back in love with coding. Since then I've worked hard to learn
-              everything I can about software development. That's led me from R
-              to Javascript, from React to NodeJS, and even to doing a part-time
+              Three and a half years ago, hoping to find a solution to some
+              tricky sales forecasting problems at work, I learned R and fell in
+              love with coding. Since then I've worked hard to learn everything
+              I can about software development. That's led me from R to
+              Javascript, from React to NodeJS, and even to doing a part-time
               certificate in Software Application Development at{" "}
               <a
                 href="https://www.bcit.ca/"
@@ -95,8 +90,8 @@ const About = () => {
               </a>
               , which is Canada's largest non-profit theatre company outside of
               the Stratford or Shaw Festivals in Ontario. I build dashboards,
-              reports, and trackers with R, help manage the SQL database, and,
-              mainly, develop internal and external applications.
+              reports, and trackers with R, help manage the SQL database, and
+              develop internal and external applications.
             </p>
             <p>
               I've also acted, directed, designed, or produced 90+ productions
@@ -112,9 +107,7 @@ const About = () => {
                 Goodreads
               </a>{" "}
               reading challenge goal, improving Wikipedia pages on history,
-              growing plants, cooking, and building games in Unity. My partner,
-              Paige, and I would also desperately love to be cat parents, but...
-              Vancouver.
+              growing plants, cooking, and building games in Unity.
             </p>
           </div>
         </TwoCol>

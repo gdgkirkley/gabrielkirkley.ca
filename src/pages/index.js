@@ -44,7 +44,7 @@ const IndexPage = () => {
             <MainTitle>Hi, I'm Gabe!</MainTitle>
             <h3>
               I'm a creative software developer building websites, applications,
-              and games with HTML, CSS, JS, and React.
+              and games with Javascript, React, NodeJS and Java.
             </h3>
             <Link to="/portfolio">
               <Button>

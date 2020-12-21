@@ -24,7 +24,7 @@ const theme = {
     a: "#222222",
   },
   blog: { bg: "#F6F6F6", a: "#3a13d6" },
-  about: { bg: "#9494FF", a: "#FFE67C" },
+  about: { bg: "#BE4242", a: "#fff" },
   contact: { bg: "#FFE263" },
   primary1: "#231c42", // Updated
   primary2: "#200A5C",
