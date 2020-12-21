@@ -12,6 +12,7 @@ import RLogo from "../../images/r-logo.svg";
 import Card from "../components/card";
 import useExamples from "../hooks/useExamples";
 import SEO from "../components/seo";
+import Boop from "../components/boop";
 
 const PortfolioBlock = styled.div`
   padding: 20px 0px;
@@ -34,15 +35,10 @@ const PortfolioTech = styled.div`
   justify-content: center;
   align-items: flex-end;
   text-align: center;
-  & svg {
-    width: 50%;
-    transition: all 0.4s ease-in-out;
-    filter: grayscale(1);
 
-    &:hover {
-      filter: grayscale(0);
-      transform: scale(1.1);
-    }
+  & svg {
+    width: 60%;
+    transition: all 0.4s ease-in-out;
   }
 
   @media (min-width: 768px) {
@@ -132,38 +128,38 @@ const Portfolio = () => {
             <PortfolioTitleDecorator />
           </PortfolioTitle>
           <PortfolioTech>
-            <div>
+            <Boop y={-10} scale={1.2} timing={300}>
               <JavascriptLogo />
-              <p>Javascript</p>
-            </div>
-            <div>
+              <p className="visually-hidden">Javascript</p>
+            </Boop>
+            <Boop rotation={180} scale={1.5} timing={200}>
               <ReactLogo />
-              <p>React</p>
-            </div>
-            <div>
+              <p className="visually-hidden">React</p>
+            </Boop>
+            <Boop rotation={20} timing={300}>
               <NodeJS />
-              <p>NodeJS</p>
-            </div>
-            <div>
+              <p className="visually-hidden">NodeJS</p>
+            </Boop>
+            <Boop scale={0.8} timing={200}>
               <PostgreSQL />
-              <p>PostgreSQL</p>
-            </div>
-            <div>
+              <p className="visually-hidden">PostgreSQL</p>
+            </Boop>
+            <Boop y={10} scale={0.7} timing={300}>
               <Java />
-              <p>Java</p>
-            </div>
-            <div>
+              <p className="visually-hidden">Java</p>
+            </Boop>
+            <Boop scale={1.5} rotation={30} timing={400}>
               <HTML5 />
-              <p>HTML5</p>
-            </div>
-            <div>
+              <p className="visually-hidden">HTML5</p>
+            </Boop>
+            <Boop scale={1.5} rotation={-30} timing={400}>
               <CSS />
-              <p>CSS</p>
-            </div>
-            <div>
+              <p className="visually-hidden">CSS</p>
+            </Boop>
+            <Boop y={-20} rotation={90} timing={300}>
               <RLogo />
-              <p>R</p>
-            </div>
+              <p className="visually-hidden">R</p>
+            </Boop>
           </PortfolioTech>
         </PortfolioBlock>
       </main>
