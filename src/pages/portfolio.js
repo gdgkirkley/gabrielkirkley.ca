@@ -91,7 +91,7 @@ const Portfolio = () => {
                   key={example.title}
                   image={example.image}
                   title={example.title}
-                  description={example.excerpt}
+                  description={example.subtitle}
                   url={example.slug}
                   source={example.source}
                 />

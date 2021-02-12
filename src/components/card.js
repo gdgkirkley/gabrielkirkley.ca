@@ -4,34 +4,35 @@ import Img from "gatsby-image";
 import styled from "styled-components";
 import Button from "./button";
 import Source from "../../images/code-branch-light.svg";
+import Columns from "./columns";
 
 const CardLink = styled(Link)`
+  --linkColor: var(--grey1);
   display: flex;
   transition: 0.1s linear;
   border-radius: 4px;
   border: 3px solid white;
   position: relative;
   overflow: hidden;
-  background-color: #f2f8f9;
+  background-color: var(--white);
   z-index: 0;
   height: 100%;
   margin-top: 10px;
+  box-shadow: var(--level-3);
 `;
+
 const CardContainer = styled.div`
   width: 400px;
   height: 100%;
-  background: url(${props => props.background}) center center/cover;
   transition: 0.4s linear;
 `;
 
 const CardContent = styled.div`
   padding: 16px 16px;
-`;
 
-const CardButtons = styled.div`
-  display: grid;
-  grid-gap: 16px;
-  margin: 0px 10px;
+  & h3 {
+    font-size: var(--fontSize-highLevel);
+  }
 `;
 
 export const SourceUnavailable = styled.p`
@@ -58,23 +59,20 @@ const Card = ({ image, title, description, url, source }) => {
             <p>{description}</p>
           </div>
 
-          <CardButtons>
-            <Button>See More</Button>
+          <Columns span={2}>
             {source ? (
-              <Button
-                as="a"
-                onClick={handleSourceClick}
-                bgColour={"#866BFF"}
-                fontColour={"#fff"}
-              >
-                View Code <Source />
+              <Button as="a" onClick={handleSourceClick}>
+                Code <Source />
               </Button>
             ) : (
               <SourceUnavailable>
                 Source Unavailable <Source />
               </SourceUnavailable>
             )}
-          </CardButtons>
+            <Button bgColour="primary5" fontColour="white">
+              View
+            </Button>
+          </Columns>
         </CardContent>
       </CardContainer>
     </CardLink>

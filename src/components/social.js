@@ -4,7 +4,6 @@ import config from "../../config/website";
 import Boop from "./boop";
 
 const SocialLink = styled.a`
-  color: ${props => (props.invert ? props.theme.grey1 : "#fff")};
   -webkit-box-align: center;
   align-items: center;
   display: inline-flex;
@@ -14,11 +13,6 @@ const SocialLink = styled.a`
   vertical-align: middle;
   width: 40px;
   border-radius: 4px;
-  /* &:hover {
-    background: ${props =>
-    props.invert ? props.theme.grey9 : `rgba(255, 255, 255, 0.1)`};
-    cursor: pointer;
-  } */
   & svg {
     color: inherit;
     height: 32px;

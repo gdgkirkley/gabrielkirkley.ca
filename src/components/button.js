@@ -3,44 +3,25 @@ import styled from "styled-components";
 
 export const ButtonStyles = styled.button`
   display: inline-flex;
+  background-color: var(--bgColour);
   justify-content: center;
   align-items: center;
-  font-size: ${props => props.theme.fontSize.emphasis};
+  font-size: var(--fontSize-emphasis);
   line-height: 1;
   cursor: pointer;
   user-select: none;
   padding: 16px 32px;
   text-decoration: none;
-  color: ${props =>
-    props.fontColour ? props.fontColour : props.theme.grey3} !important;
+  color: var(--fontColour);
   border: none;
-  background-color: transparent;
   position: relative;
+  box-shadow: var(--level-2);
+  border-radius: 0.25rem;
 
   & svg {
-    width: ${props => props.theme.fontSize.information};
+    width: var(--fontSize-information);
     margin: 0;
     margin-left: 16px;
-  }
-
-  &::after {
-    content: "";
-    padding: 16px 32px;
-    transition: 0.5s all;
-    background-color: ${props => (props.bgColour ? props.bgColour : "#fff")};
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    border-radius: 4px;
-    z-index: -1;
-  }
-
-  &:hover {
-    &::after {
-      transform: scale(1.1);
-    }
   }
 
   &.grey {
@@ -65,7 +46,7 @@ export const ButtonStyles = styled.button`
 `;
 
 const Button = ({
-  classes,
+  classes = "",
   onClick,
   name,
   type,
@@ -73,6 +54,9 @@ const Button = ({
   id,
   buttonText,
   children,
+  fontColour = "linkColor",
+  bgColour = "white",
+  style = {},
   ...rest
 }) => {
   return (
@@ -83,6 +67,10 @@ const Button = ({
       type={type || "button"}
       disabled={disabled}
       id={id}
+      style={{
+        "--fontColour": `var(--${fontColour})`,
+        "--bgColour": `var(--${bgColour})`,
+      }}
       {...rest}
     >
       {children}

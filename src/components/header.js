@@ -36,7 +36,6 @@ const NavGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0px 24px;
-  background: ${props => (props.colour ? props.colour : "none")};
   margin-bottom: 24px;
 
   @media (min-width: 768px) {
@@ -53,7 +52,7 @@ const NavLink = styled(Link)`
   margin-top: 30px;
   padding: 0.25rem;
   text-decoration: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--grey10);
   box-sizing: border-box;
   transition: 0.1s ease-in-out;
   position: relative;
@@ -70,8 +69,6 @@ const NavLink = styled(Link)`
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: ${props =>
-      props.invert ? props.theme.portfolio.bg : props.colour};
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out 0s;
@@ -81,8 +78,7 @@ const NavLink = styled(Link)`
     min-width: 60px;
   }
   &.current {
-    border-bottom: 2px solid
-      ${props => (props.invert ? props.theme.portfolio.bg : props.colour)};
+    border-bottom: 2px solid var(--primary5);
     & :hover {
       &::before {
         visibility: hidden;
@@ -127,7 +123,7 @@ const SiteTitle = styled(Link)`
   padding: 8px 12px;
 
   & :hover {
-    color: ${props => props.theme.grey3};
+    color: var(--grey3);
   }
 
   @media (min-width: 768px) {
@@ -139,7 +135,7 @@ const MobileIcon = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: ${props => props.theme.grey1};
+  color: var(--grey1);
   @media (min-width: 768px) {
     display: none;
   }
@@ -159,7 +155,7 @@ const MobileNav = styled.div`
     z-index: 999;
     overflow-y: scroll;
     overflow-x: hidden;
-    background: ${props => props.theme.grey10};
+    background: var(--grey10);
 
     width: 100%;
   }
@@ -225,15 +221,6 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
         <MobileNav className={open ? "open" : ""}>
           <NavGroup>
             <NavLink
-              to="/"
-              activeClassName="current"
-              colour={socialColour}
-              onClick={handleLinkClick}
-              invert={invertSocial}
-            >
-              Home
-            </NavLink>
-            <NavLink
               to="/portfolio"
               activeClassName="current"
               colour={socialColour}
@@ -272,8 +259,8 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
               Contact
             </NavLink>
           </NavGroup>
-          <NavGroup colour={socialColour}>
-            <Social invertSocial={invertSocial} />
+          <NavGroup>
+            <Social />
           </NavGroup>
         </MobileNav>
       </nav>

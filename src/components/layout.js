@@ -1,18 +1,9 @@
-import React from "react";
+import * as React from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { MDXProvider } from "@mdx-js/react";
 import useSiteMetadata from "../hooks/useSiteMetadata";
-
-import Inter300Woff from "../../fonts/inter-v2-latin-300.woff";
-import Inter300Woff2 from "../../fonts/inter-v2-latin-300.woff2";
-import InterRegularWoff from "../../fonts/inter-v2-latin-regular.woff";
-import InterRegularWoff2 from "../../fonts/inter-v2-latin-regular.woff2";
-import Inter600Woff from "../../fonts/inter-v2-latin-600.woff";
-import Inter600Woff2 from "../../fonts/inter-v2-latin-600.woff2";
-import Inter800Woff from "../../fonts/inter-v2-latin-800.woff";
-import Inter800Woff2 from "../../fonts/inter-v2-latin-800.woff2";
 
 import Header from "./header";
 import CodeBlock from "../components/codeblock";
@@ -79,42 +70,44 @@ const theme = {
 };
 
 const GlobalStyle = createGlobalStyle`
-    /* inter-300 - latin */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 300;
-      src: local(''),
-          url(${Inter300Woff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url(${Inter300Woff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    :root {
+      --grey1: #222222;
+      --grey2: #3B3B3B;
+      --grey3: #535353;
+      --grey4: #6E6E6E;
+      --grey5: #878787;
+      --grey6: #A1A1A1;
+      --grey7: #BABABA;
+      --grey8: #D4D4D4;
+      --grey9: #EDEDED;
+      --grey10: #F6F6F6;
+
+      --primary1: #231c42;
+      --primary3: #52419C;
+      --primary5: #BE4242;
+
+      --accent: #f7ebd4;
+
+      --white: #fff;
+
+      --linkColor: #3a13d6;
+
+      --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --level-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --level-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+      --fontSize-smallPrint: "11px";
+      --fontSize-information: 14px;
+      --fontSize-reading: 17px;
+      --fontSize-emphasis: 21px;
+      --fontSize-highLevel: 25px;
+      --fontSize-subHeading: 34px;
+      --fontSize-title: 42px;
+      --fontSize-display: 51px;
+      --fontSize-banner: 68px;
     }
-    /* inter-regular - latin */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      src: local(''),
-          url(${InterRegularWoff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url(${InterRegularWoff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-    }
-    /* inter-600 - latin */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 600;
-      src: local(''),
-          url(${Inter600Woff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url(${Inter600Woff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-    }
-    /* inter-800 - latin */
-    @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 800;
-      src: local(''),
-          url(${Inter800Woff2}) format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url(${Inter800Woff}) format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-    }
+
     html {
         box-sizing: border-box;
         font-size: 10px;
@@ -126,12 +119,12 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-size: 1.8rem;
-        color: ${theme.grey10};
+        color: var(--grey1);
         line-height: 1.5;
         font-family: "Inter", Arial, Helvetica, sans-serif;
         font-weight: 400;
         min-height: 100vh;
-        background: #231c42;
+        background: var(--accent);
     }
     /* Remove margin for the main div that Gatsby mounts into*/
     > div {
@@ -142,31 +135,31 @@ const GlobalStyle = createGlobalStyle`
       height: 1%;
       margin: 0px 8px;
     }
-    nav {
-      a {
-        color: ${theme.grey3};
-      }
-    }
     a {
         text-decoration: none;
-        color: ${theme.grey8};
+        color: var(--linkColor);
+    }
+    nav {
+      a {
+        --linkColor: var(--grey3);
+      }
     }
     h1, h2, h3, h4, h5, h6 {
       font-family: "Inter", Arial, Helvetica, sans-serif;
       font-weight: 800;
-      color: ${theme.grey10};
+      color: var(--grey1);
       & * {
           margin-top: 0.5rem;
       }
     }
     h1 {
-      font-size: ${theme.fontSize.title}
+      font-size: var(--fontSize-title)
     }
     h2 {
-      font-size: ${theme.fontSize.subHeading}
+      font-size: var(--fontSize-subHeading)
     }
     strong {
-        color: ${theme.grey2};
+        color: var(--grey2);
         font-weight: 600;
     }
     main {
@@ -177,13 +170,13 @@ const GlobalStyle = createGlobalStyle`
     }
     footer {
       text-align: center;
-      color: ${props => props.theme.grey8};
+      color: var(--grey1);
       padding: 20px 0px;
       font-weight: 300;
     }
     code {
       padding: 2px 4px;
-      background: #f4f3fa;
+      background: var(--grey10);
       color: ${theme.blog.a};
       border-radius: 3px;
     }
@@ -242,19 +235,8 @@ const Wrapper = styled.div`
   flex: 1 1 auto;
   overflow: hidden;
   z-index: 1;
-  background: ${props => props.colour};
-  color: ${props => (props.invert ? props.theme.grey1 : "inherit")};
-  & h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: ${props => (props.invert ? props.theme.grey1 : "inherit")};
-  }
-  & a {
-    color: ${props => props.link};
-  }
+  background: var(--grey10);
+  color: var(--grey1);
 `;
 
 const components = {
@@ -272,17 +254,8 @@ const Layout = ({ children, colour = "none", invert = false }) => {
         <meta name="description" content={description} />
       </Helmet>
       <Page>
-        <Header
-          siteTitle={title}
-          theme={theme}
-          socialColour={theme[colour].bg}
-          invertSocial={invert}
-        />
-        <Wrapper
-          colour={theme[colour].bg}
-          invert={invert}
-          link={theme[colour].a}
-        >
+        <Header siteTitle={title} />
+        <Wrapper>
           <MDXProvider components={components}>{children}</MDXProvider>
         </Wrapper>
         <footer>© {new Date().getFullYear()}, Gabe Kirkley</footer>

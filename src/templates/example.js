@@ -42,7 +42,6 @@ export const query = graphql`
         node {
           frontmatter {
             title
-            tagline
             using
             link
             source

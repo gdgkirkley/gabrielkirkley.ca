@@ -9,7 +9,7 @@ const Blog = () => {
   const posts = usePosts();
 
   return (
-    <Layout colour="blog" invert={true}>
+    <Layout invert={true}>
       <SEO title="Blog" description="Gabe Kirkley's blog" />
       <main>
         <h1>Blog</h1>

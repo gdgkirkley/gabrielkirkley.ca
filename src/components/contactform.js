@@ -11,7 +11,7 @@ export const Form = styled.form`
     font-weight: bold;
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 600;
-    color: ${props => props.theme.grey3};
+    color: var(--grey3);
   }
   & input,
   textarea {
@@ -19,16 +19,17 @@ export const Form = styled.form`
     margin: 8px 0px;
     padding: 16px 24px;
     min-height: 36px;
-    border: 1px solid ${props => props.theme.grey6};
+    border: 1px solid var(--grey6);
     border-radius: 4px;
-    background: ${props => props.theme.grey10};
+    background: var(--white);
     transition: 0.3s linear;
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 400;
-    font-size: ${props => props.theme.fontSize.reading};
+    font-size: var(--fontSize-reading);
+    box-shadow: var(--level-2);
     &:hover,
     :focus {
-      border: 1px solid ${props => props.theme.grey3};
+      border: 1px solid var(--grey3);
       background: white;
     }
     &:focus {
