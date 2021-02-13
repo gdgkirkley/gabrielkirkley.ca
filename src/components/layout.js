@@ -253,7 +253,7 @@ const components = {
   code: CodeBlock,
 };
 
-const Layout = ({ children, colour = "none", invert = false }) => {
+const Layout = ({ children, location, colour = "none", invert = false }) => {
   const { title, description } = useSiteMetadata();
 
   return (
@@ -264,7 +264,7 @@ const Layout = ({ children, colour = "none", invert = false }) => {
         <meta name="description" content={description} />
       </Helmet>
       <Page>
-        <Header siteTitle={title} />
+        <Header siteTitle={title} location={location} />
         <Wrapper>
           <MDXProvider components={components}>{children}</MDXProvider>
         </Wrapper>

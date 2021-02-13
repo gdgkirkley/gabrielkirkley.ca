@@ -7,9 +7,9 @@ import Button from "../components/button";
 import Columns from "../components/columns";
 import Fox from "../../images/gk-fox.svg";
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
   return (
-    <Layout>
+    <Layout location={location}>
       <main>
         <SEO title="Home" />
         <Content>

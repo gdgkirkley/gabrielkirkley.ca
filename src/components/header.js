@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Social from "./social";
 import useWindowSize from "../hooks/useWindowSize";
+import Fox from "../../images/gk-fox.svg";
+
+const mobileStyleScreenWidth = 1000;
 
 const HeaderStyles = styled.header`
   display: flex;
@@ -22,7 +25,7 @@ const HeaderStyles = styled.header`
     position: relative;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${mobileStyleScreenWidth}px) {
     & nav {
       margin: 0px 0px 0px 32px;
       flex-direction: row;
@@ -38,7 +41,7 @@ const NavGroup = styled.div`
   padding: 0px 24px;
   margin-bottom: 24px;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${mobileStyleScreenWidth}px) {
     margin-bottom: 0px;
     flex-direction: row;
   }
@@ -96,7 +99,7 @@ const NavLink = styled(Link)`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${mobileStyleScreenWidth}px) {
     height: auto;
     margin: 0 2rem 0 0;
     &:first-of-type {
@@ -126,7 +129,12 @@ const SiteTitle = styled(Link)`
     color: var(--grey3);
   }
 
-  @media (min-width: 768px) {
+  & svg {
+    width: 12%;
+    height: auto;
+  }
+
+  @media (min-width: ${mobileStyleScreenWidth}px) {
     justify-content: flex-start;
   }
 `;
@@ -136,7 +144,7 @@ const MobileIcon = styled.div`
   justify-content: center;
   align-items: center;
   color: var(--grey1);
-  @media (min-width: 768px) {
+  @media (min-width: ${mobileStyleScreenWidth}px) {
     display: none;
   }
 `;
@@ -160,7 +168,7 @@ const MobileNav = styled.div`
     width: 100%;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${mobileStyleScreenWidth}px) {
     overflow-y: auto;
     height: inherit;
     width: auto;
@@ -170,19 +178,19 @@ const MobileNav = styled.div`
   }
 `;
 
-const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
+const Header = ({ location, siteTitle, theme, socialColour, invertSocial }) => {
   const [open, setOpen] = useState(false);
 
   const { width } = useWindowSize();
 
   useEffect(() => {
-    if (width !== undefined && width > 768) {
+    if (width !== undefined && width > mobileStyleScreenWidth) {
       setOpen(false);
     }
   }, [width]);
 
   const handleMenuButtonClick = () => {
-    if (width && width !== undefined && width > 768) {
+    if (width && width !== undefined && width > mobileStyleScreenWidth) {
       return;
     }
 
@@ -200,7 +208,7 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
   };
 
   const handleLinkClick = () => {
-    if (width && width !== undefined && width > 768) {
+    if (width && width !== undefined && width > mobileStyleScreenWidth) {
       return;
     }
 
@@ -213,7 +221,8 @@ const Header = ({ siteTitle, theme, socialColour, invertSocial }) => {
     <HeaderStyles>
       <nav className={open ? "open" : ""}>
         <SiteTitle to="/" fontWeight="bold">
-          Gabe Kirkley.
+          {location?.pathname === "/" ? null : <Fox />}
+          {siteTitle}
         </SiteTitle>
         <MobileIcon>
           <Hamburger toggled={open} toggle={handleMenuButtonClick} />
