@@ -26,19 +26,19 @@ const IndexPage = () => {
           <Columns
             span={1}
             smSpan={2}
-            gap="1rem"
+            columnMapping={[2, 1]}
             style={{
               justifyContent: "center",
               alignItems: "center",
               margin: "1rem auto",
             }}
           >
-            <Button as={Link} to="/portfolio">
+            <Button as={Link} to="/portfolio" bgColour="primary5">
               See my portfolio
             </Button>
-            <Button as={Link} to="/contact">
-              Get in touch
-            </Button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Link to="/contact">Get in touch</Link>
+            </div>
           </Columns>
         </Content>
       </main>

@@ -82,15 +82,25 @@ const GlobalStyle = createGlobalStyle`
       --grey9: #EDEDED;
       --grey10: #F6F6F6;
 
-      --primary1: #231c42;
+      --primary1: #0a2540;
+      --primary2: #200A5C;
       --primary3: #52419C;
-      --primary5: #BE4242;
+      --primary5: #635bff;
+      --primary9: #DBCFFC;
 
-      --accent: #f7ebd4;
+      --highlight: #02bcf5;
+      --highlight2: #0073e6;
+      --highlight3: #003ab9;
+      --highlight4: #002c59;
+
+      --accent: #BE4242;
 
       --white: #fff;
 
       --linkColor: #3a13d6;
+      --titleColor: var(--primary1);
+      --textColor: #425466;
+      --buttonColor: var(--primary5);
 
       --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
       --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -119,12 +129,12 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;
         font-size: 1.8rem;
-        color: var(--grey1);
+        color: var(--textColor);
         line-height: 1.5;
         font-family: "Inter", Arial, Helvetica, sans-serif;
         font-weight: 400;
         min-height: 100vh;
-        background: var(--accent);
+        background: var(--grey10);
     }
     /* Remove margin for the main div that Gatsby mounts into*/
     > div {
@@ -147,7 +157,7 @@ const GlobalStyle = createGlobalStyle`
     h1, h2, h3, h4, h5, h6 {
       font-family: "Inter", Arial, Helvetica, sans-serif;
       font-weight: 800;
-      color: var(--grey1);
+      color: var(--titleColor);
       & * {
           margin-top: 0.5rem;
       }
@@ -170,7 +180,8 @@ const GlobalStyle = createGlobalStyle`
     }
     footer {
       text-align: center;
-      color: var(--grey1);
+      color: var(--grey10);
+      background: var(--primary1);
       padding: 20px 0px;
       font-weight: 300;
     }
@@ -236,7 +247,6 @@ const Wrapper = styled.div`
   overflow: hidden;
   z-index: 1;
   background: var(--grey10);
-  color: var(--grey1);
 `;
 
 const components = {

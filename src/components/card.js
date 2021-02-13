@@ -61,7 +61,7 @@ const Card = ({ image, title, description, url, source }) => {
 
           <Columns span={2}>
             {source ? (
-              <Button as="a" onClick={handleSourceClick}>
+              <Button as="a" onClick={handleSourceClick} bgColour="primary1">
                 Code <Source />
               </Button>
             ) : (
