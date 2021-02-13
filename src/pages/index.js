@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Button from "../components/button";
 import Columns from "../components/columns";
+import Fox from "../../images/gk-fox.svg";
 
 const IndexPage = () => {
   return (
@@ -14,13 +15,16 @@ const IndexPage = () => {
         <Content>
           <Title>
             <MainTitle>Gabe Kirkley</MainTitle>
+
             <p style={{ color: "var(--primary5)" }}>
-              Creative Full-Stack Software Developer
+              Creative Software Developer
             </p>
+
+            <Fox />
             <p>
               Using React, Gatsby, Next.js, Node and Java daily. Currently at
-              the Arts Club. I love building React applications, front end
-              architecture, REST/GraphQL APIs and database schemas.
+              the Arts Club. I make websites with React, but I'm also into data
+              analysis, REST/GraphQL APIs and database schemas.
             </p>
           </Title>
           <Columns
@@ -73,6 +77,11 @@ const Content = styled.div`
   justify-content: center;
   align-items: stretch;
   height: 100%;
+
+  & svg {
+    width: 30%;
+    height: auto;
+  }
 `;
 
 export default IndexPage;
