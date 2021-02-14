@@ -7,14 +7,14 @@ import Source from "../../images/code-branch-light.svg";
 import Columns from "./columns";
 
 const CardLink = styled(Link)`
-  --linkColor: var(--grey1);
+  --linkColor: var(--textColor);
   display: flex;
   transition: 0.1s linear;
   border-radius: 4px;
   border: 3px solid white;
   position: relative;
   overflow: hidden;
-  background-color: var(--white);
+  background-color: var(--background);
   z-index: 0;
   height: 100%;
   margin-top: 10px;

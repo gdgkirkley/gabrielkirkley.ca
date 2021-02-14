@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import Hamburger from "hamburger-react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { FiSun, FiMoon } from "react-icons/fi";
 import Social from "./social";
 import useWindowSize from "../hooks/useWindowSize";
 import Fox from "../../images/gk-fox.svg";
@@ -13,7 +14,6 @@ const HeaderStyles = styled.header`
   display: flex;
   align-items: center;
   min-height: 80px;
-  background: white;
   justify-content: space-between;
   & nav {
     display: flex;
@@ -41,6 +41,11 @@ const NavGroup = styled.div`
   padding: 0px 24px;
   margin-bottom: 24px;
 
+  & svg {
+    width: 2.8rem;
+    height: auto;
+  }
+
   @media (min-width: ${mobileStyleScreenWidth}px) {
     margin-bottom: 0px;
     flex-direction: row;
@@ -55,7 +60,7 @@ const NavLink = styled(Link)`
   margin-top: 30px;
   padding: 0.25rem;
   text-decoration: none;
-  border-bottom: 2px solid var(--grey10);
+  border-bottom: 2px solid var(--navLinkUnderlineInactiveColor);
   box-sizing: border-box;
   transition: 0.1s ease-in-out;
   position: relative;
@@ -81,7 +86,7 @@ const NavLink = styled(Link)`
     min-width: 60px;
   }
   &.current {
-    border-bottom: 2px solid var(--primary5);
+    border-bottom: 2px solid var(--navLinkUnderlineActiveColor);
     & :hover {
       &::before {
         visibility: hidden;
@@ -121,7 +126,7 @@ const SiteTitle = styled(Link)`
   font-weight: bolder;
   font-size: 22px;
   z-index: 2;
-  color: ${props => props.theme.grey5};
+  color: var(--titleColor);
   border-radius: 1000px;
   padding: 8px 12px;
 
@@ -143,7 +148,7 @@ const MobileIcon = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: var(--grey1);
+  color: var(--navLinkColor);
   @media (min-width: ${mobileStyleScreenWidth}px) {
     display: none;
   }
@@ -163,7 +168,7 @@ const MobileNav = styled.div`
     z-index: 999;
     overflow-y: scroll;
     overflow-x: hidden;
-    background: var(--grey10);
+    background: var(--background);
 
     width: 100%;
   }
@@ -178,7 +183,14 @@ const MobileNav = styled.div`
   }
 `;
 
-const Header = ({ location, siteTitle, theme, socialColour, invertSocial }) => {
+const Header = ({
+  location,
+  siteTitle,
+  isDark,
+  toggleDark,
+  socialColour,
+  invertSocial,
+}) => {
   const [open, setOpen] = useState(false);
 
   const { width } = useWindowSize();
@@ -271,11 +283,30 @@ const Header = ({ location, siteTitle, theme, socialColour, invertSocial }) => {
           <NavGroup>
             <Social />
           </NavGroup>
+          <NavGroup>
+            <DarkModeButton onClick={toggleDark}>
+              {isDark ? <FiMoon /> : <FiSun />}
+            </DarkModeButton>
+          </NavGroup>
         </MobileNav>
       </nav>
     </HeaderStyles>
   );
 };
+
+const DarkModeButton = styled.button`
+  border: none;
+  background: none;
+  color: var(--linkColor);
+
+  &:hover {
+    color: var(--textColor);
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

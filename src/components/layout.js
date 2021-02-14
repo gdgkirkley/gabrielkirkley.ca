@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import { MDXProvider } from "@mdx-js/react";
 import useSiteMetadata from "../hooks/useSiteMetadata";
+import useLocalStorageState from "../hooks/useLocalStorageState";
 
 import Header from "./header";
 import CodeBlock from "../components/codeblock";
@@ -97,10 +98,19 @@ const GlobalStyle = createGlobalStyle`
 
       --white: #fff;
 
+      --background: var(--grey10);
+      --headerBg: var(--white);
+      --footerBg: var(--primary1);
+
       --linkColor: #3a13d6;
+      --navLinkColor: var(--grey3);
       --titleColor: var(--primary1);
       --textColor: #425466;
       --buttonColor: var(--primary5);
+      --boldColor: var(--grey1);
+
+      --navLinkUnderlineInactiveColor: var(--white);
+      --navLinkUnderlineActiveColor: var(--accent);
 
       --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
       --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -134,7 +144,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Inter", Arial, Helvetica, sans-serif;
         font-weight: 400;
         min-height: 100vh;
-        background: var(--grey10);
+        background: var(--background);
     }
     /* Remove margin for the main div that Gatsby mounts into*/
     > div {
@@ -151,7 +161,7 @@ const GlobalStyle = createGlobalStyle`
     }
     nav {
       a {
-        --linkColor: var(--grey3);
+        --linkColor: var(--navLinkColor);
       }
     }
     h1, h2, h3, h4, h5, h6 {
@@ -169,8 +179,14 @@ const GlobalStyle = createGlobalStyle`
       font-size: var(--fontSize-subHeading)
     }
     strong {
-        color: var(--grey2);
+        color: var(--boldColor);
         font-weight: 600;
+    }
+    label {
+      color: var(--titleColor);
+    }
+    header { 
+      background: var(--headerBg);
     }
     main {
         margin: 2rem auto 4rem;
@@ -181,9 +197,12 @@ const GlobalStyle = createGlobalStyle`
     footer {
       text-align: center;
       color: var(--grey10);
-      background: var(--primary1);
+      background: var(--footerBg);
       padding: 20px 0px;
       font-weight: 300;
+    }
+    button {
+      cursor: pointer;
     }
     code {
       padding: 2px 4px;
@@ -229,6 +248,20 @@ const GlobalStyle = createGlobalStyle`
       white-space: nowrap;
       width: 1px;
     }
+
+    .dark-theme {
+      --background: var(--primary1);
+      --textColor: var(--grey10);
+      --titleColor: var(--white);
+      --boldColor: var(--accent);
+      --linkColor: var(--highlight);
+      --navLinkColor: var(--grey10);
+
+      --navLinkUnderlineInactiveColor: var(--highlight4);
+
+      --headerBg: var(--highlight4);
+      --footerBg: var(--highlight4);  
+    }
 `;
 
 const Page = styled.div`
@@ -246,7 +279,6 @@ const Wrapper = styled.div`
   flex: 1 1 auto;
   overflow: hidden;
   z-index: 1;
-  background: var(--grey10);
 `;
 
 const components = {
@@ -254,7 +286,15 @@ const components = {
 };
 
 const Layout = ({ children, location, colour = "none", invert = false }) => {
+  const [isDark, setIsDark] = useLocalStorageState(
+    "gabrielkirkley.ca_darkmode",
+    false
+  );
   const { title, description } = useSiteMetadata();
+
+  const toggleDarkMode = () => {
+    setIsDark(value => !value);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -262,9 +302,15 @@ const Layout = ({ children, location, colour = "none", invert = false }) => {
         <html lang="en" />
         <title>{title}</title>
         <meta name="description" content={description} />
+        <body className={`${isDark ? "dark-theme" : ""}`} />
       </Helmet>
       <Page>
-        <Header siteTitle={title} location={location} />
+        <Header
+          siteTitle={title}
+          location={location}
+          isDark={isDark}
+          toggleDark={toggleDarkMode}
+        />
         <Wrapper>
           <MDXProvider components={components}>{children}</MDXProvider>
         </Wrapper>

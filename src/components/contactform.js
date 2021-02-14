@@ -11,7 +11,6 @@ export const Form = styled.form`
     font-weight: bold;
     font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 600;
-    color: var(--grey3);
   }
   & input,
   textarea {
