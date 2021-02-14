@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const ButtonStyles = styled.button`
   display: inline-flex;
-  background-color: var(--fontColour);
-  border: 2px solid var(--bgColour);
+  background-color: var(--buttonColor);
+  border: 2px solid var(--buttonBorderColor);
   justify-content: center;
   align-items: center;
   font-size: var(--fontSize-emphasis);
@@ -13,15 +13,15 @@ export const ButtonStyles = styled.button`
   user-select: none;
   padding: 1.6rem 3.2rem;
   text-decoration: none;
-  color: var(--bgColour);
+  color: var(--buttonTextColor);
   position: relative;
   box-shadow: var(--level-2);
-  border-radius: 0.25rem;
+  border-radius: 1rem;
   transition: 0.2s linear;
 
   &:hover {
-    background: var(--bgColour);
-    color: var(--fontColour);
+    background: var(--buttonHoverColor);
+    color: var(--buttonHoverTextColor);
   }
 
   & svg {
@@ -60,9 +60,6 @@ const Button = ({
   id,
   buttonText,
   children,
-  fontColour = "white",
-  bgColour = "buttonColor",
-  style = {},
   ...rest
 }) => {
   return (
@@ -73,10 +70,6 @@ const Button = ({
       type={type || "button"}
       disabled={disabled}
       id={id}
-      style={{
-        "--fontColour": `var(--${fontColour})`,
-        "--bgColour": `var(--${bgColour})`,
-      }}
       {...rest}
     >
       {children}

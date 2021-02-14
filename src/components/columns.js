@@ -29,7 +29,7 @@ const Columns = ({
   lgSpan = mdSpan,
   gap = "2rem",
   columnMapping = [],
-  style = "",
+  style = {},
 }) => {
   function getUnits(cols) {
     let final = "";
@@ -55,8 +55,6 @@ const Columns = ({
 
     return final;
   }
-
-  console.log(style);
 
   return (
     <ColumnStyle

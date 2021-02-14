@@ -50,8 +50,9 @@ const Author = () => {
       <div>
         <h3>Gabe Kirkley</h3>
         <p>
-          Gabe is a software developer from Vancouver, B.C. He builds websites,
-          applications, and games with HTML, CSS, JS, and React.
+          Gabe is a software developer from Vancouver, B.C. I make websites with
+          React, but I'm also into data analysis, REST/GraphQL APIs and database
+          schemas.
         </p>
       </div>
     </AuthorBox>

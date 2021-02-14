@@ -10,25 +10,38 @@ const CardLink = styled(Link)`
   --linkColor: var(--textColor);
   display: flex;
   transition: 0.1s linear;
-  border-radius: 4px;
-  border: 3px solid white;
+  border: 2px solid var(--background);
+  border-radius: 1rem;
   position: relative;
   overflow: hidden;
   background-color: var(--background);
   z-index: 0;
   height: 100%;
-  margin-top: 10px;
+  /* margin-top: 4rem; */
   box-shadow: var(--level-3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  justify-self: center;
+  max-width: 400px;
+
+  &:nth-of-type(1) {
+    margin-top: 0;
+  }
 `;
 
 const CardContainer = styled.div`
   width: 400px;
   height: 100%;
   transition: 0.4s linear;
+  padding-bottom: 1rem;
 `;
 
 const CardContent = styled.div`
-  padding: 16px 16px;
+  display: grid;
+  grid-gap: 2rem;
+  padding: 2rem;
 
   & h3 {
     font-size: var(--fontSize-highLevel);
@@ -61,7 +74,7 @@ const Card = ({ image, title, description, url, source }) => {
 
           <Columns span={2}>
             {source ? (
-              <Button as="a" onClick={handleSourceClick} bgColour="primary1">
+              <Button as="a" onClick={handleSourceClick}>
                 Code <Source />
               </Button>
             ) : (
@@ -69,9 +82,7 @@ const Card = ({ image, title, description, url, source }) => {
                 Source Unavailable <Source />
               </SourceUnavailable>
             )}
-            <Button bgColour="primary5" fontColour="white">
-              View
-            </Button>
+            <Button>View &rarr;</Button>
           </Columns>
         </CardContent>
       </CardContainer>

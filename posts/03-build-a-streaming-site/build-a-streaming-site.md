@@ -24,7 +24,7 @@ keywords:
   - "livestreaming"
   - "video streaming"
 published: false
-date: 2020-02-10
+date: 2021-02-10
 ---
 
 Let's face it: one of the main ways that many of us have gotten through this

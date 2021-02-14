@@ -3,12 +3,13 @@ import { Link } from "gatsby";
 import Hamburger from "hamburger-react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { FiSun, FiMoon } from "react-icons/fi";
+import { FiSun } from "@react-icons/all-files/fi/FiSun";
+import { FiMoon } from "@react-icons/all-files/fi/FiMoon";
 import Social from "./social";
 import useWindowSize from "../hooks/useWindowSize";
 import Fox from "../../images/gk-fox.svg";
 
-const mobileStyleScreenWidth = 1000;
+const mobileStyleScreenWidth = 1245;
 
 const HeaderStyles = styled.header`
   display: flex;

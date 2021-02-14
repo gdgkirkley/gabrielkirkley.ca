@@ -37,8 +37,8 @@ const IndexPage = ({ location }) => {
               margin: "1rem auto",
             }}
           >
-            <Button as={Link} to="/portfolio" bgColour="primary5">
-              See my portfolio
+            <Button as={Link} to="/portfolio">
+              See my portfolio &rarr;
             </Button>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Link to="/contact">Get in touch</Link>

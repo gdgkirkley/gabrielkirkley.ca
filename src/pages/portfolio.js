@@ -13,6 +13,7 @@ import Card from "../components/card";
 import useExamples from "../hooks/useExamples";
 import SEO from "../components/seo";
 import Boop from "../components/boop";
+import Columns from "../components/columns";
 
 const PortfolioBlock = styled.div`
   padding: 20px 0px;
@@ -24,6 +25,7 @@ const PortfolioContent = styled.div`
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  padding-top: 1rem;
   @media (min-width: 768px) {
   }
 `;
@@ -83,7 +85,7 @@ const Portfolio = () => {
             <h2>Projects</h2>
             <PortfolioTitleDecorator />
           </PortfolioTitle>
-          <PortfolioContent columns={2} rows={2}>
+          <Columns mdSpan={2} gap="5rem">
             {examples.map(example => {
               if (example.type !== "project") return null;
               return (
@@ -97,7 +99,7 @@ const Portfolio = () => {
                 />
               );
             })}
-          </PortfolioContent>
+          </Columns>
         </PortfolioBlock>
         <PortfolioBlock>
           <PortfolioTitle>

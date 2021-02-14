@@ -53,8 +53,6 @@ function SEO({
     ? `${site.siteMetadata.siteUrl}${slug}`
     : site.siteMetadata.siteUrl;
 
-  console.log(slug);
-
   return (
     <>
       <Helmet

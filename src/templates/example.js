@@ -85,13 +85,7 @@ const ExamplePage = ({ data: { pageData } }) => {
           {page.frontmatter.using && <p>{page.frontmatter.using}</p>}
 
           {page.frontmatter.source ? (
-            <Button
-              as="a"
-              target="_blank"
-              href={page.frontmatter.source}
-              bgColour={"#866BFF"}
-              fontColour={"#fff"}
-            >
+            <Button as="a" target="_blank" href={page.frontmatter.source}>
               View Code <Source />
             </Button>
           ) : (

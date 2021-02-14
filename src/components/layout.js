@@ -106,11 +106,16 @@ const GlobalStyle = createGlobalStyle`
       --navLinkColor: var(--grey3);
       --titleColor: var(--primary1);
       --textColor: #425466;
-      --buttonColor: var(--primary5);
       --boldColor: var(--grey1);
 
       --navLinkUnderlineInactiveColor: var(--white);
       --navLinkUnderlineActiveColor: var(--accent);
+
+      --buttonColor: var(--white);
+      --buttonBorderColor: var(--primary5);
+      --buttonTextColor: var(--primary5);
+      --buttonHoverColor: var(--primary5);
+      --buttonHoverTextColor: var(--white);
 
       --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
       --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -152,7 +157,7 @@ const GlobalStyle = createGlobalStyle`
     }
     svg {
       width: 32px;
-      height: 1%;
+      height: auto;
       margin: 0px 8px;
     }
     a {
@@ -260,7 +265,13 @@ const GlobalStyle = createGlobalStyle`
       --navLinkUnderlineInactiveColor: var(--highlight4);
 
       --headerBg: var(--highlight4);
-      --footerBg: var(--highlight4);  
+      --footerBg: var(--highlight4);
+
+      --buttonColor: var(--primary1);
+      --buttonBorderColor: var(--primary5);
+      --buttonTextColor: var(--white);
+      --buttonHoverColor: var(--primary5);
+      --buttonHoverTextColor: var(--white);
     }
 `;
 
