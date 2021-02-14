@@ -6,6 +6,8 @@ function useLocalStorageState(
   { serialize = JSON.stringify, deserialize = JSON.parse } = {}
 ) {
   const [state, setState] = React.useState(() => {
+    if (typeof window === `undefined`) return initialValue;
+
     const valueInLocalStorage = window.localStorage.getItem(key);
     if (valueInLocalStorage) {
       return deserialize(valueInLocalStorage);
