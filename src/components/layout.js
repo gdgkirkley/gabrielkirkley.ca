@@ -106,7 +106,7 @@ const GlobalStyle = createGlobalStyle`
       --navLinkColor: var(--grey3);
       --titleColor: var(--primary1);
       --textColor: #425466;
-      --boldColor: var(--grey1);
+      --boldColor: var(--accent);
 
       --navLinkUnderlineInactiveColor: var(--white);
       --navLinkUnderlineActiveColor: var(--accent);
@@ -186,6 +186,7 @@ const GlobalStyle = createGlobalStyle`
     strong {
         color: var(--boldColor);
         font-weight: 600;
+        font-style: italic;
     }
     label {
       color: var(--titleColor);
