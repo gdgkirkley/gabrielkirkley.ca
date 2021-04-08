@@ -22,9 +22,9 @@ const IndexPage = ({ location }) => {
 
             <Fox />
             <p>
-              Using React, Gatsby, Next.js, Node and Java daily. Currently at
-              the Arts Club. I make websites with React, but I'm also into data
-              analysis, REST/GraphQL APIs and database schemas.
+              Using React, TypeScript/JavaScript, Node and Java daily. Currently
+              at Bench. I make applications with React, but I'm also into data
+              analysis, iOS apps and databases.
             </p>
           </Title>
           <Columns

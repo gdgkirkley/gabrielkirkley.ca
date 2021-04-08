@@ -80,22 +80,8 @@ const About = () => {
               , and more.
             </p>
             <p>
-              I'm the Sales Systems Specialist for the{" "}
-              <a
-                href="https://artsclub.com"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                Arts Club Theatre Company
-              </a>
-              , which is Canada's largest non-profit theatre company outside of
-              the Stratford or Shaw Festivals in Ontario. I build dashboards,
-              reports, and trackers with R, help manage the SQL database, and
-              develop internal and external applications.
-            </p>
-            <p>
-              I've also acted, directed, designed, or produced 90+ productions
-              all over the Lower Mainland since I was about 12 years old.
+              I've acted, directed, designed, or produced 90+ productions all
+              over the Lower Mainland since I was about 12 years old.
             </p>
             <p>
               In my spare time, I love trying and failing to reach my{" "}
@@ -107,7 +93,8 @@ const About = () => {
                 Goodreads
               </a>{" "}
               reading challenge goal, improving Wikipedia pages on history,
-              growing plants, cooking, and building games in Unity.
+              photography, videography, growing plants, cooking, and building
+              games in Unity.
             </p>
           </div>
         </TwoCol>
