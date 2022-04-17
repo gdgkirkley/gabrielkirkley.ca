@@ -22,9 +22,15 @@ const IndexPage = ({ location }) => {
 
             <Fox />
             <p>
-              Using React, TypeScript/JavaScript, Node and Java daily. Currently
-              at Bench. I make applications with React, but I'm also into data
-              analysis, iOS apps and databases.
+              Writing Go, Scala/Java, and Typescript these days. Working at{" "}
+              <a
+                href="https://bench.co/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Bench Accounting.
+              </a>{" "}
+              Learning more about DevOps and cloud architecture.
             </p>
           </Title>
           <Columns
