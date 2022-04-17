@@ -3,16 +3,20 @@ templateKey: post
 title: The 7 Best (Paid) Resources To Learn React from a Past Beginner
 slug: /blog/best-resources-to-learn-react
 author: Gabe Kirkley
-image: null
-imageAltText: null
-imageCredt: null
+image: ./react.jpeg
+imageAltText: The ReactJS logo and code
+imageCredt:
+  Photo by <a
+  href="https://unsplash.com/@lautaroandreani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lautaro
+  Andreani</a> on <a
+  href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 keywords:
   - react
   - react.js
   - learn
   - learn react
   - where to learn react
-published: false
+published: true
 date: 2021-02-17
 ---
 
@@ -53,28 +57,40 @@ learn so much more just by doing it yourself.
 
 ## Epic React from Kent C Dodds
 
-https://epicreact.dev/
+[https://epicreact.dev/](https://epicreact.dev/)
+
+This is easily my #1 suggestion for learning React. Kent is an amazing
+instructor, and he will take you from absolute beginner to knowing React inside
+and out quickly.
+
+I took this course after building a few projects in React and although I thought
+that I knew it pretty well, it turned out that there was still so much more to
+learn.
+
+Plus, the course has just been updated to include React 18!
+
+https://twitter.com/kentcdodds/status/1515071617902137344
 
 ## React for Beginners from Wes Bos
 
-https://reactforbeginners.com/
+[https://reactforbeginners.com/](https://reactforbeginners.com/)
 
 ## React for Everyone from LevelUpTutorials
 
-https://www.leveluptutorials.com/tutorials/react-for-everyone
+[https://www.leveluptutorials.com/tutorials/react-for-everyone](https://www.leveluptutorials.com/tutorials/react-for-everyone)
 
 ## Complete Intro to React, v5 from Brian Holt
 
-https://frontendmasters.com/courses/complete-react-v5/
+[https://frontendmasters.com/courses/complete-react-v5/](https://frontendmasters.com/courses/complete-react-v5/)
 
 ## Fullstack Advanced React & GraphQL from Wes Bos
 
-https://advancedreact.com/
+[https://advancedreact.com/](https://advancedreact.com/)
 
 ## Introduction to Gatsby from Jason Lengstorf
 
-https://frontendmasters.com/courses/gatsby/
+[https://frontendmasters.com/courses/gatsby/](https://frontendmasters.com/courses/gatsby/)
 
 ## React & Typescript For Everyone from LevelUpTutorials
 
-https://www.leveluptutorials.com/tutorials/react-and-typescript-for-everyone
+[https://www.leveluptutorials.com/tutorials/react-and-typescript-for-everyone](https://www.leveluptutorials.com/tutorials/react-and-typescript-for-everyone)
