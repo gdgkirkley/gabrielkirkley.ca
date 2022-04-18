@@ -57,7 +57,7 @@ learn so much more just by doing it yourself.
 
 ## Epic React from Kent C Dodds
 
-[https://epicreact.dev/](https://epicreact.dev/)
+[Go to Epic React](https://epicreact.dev/)
 
 This is easily my #1 suggestion for learning React. Kent is an amazing
 instructor, and he will take you from absolute beginner to knowing React inside
@@ -73,7 +73,7 @@ https://twitter.com/kentcdodds/status/1515071617902137344
 
 ## React for Beginners from Wes Bos
 
-[https://reactforbeginners.com/](https://reactforbeginners.com/)
+[Go to React for Beginners](https://reactforbeginners.com/)
 
 I haven't taken this course, but Wes is a boss and I've taken his Advanced
 course recommended later. If you aren't already listening to
@@ -86,7 +86,7 @@ digestible than Epic React for someone who is newer to programming in general.
 
 ## React for Everyone from LevelUpTutorials
 
-[https://www.leveluptutorials.com/tutorials/react-for-everyone](https://www.leveluptutorials.com/tutorials/react-for-everyone)
+[Go to React for Everyone](https://www.leveluptutorials.com/tutorials/react-for-everyone)
 
 The other side of Syntax, Scott runs LevelUpTutorials which is an awesome site
 to get shorter courses on a whole bunch of mostly frontend topics. As any Syntax
@@ -100,7 +100,7 @@ boost to your career with new courses released every month!
 
 ## Complete Intro to React, v7 from Brian Holt
 
-[https://frontendmasters.com/courses/complete-react-v7/](https://frontendmasters.com/courses/complete-react-v7/)
+[Go to Complete Intro to React](https://frontendmasters.com/courses/complete-react-v7/)
 
 FrontendMasters is one of my favourite sites to find really high quality courses
 and workshops on a whoooole bunch of frontend (and lots of backend) related
@@ -109,12 +109,14 @@ courses on FrontendMasters.
 
 ## Fullstack Advanced React & GraphQL from Wes Bos
 
-[https://advancedreact.com/](https://advancedreact.com/)
+[Go to Fullstack Advanced React & GraphQL](https://advancedreact.com/)
 
 This was the course where I really started to get React. Since I took it, the
 entire course has been updated to new content - but the principles of the
 project-based course are still the same. Wes takes you through building a whole
 app from scratch.
+
+https://twitter.com/wesbos/status/1357010245378338822
 
 One of the things that I really like about Wes' teaching style is that he keeps
 everything upbeat and positive. Plus he leaves in little mistakes and goofs that
@@ -124,7 +126,7 @@ of being an engineer is fixing your own buggy code. 😂
 
 ## Introduction to Gatsby from Jason Lengstorf
 
-[https://frontendmasters.com/courses/gatsby-v2/](https://frontendmasters.com/courses/gatsby-v2/)
+[Go to Introduction to Gatsby](https://frontendmasters.com/courses/gatsby-v2/)
 
 Jason is an awesome instructor. I actually wish that he made more courses,
 because I would definitely buy them. You can check out his
@@ -141,7 +143,7 @@ immediately move on to:
 
 ## Build a Fullstack App from Scratch (feat NextJs)
 
-[https://frontendmasters.com/courses/fullstack-app-next/](https://frontendmasters.com/courses/fullstack-app-next/)
+[Go to Build a Fullstack App from Scratch](https://frontendmasters.com/courses/fullstack-app-next/)
 
 This is a suuuper cool course. You're building a Spotify clone, which is already
 a fantastic portfolio project, and you get to learn from Scott Moss who is an
