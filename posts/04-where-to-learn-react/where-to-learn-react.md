@@ -75,22 +75,86 @@ https://twitter.com/kentcdodds/status/1515071617902137344
 
 [https://reactforbeginners.com/](https://reactforbeginners.com/)
 
+I haven't taken this course, but Wes is a boss and I've taken his Advanced
+course recommended later. If you aren't already listening to
+[Syntax](https://syntax.fm/), I highly recommend checking it out as well. Wes
+and Scott talk about everything web development and Javascript related in two
+weekly shows.
+
+For a beginner, this is a great place to start and might be a bit more
+digestible than Epic React for someone who is newer to programming in general.
+
 ## React for Everyone from LevelUpTutorials
 
 [https://www.leveluptutorials.com/tutorials/react-for-everyone](https://www.leveluptutorials.com/tutorials/react-for-everyone)
 
-## Complete Intro to React, v5 from Brian Holt
+The other side of Syntax, Scott runs LevelUpTutorials which is an awesome site
+to get shorter courses on a whole bunch of mostly frontend topics. As any Syntax
+listener knows, Scott has gotten really into [Svelte](https://svelte.dev/)
+lately, but his React based courses are still an excellent way to learn React.
 
-[https://frontendmasters.com/courses/complete-react-v5/](https://frontendmasters.com/courses/complete-react-v5/)
+https://twitter.com/stolinski/status/1258153924730683401
+
+Plus, with a subscription to LevelUpTutorials, you'll be getting an ongoing
+boost to your career with new courses released every month!
+
+## Complete Intro to React, v7 from Brian Holt
+
+[https://frontendmasters.com/courses/complete-react-v7/](https://frontendmasters.com/courses/complete-react-v7/)
+
+FrontendMasters is one of my favourite sites to find really high quality courses
+and workshops on a whoooole bunch of frontend (and lots of backend) related
+topics. Brian Holt is an awesome engineer and I've gone through a couple of his
+courses on FrontendMasters.
 
 ## Fullstack Advanced React & GraphQL from Wes Bos
 
 [https://advancedreact.com/](https://advancedreact.com/)
 
+This was the course where I really started to get React. Since I took it, the
+entire course has been updated to new content - but the principles of the
+project-based course are still the same. Wes takes you through building a whole
+app from scratch.
+
+One of the things that I really like about Wes' teaching style is that he keeps
+everything upbeat and positive. Plus he leaves in little mistakes and goofs that
+you might run into along the way. That's great as a beginner because you start
+to realize that _no one_ writes perfect code every single time and a huge part
+of being an engineer is fixing your own buggy code. 😂
+
 ## Introduction to Gatsby from Jason Lengstorf
 
-[https://frontendmasters.com/courses/gatsby/](https://frontendmasters.com/courses/gatsby/)
+[https://frontendmasters.com/courses/gatsby-v2/](https://frontendmasters.com/courses/gatsby-v2/)
 
-## React & Typescript For Everyone from LevelUpTutorials
+Jason is an awesome instructor. I actually wish that he made more courses,
+because I would definitely buy them. You can check out his
+[Learn with Jason](https://www.learnwithjason.dev/) series though, which is
+available for free.
 
-[https://www.leveluptutorials.com/tutorials/react-and-typescript-for-everyone](https://www.leveluptutorials.com/tutorials/react-and-typescript-for-everyone)
+Now, why Gatsby? Well, Gatsby is built with React, but produces static sites
+that are fast and SEO-ready. Plus, a lot of companies created marketing or
+ecommerce sites that run on Gatsby in the mid-to-late 2010s so you're very
+likely to encounter a site built with Gatsby.
+
+That said, I actually think NextJS has a longer life that Gatsby, so I'd
+immediately move on to:
+
+## Build a Fullstack App from Scratch (feat NextJs)
+
+[https://frontendmasters.com/courses/fullstack-app-next/](https://frontendmasters.com/courses/fullstack-app-next/)
+
+This is a suuuper cool course. You're building a Spotify clone, which is already
+a fantastic portfolio project, and you get to learn from Scott Moss who is an
+awesome instructor and engineer at Netflix.
+
+Honestly, this is a great capstone course to the rest of your learning. With
+this course under your belt, you'll be able to build _anything_ you can dream
+up. And I seriously encourage you to do so.
+
+## Happy learning
+
+I hope you found this list helpful! As a former beginner, I know that it's
+difficult to find good resources that you can trust to teach you the right
+skills on your journey to learning React.
+
+I wish you all the best luck and happy learning!
