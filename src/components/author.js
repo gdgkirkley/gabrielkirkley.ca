@@ -53,7 +53,7 @@ const Author = () => {
           Hi! I'm a software engineer at{" "}
           <a href="https://bench.co" target="_blank">
             Bench Accounting
-          </a>
+          </a>{" "}
           in Vancouver, B.C. I'm also a former marketer, actor, director and
           general theatre person—but now I build software. I enjoy reading,
           gaming, and learning new stuff. Catch up with me on{" "}
