@@ -36,7 +36,6 @@ class GameLibrary {
   }
 
   executeChoice() {
-    this.playerInput.removeButtonListener(this.executeChoice);
     new SkunkConfig().startSkunk(this.playerInput);
   }
 }
@@ -50,10 +49,10 @@ class Render {
    * @param {string} line the string or HTML string to add
    * @param {string} element the element tag to add to the DOM. Defaults to <p>
    */
-  static printNewLine(line?: string, element = "p"): HTMLElement {
+  static printNewLine(line = "", element = "p"): HTMLElement {
     const newLine = document.createElement(element);
 
-    newLine.innerHTML = String(line);
+    newLine.innerHTML = line;
 
     gameRoot.appendChild(newLine);
 
@@ -175,14 +174,6 @@ class Game<P extends Player = Player> {
     return this.players;
   }
 
-  displayAllScores() {
-    Render.printNewLine("Scores <br /> -------");
-
-    for (let player of this.players) {
-      Render.printNewLine(player.getName() + ": " + player.getScore());
-    }
-  }
-
   getPlayerByName(name: string): P | null {
     if (!name) {
       throw new Error("Invalid name");
@@ -260,8 +251,6 @@ class Score {
 
     let newScore = this.score - scoreToSubtract;
 
-    console.log(newScore, this.score, scoreToSubtract);
-
     this.setScore(newScore);
   }
 
@@ -294,9 +283,19 @@ const Controls = {
 };
 
 class SkunkControls {
-  runOtherControls(input: string, board: Board, players: Player[]) {
-    if (null == input) {
-      Render.printNewLine("Hmmm... input can't be null");
+  /**
+   * Run a non-answer control (board, controls, scores, rules)
+   * @return false if the input isn't a known control
+   */
+  runOtherControls(
+    input: string,
+    board: Board,
+    players: Player[],
+    numberOfDice: number
+  ) {
+    if (!input) {
+      Render.printNewLine("Hmmm... input can't be empty");
+      return false;
     }
 
     if (input === Controls.DISPLAY_BOARD) {
@@ -308,12 +307,13 @@ class SkunkControls {
         Render.printNewLine(player.getName() + ": " + player.getScoreValue());
       }
     } else if (input === Controls.DISPLAY_RULES) {
-      this.listRules(2);
-    } else if (input === Controls.QUIT) {
-      Render.printNewLine("Goodbye");
+      this.listRules(numberOfDice);
     } else {
       Render.printNewLine("Hmmm... " + input + " doesn't work here...");
+      return false;
     }
+
+    return true;
   }
 
   listControls() {
@@ -430,7 +430,7 @@ class Input {
   }
 
   hasNext() {
-    return this.input !== null || this.input !== undefined;
+    return this.input.trim() !== "";
   }
 
   hasNextInt() {
@@ -443,26 +443,17 @@ class Input {
   }
 
   getStringInput() {
-    return this.input.toUpperCase();
+    return this.input.trim().toUpperCase();
+  }
+
+  getRawInput() {
+    return this.input.trim();
   }
 
   clearInput() {
     this.hasInput = false;
     this.textbox!.value = "";
     this.input = "";
-  }
-
-  removeListener(callback?: () => void) {
-    this.button!.removeEventListener("click", () => {
-      this.input = this.textbox!.value;
-      callback!();
-    });
-  }
-
-  removeButtonListener(callback: () => void) {
-    this.button!.removeEventListener("click", () => {
-      callback();
-    });
   }
 
   removeInput() {
@@ -589,7 +580,7 @@ class Skunk extends Game<SkunkPlayer> {
 
       this.addPlayer(
         new SkunkPlayer(
-          "Computer " + i,
+          "Computer " + (i + 1),
           SkunkConstants.INITIAL_SCORE_VALUE,
           computer
         )
@@ -649,16 +640,35 @@ class Skunk extends Game<SkunkPlayer> {
           });
 
           this.currentRound = SkunkConstants.INITIAL_ROUND_VALUE;
+          this.roundScore = 0;
+          this.resetPlayers();
           this.board = this.createSkunkBoard();
           this.playSkunkRound(true);
-        } else if (input === Controls.NO) {
-          this.setPlaying(false);
-          Render.printNewLine("Goodbye!");
+        } else if (input === Controls.NO || input === Controls.QUIT) {
+          this.quit();
         } else {
-          this.controls.runOtherControls(input, this.board, this.getPlayers());
+          this.controls.runOtherControls(
+            input,
+            this.board,
+            this.getPlayers(),
+            this.numberOfDice
+          );
+          this.playerInput.clearInput();
         }
       }
     }
+  }
+
+  /**
+   * Stop the game and offer to start a new one
+   */
+  quit() {
+    this.setPlaying(false);
+    Render.clearLines();
+    Render.printNewLine("Goodbye!", "h2");
+    this.playerInput.createButton("Start a new game", () =>
+      new SkunkConfig().startSkunk(this.playerInput)
+    );
   }
 
   getWinningPlayer(): SkunkPlayer | null {
@@ -687,7 +697,6 @@ class Skunk extends Game<SkunkPlayer> {
       this.resetPlayers();
     }
 
-    this.playerInput.removeListener();
     this.playerInput.clearInput();
     Render.clearLines();
 
@@ -908,6 +917,7 @@ class Skunk extends Game<SkunkPlayer> {
       if (player.isStanding()) {
         player.getScore().setScore(0);
         player.getRoundScore().setScore(0);
+        player.setStanding(false);
       }
 
       return player;
@@ -962,7 +972,6 @@ class Skunk extends Game<SkunkPlayer> {
       }
 
       if (player instanceof SkunkPlayer) {
-        console.log(player.getName() + "is skunk player");
         let skunkPlayer = player;
         scoreString = "(+" + skunkPlayer.getRoundScoreValue() + ")";
 
@@ -1175,11 +1184,11 @@ class Board {
   }
 
   checkBounds(column: number, row: number) {
-    if (column < 0 || column > this.columns) {
+    if (column < 0 || column >= this.columns) {
       throw new Error("Column " + column + " doesn't exist.");
     }
 
-    if (row < 0 || row > this.rows) {
+    if (row < 0 || row >= this.rows) {
       throw new Error("Row " + row + " doesn't exist.");
     }
   }
@@ -1293,10 +1302,11 @@ class SkunkPlayer extends Player {
           Render.clearLines();
           Render.printNewLine("You have chosen to stay standing");
           game.runContinue();
+        } else if (input === Controls.QUIT) {
+          game.quit();
         } else {
-          controls.runOtherControls(input, board, players);
+          controls.runOtherControls(input, board, players, game.numberOfDice);
           this.playerInput.clearInput();
-          Render.printNewLine("Hmm... that doesn't work here");
         }
       }
     }
@@ -1328,7 +1338,7 @@ class SkunkPlayer extends Player {
     }
 
     if (computerScore > playerScore) {
-      if (currentRound === Skunk.ROUNDS) {
+      if (currentRound === Skunk.ROUNDS - 1) {
         decision += this.COMPUTER_SIT_THRESHOLD;
       } else {
         decision += this.COMPUTER_WINNING_VALUE;
@@ -1406,7 +1416,6 @@ class SkunkConfig {
 
         if (input === Skunk.MIN_DICE || input === Skunk.MAX_DICE) {
           this.numberOfDice = input;
-          this.playerInput.removeListener();
           this.playerInput.removeInput();
           Render.clearLine("Choose a number of dice");
           this.setUpNumberOfComputerPlayers();
@@ -1440,7 +1449,6 @@ class SkunkConfig {
           input <= Skunk.MAX_COMPUTER_PLAYERS
         ) {
           this.numberOfComputerPlayers = input;
-          this.playerInput.removeListener();
           this.playerInput.removeInput();
           Render.clearLine("Choose a number of computer players");
           this.setUpPlayerName();
@@ -1466,9 +1474,9 @@ class SkunkConfig {
 
     function handlePlayerNameSetup(this: SkunkConfig) {
       if (this.playerInput.hasNext()) {
-        let input = this.playerInput.getStringInput();
+        let input = this.playerInput.getRawInput();
 
-        if (input === Controls.USE_DEFAULT) {
+        if (input.toUpperCase() === Controls.USE_DEFAULT) {
           this.playerName = this.PLAYER_DEFAULT_NAME;
           this.startGame();
         } else if (input.length <= this.PLAYER_NAME_MAX_LENGTH) {
@@ -1483,7 +1491,6 @@ class SkunkConfig {
   }
 
   startGame() {
-    this.playerInput.removeListener();
     Render.clearLines();
 
     let skunk = new Skunk(

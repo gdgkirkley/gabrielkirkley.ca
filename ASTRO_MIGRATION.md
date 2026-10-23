@@ -125,7 +125,7 @@ from Netlify to Vercel hosting.
 - [x] Remove the contact form; Contact page links to LinkedIn
 - [x] Remove `react`, `react-dom`, `styled-components`
 - [x] Browser-tested the Skunk game (setup, rolling, scores command, sitting) and the linked list (add, remove duplicates, reset)
-- [ ] Optional: known gameplay bugs left as-is in the original code (double-skunk soft-lock, final-round computer logic never runs, stray "undefined" lines)
+- [x] Fix Skunk gameplay bugs: double-skunk soft-lock, play-again starting at round 2, quit not quitting, valid controls reported as invalid, rules always saying 2 dice, final-round computer logic, empty input accepted, stray "undefined" lines, upper-cased player name, "Computer 0", board bounds off-by-one, debug logs
 
 ### 8. Parity checks
 
