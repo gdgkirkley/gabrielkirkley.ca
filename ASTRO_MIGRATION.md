@@ -139,8 +139,8 @@ from Netlify to Vercel hosting.
 ### 9. Launch on Vercel
 
 - [ ] Merge `astro-migration` → `main`
-- [ ] Add `gabrielkirkley.ca` (and `www`) as Vercel domains; update DNS
-- [ ] Verify production: HTTPS, canonical URLs, sitemap
+- [x] Add `gabrielkirkley.ca` and `www` as Vercel domains (`www` → apex 308); DNS moved to Vercel
+- [x] Verify production: HTTPS (Let's Encrypt), HTTP → HTTPS, `www` → apex, canonical URLs, sitemap, `vercel.json` redirects, 404
 - [ ] Disconnect or delete the Netlify site
 
 ### 10. Cleanup
