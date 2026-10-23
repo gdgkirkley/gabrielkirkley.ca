@@ -27,8 +27,8 @@ from Netlify to Vercel hosting.
 - **Styling:** move off styled-components to global CSS (existing CSS custom
   properties from `layout.js`) plus scoped `<style>` in `.astro` components.
 - **React only where interactive:** layout, cards, post previews, author, and SEO
-  become `.astro`. React islands stay for the Skunk game, linked-list challenges,
-  Boop, the dark-mode toggle, and the hamburger menu become vanilla JS.
+  become `.astro`. React islands stay for the Skunk game and linked-list
+  challenges. Boop, the dark-mode toggle, and the hamburger menu are vanilla JS.
 - **URL parity:** routes are driven by the frontmatter `slug` field so every
   existing URL is preserved and no redirects are needed.
 
