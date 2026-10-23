@@ -8,4 +8,8 @@ export default defineConfig({
   // Matches the canonical URLs the Gatsby site published; vercel.json redirects "/foo/" to "/foo".
   trailingSlash: "never",
   integrations: [mdx(), sitemap()],
+  image: {
+    // Constrained images scale down with their container.
+    responsiveStyles: true,
+  },
 });

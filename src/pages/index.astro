@@ -1,21 +1,80 @@
 ---
+import Fox from "../../images/gk-fox.svg";
+import Button from "../components/Button.astro";
+import Columns from "../components/Columns.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getPortfolio, getPosts } from "../lib/content";
-
-const posts = await getPosts();
-const portfolio = await getPortfolio();
 ---
 
-<BaseLayout>
+<BaseLayout title="Home">
   <main>
-    <h1>Astro migration in progress</h1>
-    <h2>Posts</h2>
-    <ul>
-      {posts.map(post => <li>{post.data.date.toISOString().slice(0, 10)} <code>{post.data.slug}</code> {post.data.title}</li>)}
-    </ul>
-    <h2>Portfolio</h2>
-    <ul>
-      {portfolio.map(entry => <li>[{entry.data.type}] <code>{entry.data.slug}</code> {entry.data.title}</li>)}
-    </ul>
+    <div class="content">
+      <div class="title">
+        <h1>Gabe Kirkley</h1>
+        <p class="tagline">Creative Software Developer</p>
+        <Fox />
+        <p>
+          Writing Go, Scala/Java, and Typescript these days. Working at{" "}
+          <a href="https://bench.co/" target="_blank" rel="noreferrer noopener">Bench Accounting.</a>
+          Learning more about DevOps and cloud architecture.
+        </p>
+      </div>
+      <Columns mdColumns="2fr 1fr" class="actions">
+        <Button href="/portfolio">See my portfolio &rarr;</Button>
+        <div class="contact">
+          <a href="/contact">Get in touch</a>
+        </div>
+      </Columns>
+    </div>
   </main>
 </BaseLayout>
+
+<style>
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    height: 100%;
+
+    & :global(svg) {
+      width: 30%;
+      height: auto;
+    }
+  }
+
+  .title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & h1 {
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 0px;
+      font-size: var(--fontSize-banner);
+    }
+
+    @media (min-width: 768px) {
+      & p {
+        max-width: 54%;
+      }
+    }
+  }
+
+  .tagline {
+    color: var(--primary5);
+  }
+
+  .content :global(.actions) {
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+  }
+
+  .contact {
+    display: flex;
+    justify-content: center;
+  }
+</style>

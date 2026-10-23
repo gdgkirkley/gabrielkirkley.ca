@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import config from "../../config/website";
+import headshot from "../../images/Gabe-Headshotbw.jpg";
+---
+
+<div class="author">
+  <Image src={headshot} alt={config.author} width={160} height={160} fit="cover" densities={[1, 2]} />
+  <div>
+    <h3>{config.author}</h3>
+    <p>
+      Hi! I'm a software engineer at{" "}
+      <a href="https://bench.co" target="_blank" rel="noreferrer noopener">Bench Accounting</a>
+      in Vancouver, B.C. I'm also a former marketer, actor, director and general theatre person—but
+      now I build software. I enjoy reading, gaming, and learning new stuff. Catch up with me on{" "}
+      <a href={config.twitter}>Twitter</a>!
+    </p>
+  </div>
+</div>
+
+<style>
+  .author {
+    margin: 20px 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--grey8);
+    padding: 20px 0px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    & img {
+      width: 160px;
+      height: 160px;
+      border-radius: 1000px;
+      justify-self: center;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 2.5fr;
+    }
+  }
+</style>

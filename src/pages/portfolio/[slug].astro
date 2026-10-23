@@ -1,0 +1,85 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import Source from "../../../images/code-branch-light.svg";
+import Button from "../../components/Button.astro";
+import ExternalLinkIcon from "../../components/ExternalLinkIcon.astro";
+import SourceUnavailable from "../../components/SourceUnavailable.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPortfolio } from "../../lib/content";
+import { excerpt } from "../../lib/excerpt";
+
+export const getStaticPaths = (async () => {
+  const entries = await getPortfolio();
+  return entries.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { title, subtitle, image, using, source, link } = entry.data;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={title} description={subtitle ?? excerpt(entry.body)} image={image}>
+  <main>
+    <h1>{title}</h1>
+    <Image src={image} alt="" width={1200} height={600} fit="cover" layout="constrained" priority />
+    <div class="example-bar">
+      {using && <p>{using}</p>}
+      {
+        source ? (
+          <Button href={source} target="_blank" rel="noreferrer noopener">
+            View Code <Source />
+          </Button>
+        ) : (
+          <SourceUnavailable />
+        )
+      }
+      {
+        link && (
+          <Button href={link} target="_blank" rel="noreferrer noopener">
+            Take Me There
+            <ExternalLinkIcon />
+          </Button>
+        )
+      }
+    </div>
+
+    <Content />
+
+    <Button href="/portfolio">&larr; Go Back</Button>
+  </main>
+</BaseLayout>
+
+<style>
+  .example-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+
+    & p {
+      font-weight: 300;
+      max-width: 30rem;
+      font-size: 1.7rem;
+    }
+
+    & > :global(a) {
+      margin: 1rem 0;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+
+      & > :global(a) {
+        margin: 0;
+      }
+    }
+  }
+
+  main :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

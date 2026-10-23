@@ -1,0 +1,14 @@
+---
+import PostPreview from "../../components/PostPreview.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPosts } from "../../lib/content";
+
+const posts = await getPosts();
+---
+
+<BaseLayout title="Blog" description="Gabe Kirkley's blog">
+  <main>
+    <h1>Blog</h1>
+    {posts.map(post => <PostPreview post={post} />)}
+  </main>
+</BaseLayout>

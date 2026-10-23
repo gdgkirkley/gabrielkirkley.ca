@@ -1,0 +1,78 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import config from "../../../config/website";
+import Author from "../../components/Author.astro";
+import Button from "../../components/Button.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPosts } from "../../lib/content";
+import { formatDate } from "../../lib/dates";
+import { excerpt } from "../../lib/excerpt";
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return posts.map(post => ({ params: { slug: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { title, author, date, image, imageAltText, keywords, slug } = post.data;
+const { Content } = await render(post);
+
+const shareUrl = new URL("https://twitter.com/intent/tweet");
+shareUrl.searchParams.set("url", new URL(slug, Astro.site).href);
+shareUrl.searchParams.set("text", title);
+shareUrl.searchParams.set("via", config.twitterHandle.replace(/^@/, ""));
+---
+
+<BaseLayout
+  title={title}
+  description={excerpt(post.body)}
+  image={image}
+  keywords={keywords}
+  article={{ datePublished: date, author }}
+>
+  <main>
+    <article class="post">
+      <h1>{title}</h1>
+      <Image src={image} alt={imageAltText} layout="constrained" width={900} quality={80} priority />
+      <p class="post-date">{formatDate(date)}</p>
+      <Content />
+      <div class="post-share">
+        <a href={shareUrl.href} target="_blank" rel="noreferrer noopener">Share on Twitter</a>
+      </div>
+      <Author />
+      <Button href="/blog">&larr; Go Back</Button>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .post {
+    margin: 0px 10px;
+
+    & :global(p) {
+      margin: 25px 0px;
+      line-height: 1.8;
+    }
+
+    & :global(img) {
+      max-width: 100%;
+      height: auto;
+    }
+
+    @media (min-width: 768px) {
+      margin: 0px 90px;
+    }
+  }
+
+  .post-date {
+    font-size: var(--fontSize-information);
+    text-align: right;
+  }
+
+  .post-share {
+    display: flex;
+    justify-content: flex-end;
+  }
+</style>

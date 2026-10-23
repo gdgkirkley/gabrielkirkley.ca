@@ -7,18 +7,11 @@
   "dependencies": {
     "@astrojs/mdx": "^8.1.1",
     "@astrojs/sitemap": "^3.7.4",
-    "@mdx-js/react": "^1.6.22",
-    "@react-icons/all-files": "^4.1.0",
     "@types/styled-components": "^5.1.9",
     "astro": "^7.4.2",
-    "hamburger-react": "^2.4.0",
     "prism-react-renderer": "^1.2.0",
-    "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-helmet": "^6.1.0",
-    "react-share": "^4.4.0",
-    "react-spring": "^8.0.27",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {

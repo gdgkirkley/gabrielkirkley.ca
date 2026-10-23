@@ -12,8 +12,8 @@ from Netlify to Vercel hosting.
   to review progress.
 - Merge `astro-migration` → `main` once, after parity checks pass, then cut
   DNS over to Vercel.
-- Gatsby page sources live in `legacy/pages/` as reference while porting, so
-  Astro doesn't try to route them. Port each file out of there and delete it.
+- Gatsby page sources lived in `legacy/pages/` as reference while porting
+  (removed in step 5).
 
 ## Decisions
 
@@ -88,18 +88,18 @@ from Netlify to Vercel hosting.
 
 ### 5. Pages and routes
 
-- [ ] Port `index` to `.astro`
-- [ ] Port `about` to `.astro`
-- [ ] Port `blog` to `.astro`
-- [ ] Port `contact` to `.astro`
-- [ ] Port `portfolio` to `.astro`
-- [ ] Port `404` to `.astro`
-- [ ] `src/pages/blog/[...slug].astro` (replaces `templates/post.js` + `gatsby-node.js`)
-- [ ] `src/pages/portfolio/[...slug].astro` (replaces `templates/example.js`)
-- [ ] Replace `usePosts` / `useExamples` / `useSiteMetadata` with `getCollection()` and `config/website.js`
-- [ ] Replace `gatsby-image` with `<Image>` / `<Picture>`
-- [ ] Switch SVG imports (fox, tech logos) to Astro SVG components
-- [ ] Convert `src/lib/dates.js` and `src/data/portfolio.js` to TypeScript
+- [x] Port `index`, `about`, `blog`, `contact`, `portfolio`, and `404` to `.astro`
+- [x] `src/pages/blog/[slug].astro` (replaces `templates/post.js` + `gatsby-node.js`)
+- [x] `src/pages/portfolio/[slug].astro` (replaces `templates/example.js`)
+- [x] Replace `usePosts` / `useExamples` / `useSiteMetadata` with `getCollection()` and `config/website.ts`
+- [x] Replace `gatsby-image` with `<Image>` (responsive WebP `srcset`); SVG imports are Astro SVG components
+- [x] Port shared components: `Button`, `Columns`, `Card`, `PostPreview`, `Author`, `ContactForm`, `SourceUnavailable`
+- [x] Cards no longer nest the "Code" link inside the card link (invalid HTML); the "View" link covers the card instead
+- [x] Twitter share is a plain tweet-intent link (replaces `react-share`)
+- [x] Convert `src/lib/dates.js` to TypeScript; delete unused `src/data/portfolio.js` and `techskill.js`
+- [x] Delete ported Gatsby sources (`legacy/`, `src/templates/`, `src/hooks/`, old components, `gatsby-*.js`) and unused packages
+- [x] URL check against the live sitemap: same pages; Gatsby's duplicate `/portfolio/x/x/` pages redirect to `/portfolio/x` via `vercel.json`
+- [ ] Visual comparison of every page against the live site (browser extension disconnected mid-step)
 
 ### 6. MDX and markdown features
 
@@ -117,7 +117,7 @@ from Netlify to Vercel hosting.
 - [ ] Restore the `TODO(astro-migration step 7)` component imports in `skunkgame.mdx` and `linkedlist.mdx`
 - [ ] Convert `challenges/SKUNK.js` and `challenges/LinkedList/*` to TypeScript
 - [ ] Choose a contact form backend that works on Vercel and rebuild the form against it
-- [ ] Replace `react-share` Twitter button with a plain tweet-intent link
+- [x] Replace `react-share` Twitter button with a plain tweet-intent link (done in step 5)
 
 ### 8. Parity checks
 
@@ -135,13 +135,14 @@ from Netlify to Vercel hosting.
 
 ### 10. Cleanup
 
-- [ ] Remove `gatsby-config.js`, `gatsby-node.js`, `gatsby-browser.js`, `gatsby-ssr.js`
-- [ ] Remove `src/templates/` and `src/hooks/`
-- [ ] Remove Gatsby deps, `@hot-loader/react-dom`, `react-helmet`, `styled-components`, `babel-plugin-styled-components`, and unused `gatsby-plugin-transition-link` / `gatsby-plugin-offline`
+- [x] Remove `gatsby-*.js`, `legacy/`, `src/templates/`, and `src/hooks/` (done in step 5)
+- [x] Remove Gatsby packages and React-era libraries no longer imported (done in steps 1 and 5)
+- [ ] Remove `styled-components`, `prism-react-renderer`, and their types once steps 6–7 drop the last users
+- [ ] Delete images in `images/` that nothing references
 - [ ] Upgrade Prettier, add `prettier-plugin-astro`, and add `astro,mdx` to the `format` glob
 - [ ] Update README
 
 ## Notes
 
-- Order: 1 → 2 → 3, then 4/5/6 in parallel, then 7 → 8 → 9. Roughly one PR per section.
+- Order: 1 → 2 → 3, then 4/5/6 in parallel, then 7 → 8 → 9 → 10.
 - Biggest risks: MDX 1 → 3 syntax changes and replacing styled-components.
