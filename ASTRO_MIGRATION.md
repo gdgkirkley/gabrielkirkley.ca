@@ -46,8 +46,8 @@ from Netlify to Vercel hosting.
 - [x] Move Gatsby `src/pages` → `legacy/pages`; add placeholder `src/pages/index.astro`
 - [x] Ignore `dist/`, `.astro/`, `.vercel/`; un-ignore `public/` (was Gatsby output)
 - [x] Update `package.json` scripts (`dev`, `build`, `preview`); add `engines` and `.nvmrc` (Node 22)
-- [ ] Create Vercel project linked to the repo; confirm preview deploy of `astro-migration`
-- [ ] Confirm Vercel's Node 22 runtime is ≥ 22.23.4 (Astro 7 minimum)
+- [x] Create Vercel project linked to the repo; confirm preview deploy of `astro-migration`
+- [x] Confirm Vercel's Node 22 runtime is ≥ 22.23.4 (Astro 7 minimum; preview builds succeed)
 
 ### 2. Content collections
 
@@ -84,7 +84,7 @@ from Netlify to Vercel hosting.
 - [x] Sitemap via `@astrojs/sitemap`; `/sitemap.xml` → `/sitemap-index.xml` redirect in `vercel.json`
 - [x] Static `public/robots.txt` pointing at the new sitemap
 - [x] Static `manifest.webmanifest`, favicon, apple-touch-icon, and icons from `images/gk.png` (128px source; larger sizes are upscaled, as before)
-- [ ] Verify the `vercel.json` redirects on a preview deploy
+- [ ] Verify the `vercel.json` redirects on a preview deploy (see step 8)
 
 ### 5. Pages and routes
 
@@ -100,7 +100,7 @@ from Netlify to Vercel hosting.
 - [x] Delete ported Gatsby sources (`legacy/`, `src/templates/`, `src/hooks/`, old components, `gatsby-*.js`) and unused packages
 - [x] URL check against the live sitemap: same pages; Gatsby's duplicate `/portfolio/x/x/` pages redirect to `/portfolio/x` via `vercel.json`
 - [x] Visual comparison against the live site: home, portfolio, Readingly, React and M1 posts (during step 6)
-- [ ] Visual comparison of the remaining pages (about, blog list, contact, 404) and dark mode — fold into step 8
+- [x] Visual comparison of the remaining pages and dark mode (done in step 8)
 
 ### 6. MDX and markdown features
 
@@ -129,9 +129,12 @@ from Netlify to Vercel hosting.
 
 ### 8. Parity checks
 
-- [ ] Diff HTML file lists from Gatsby `public/` vs Astro `dist/` to confirm no URL changes
-- [ ] Visual check of every page in light and dark mode, desktop and mobile
-- [ ] Check embeds, code blocks, games, 404 page, and OG tags on a post
+- [x] URL list vs the live sitemap: every page present; trailing-slash and duplicate portfolio URLs handled by `vercel.json` redirects
+- [x] Unpublished posts/projects and the frontmatter template 404 on both sites; manifest, robots.txt, and favicon serve
+- [x] Visual check against the live site: home, about, blog list, posts, portfolio and entries, contact, 404 (desktop and mobile; dark mode on post, author box, and portfolio)
+- [x] Embeds, code blocks, Skunk game, and linked list work
+- [x] Vercel preview builds succeed on every commit (Node version is fine)
+- [ ] Verify `vercel.json` redirects (`/blog/` → `/blog`, `/sitemap.xml`, `/portfolio/x/x`) on the preview — blocked by Vercel deployment protection
 
 ### 9. Launch on Vercel
 
