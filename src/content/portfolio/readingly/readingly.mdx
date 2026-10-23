@@ -106,10 +106,10 @@ api.interceptors.response.use(
   function onError(result) {
     throw new Error(
       `${result.response.status}: ${JSON.stringify(
-        result.response.data.errors[0].message
-      )}`
+        result.response.data.errors[0].message,
+      )}`,
     );
-  }
+  },
 );
 
 // Function to get cookies off of the response object

@@ -34,23 +34,28 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
     </button>
     <div class="menu" id="site-menu">
       <div class="nav-group">
-        {
-          navLinks.map(({ href, label, partiallyActive }) => (
-            <a
-              class:list={["nav-link", { current: isCurrent(href, partiallyActive) }]}
-              href={href}
-              aria-current={isCurrent(href, partiallyActive) ? "page" : undefined}
-            >
-              {label}
-            </a>
-          ))
-        }
+        {navLinks.map(({ href, label, partiallyActive }) => (
+          <a
+            class:list={[
+              "nav-link",
+              { current: isCurrent(href, partiallyActive) },
+            ]}
+            href={href}
+            aria-current={isCurrent(href, partiallyActive) ? "page" : undefined}
+          >
+            {label}
+          </a>
+        ))}
       </div>
       <div class="nav-group">
         <Social />
       </div>
       <div class="nav-group">
-        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle dark mode"
+        >
           <svg
             class="sun"
             xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +151,9 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
       height: 3px;
       border-radius: 2px;
       background: currentColor;
-      transition: transform 0.3s ease, opacity 0.2s ease;
+      transition:
+        transform 0.3s ease,
+        opacity 0.2s ease;
     }
 
     &[aria-expanded="true"] span:nth-child(1) {
@@ -302,7 +309,10 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
   document.querySelector(".theme-toggle")!.addEventListener("click", () => {
     const isDark = root.classList.toggle("dark-theme");
     try {
-      localStorage.setItem("gabrielkirkley.ca_darkmode", JSON.stringify(isDark));
+      localStorage.setItem(
+        "gabrielkirkley.ca_darkmode",
+        JSON.stringify(isDark),
+      );
     } catch {}
   });
 </script>

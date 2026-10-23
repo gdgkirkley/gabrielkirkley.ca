@@ -2,7 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
   "redirects": [
-    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
     {
       "source": "/portfolio/:slug/:duplicate",
       "destination": "/portfolio/:slug",

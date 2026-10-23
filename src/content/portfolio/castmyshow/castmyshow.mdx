@@ -84,7 +84,7 @@ const handleSubmit = async e => {
           id: id,
           ...results.find(show => show.id === id),
         };
-      }
+      },
     );
     props.getResults(finalResult, search);
   }

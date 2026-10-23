@@ -1,5 +1,7 @@
 {
   "arrowParens": "avoid",
   "semi": true,
-  "proseWrap": "always"
+  "proseWrap": "always",
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [{ "files": "*.astro", "options": { "parser": "astro" } }]
 }

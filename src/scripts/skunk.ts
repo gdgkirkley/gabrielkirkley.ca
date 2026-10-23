@@ -107,7 +107,7 @@ class Render {
       gameRoot,
       null,
       XPathResult.ANY_TYPE,
-      null
+      null,
     );
     return nodes.iterateNext();
   }
@@ -245,7 +245,7 @@ class Score {
   decrementScore(scoreToSubtract: number) {
     if (scoreToSubtract < 0) {
       throw new Error(
-        "Score " + scoreToSubtract + " is invalid for this method."
+        "Score " + scoreToSubtract + " is invalid for this method.",
       );
     }
 
@@ -291,7 +291,7 @@ class SkunkControls {
     input: string,
     board: Board,
     players: Player[],
-    numberOfDice: number
+    numberOfDice: number,
   ) {
     if (!input) {
       Render.printNewLine("Hmmm... input can't be empty");
@@ -331,43 +331,43 @@ class SkunkControls {
     Render.printNewLine(
       "There are " +
         Skunk.ROUNDS +
-        " rounds in the game. One round corresponds with each letter of the word SKUNK."
+        " rounds in the game. One round corresponds with each letter of the word SKUNK.",
     );
     Render.printNewLine(
       "Players start the game standing up. " +
         numberOfDice +
-        " dice are rolled."
+        " dice are rolled.",
     );
     Render.printNewLine(
-      "The players have a choice before each roll whether to remain standing or whether to sit down."
+      "The players have a choice before each roll whether to remain standing or whether to sit down.",
     );
     Render.printNewLine(
       "If a player is standing when a roll that does NOT contain a " +
         Skunk.SKUNK_ROLL +
-        " is rolled, they get those points."
+        " is rolled, they get those points.",
     );
     Render.printNewLine(
       "If all players are standing when a " +
         Skunk.SKUNK_ROLL +
-        " is rolled, the roll does not count."
+        " is rolled, the roll does not count.",
     );
     Render.printNewLine(
-      "If a player sits down, they get to keep their total points from that round."
+      "If a player sits down, they get to keep their total points from that round.",
     );
     Render.printNewLine(
       "If a player is standing when a " +
         Skunk.SKUNK_ROLL +
-        " is rolled, they lose ALL their points for that round."
+        " is rolled, they lose ALL their points for that round.",
     );
     Render.printNewLine(
       "If a player is standing when two " +
         Skunk.SKUNK_ROLL +
-        "s (snake eyes) are rolled, they lose ALL their points from ALL rounds!"
+        "s (snake eyes) are rolled, they lose ALL their points from ALL rounds!",
     );
     Render.printNewLine(
       "Each round ends when a " +
         Skunk.SKUNK_ROLL +
-        " is rolled or when all players are sitting."
+        " is rolled or when all players are sitting.",
     );
     Render.printNewLine();
   }
@@ -538,7 +538,7 @@ class Skunk extends Game<SkunkPlayer> {
     numberofDice: number,
     numberOfComputerPlayers: number,
     playerInput: Input,
-    playerName: string
+    playerName: string,
   ) {
     super();
 
@@ -571,8 +571,8 @@ class Skunk extends Game<SkunkPlayer> {
       new SkunkPlayer(
         this.playerName,
         SkunkConstants.INITIAL_SCORE_VALUE,
-        false
-      )
+        false,
+      ),
     );
 
     for (let i = 0; i < numberOfComputerPlayers; i++) {
@@ -582,15 +582,15 @@ class Skunk extends Game<SkunkPlayer> {
         new SkunkPlayer(
           "Computer " + (i + 1),
           SkunkConstants.INITIAL_SCORE_VALUE,
-          computer
-        )
+          computer,
+        ),
       );
     }
 
     this.board = this.createSkunkBoard();
     this.die = new RandomGenerator(
       SkunkConstants.MIN_DIE_VALUE,
-      SkunkConstants.MAX_DIE_VALUE
+      SkunkConstants.MAX_DIE_VALUE,
     );
     this.controls = new SkunkControls();
     this.currentRound = SkunkConstants.INITIAL_ROUND_VALUE;
@@ -626,7 +626,7 @@ class Skunk extends Game<SkunkPlayer> {
         " / " +
         Controls.DISPLAY_CONTROLS +
         " for controls): ",
-      handlePlayAgain.bind(this)
+      handlePlayAgain.bind(this),
     );
 
     function handlePlayAgain(this: Skunk) {
@@ -651,7 +651,7 @@ class Skunk extends Game<SkunkPlayer> {
             input,
             this.board,
             this.getPlayers(),
-            this.numberOfDice
+            this.numberOfDice,
           );
           this.playerInput.clearInput();
         }
@@ -667,7 +667,7 @@ class Skunk extends Game<SkunkPlayer> {
     Render.clearLines();
     Render.printNewLine("Goodbye!", "h2");
     this.playerInput.createButton("Start a new game", () =>
-      new SkunkConfig().startSkunk(this.playerInput)
+      new SkunkConfig().startSkunk(this.playerInput),
     );
   }
 
@@ -705,7 +705,7 @@ class Skunk extends Game<SkunkPlayer> {
       (newRound ? "Starting" : "Continuing") +
         " round " +
         (this.currentRound + 1),
-      "h2"
+      "h2",
     );
     Render.printNewLine("================");
 
@@ -787,7 +787,7 @@ class Skunk extends Game<SkunkPlayer> {
               playerScore,
               this.numberOfDice,
               playerStanding,
-              this
+              this,
             );
           }
         }
@@ -809,7 +809,7 @@ class Skunk extends Game<SkunkPlayer> {
       this.currentRolls[i] = this.die.getNewRandom();
       Render.printNewLine(
         "DIE #" + (i + 1) + ": " + this.currentRolls[i] + " ",
-        "false"
+        "false",
       );
     }
   }
@@ -941,7 +941,7 @@ class Skunk extends Game<SkunkPlayer> {
         this.board,
         this.getPlayers(),
         this.controls,
-        this
+        this,
       );
     } else {
       this.runContinue();
@@ -1274,7 +1274,7 @@ class SkunkPlayer extends Player {
     board: Board,
     players: SkunkPlayer[],
     controls: SkunkControls,
-    game: Skunk
+    game: Skunk,
   ) {
     this.playerInput = playerInput;
 
@@ -1286,7 +1286,7 @@ class SkunkPlayer extends Player {
         " / " +
         Controls.DISPLAY_CONTROLS +
         " for controls) ",
-      handleSit.bind(this)
+      handleSit.bind(this),
     );
 
     function handleSit(this: SkunkPlayer) {
@@ -1323,7 +1323,7 @@ class SkunkPlayer extends Player {
     playerScore: number,
     numberOfDice: number,
     playerStanding: boolean,
-    game: Skunk
+    game: Skunk,
   ) {
     let r = new RandomGenerator(0, 1);
 
@@ -1407,7 +1407,7 @@ class SkunkConfig {
         " or " +
         Skunk.MAX_DICE +
         "): ",
-      handleDiceSetup.bind(this)
+      handleDiceSetup.bind(this),
     );
 
     function handleDiceSetup(this: SkunkConfig) {
@@ -1437,7 +1437,7 @@ class SkunkConfig {
         " or " +
         Skunk.MAX_COMPUTER_PLAYERS +
         "): ",
-      handlePlayerSetup.bind(this)
+      handlePlayerSetup.bind(this),
     );
 
     function handlePlayerSetup(this: SkunkConfig) {
@@ -1469,7 +1469,7 @@ class SkunkConfig {
         "Enter " +
         Controls.USE_DEFAULT +
         " for default name): ",
-      handlePlayerNameSetup.bind(this)
+      handlePlayerNameSetup.bind(this),
     );
 
     function handlePlayerNameSetup(this: SkunkConfig) {
@@ -1497,7 +1497,7 @@ class SkunkConfig {
       this.numberOfDice,
       this.numberOfComputerPlayers,
       this.playerInput,
-      this.playerName
+      this.playerName,
     );
 
     skunk.startGame();

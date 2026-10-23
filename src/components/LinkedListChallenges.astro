@@ -12,8 +12,12 @@
     <p>Add something to the Linked List!</p>
   </div>
   <div class="actions">
-    <button type="button" data-action="remove-duplicates">Remove Duplicates</button>
-    <button type="button" data-action="reset">Reset List</button>
+    <button type="button" data-action="remove-duplicates">
+      Remove Duplicates
+    </button>
+    <button type="button" data-action="reset">
+      Reset List
+    </button>
   </div>
 </div>
 
@@ -129,10 +133,12 @@
     render();
   });
 
-  root.querySelector('[data-action="remove-duplicates"]')!.addEventListener("click", () => {
-    list.removeDuplicates();
-    render();
-  });
+  root
+    .querySelector('[data-action="remove-duplicates"]')!
+    .addEventListener("click", () => {
+      list.removeDuplicates();
+      render();
+    });
 
   root.querySelector('[data-action="reset"]')!.addEventListener("click", () => {
     list = new LinkedList<string>();

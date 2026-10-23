@@ -35,11 +35,20 @@ shareUrl.searchParams.set("via", config.twitterHandle.replace(/^@/, ""));
   <main>
     <article class="post">
       <h1>{title}</h1>
-      <Image src={image} alt={imageAltText} layout="constrained" width={900} quality={80} priority />
+      <Image
+        src={image}
+        alt={imageAltText}
+        layout="constrained"
+        width={900}
+        quality={80}
+        priority
+      />
       <p class="post-date">{formatDate(date)}</p>
       <Content />
       <div class="post-share">
-        <a href={shareUrl.href} target="_blank" rel="noreferrer noopener">Share on Twitter</a>
+        <a href={shareUrl.href} target="_blank" rel="noreferrer noopener">
+          Share on Twitter
+        </a>
       </div>
       <Author />
       <Button href="/blog">&larr; Go Back</Button>

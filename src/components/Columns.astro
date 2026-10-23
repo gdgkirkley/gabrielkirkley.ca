@@ -8,7 +8,12 @@ interface Props {
   class?: string;
 }
 
-const { columns = "1fr", mdColumns = columns, gap = "2rem", class: className } = Astro.props;
+const {
+  columns = "1fr",
+  mdColumns = columns,
+  gap = "2rem",
+  class: className,
+} = Astro.props;
 ---
 
 <div

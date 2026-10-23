@@ -9,6 +9,8 @@ const posts = await getPosts();
 <BaseLayout title="Blog" description="Gabe Kirkley's blog">
   <main>
     <h1>Blog</h1>
-    {posts.map(post => <PostPreview post={post} />)}
+    {posts.map(post => (
+      <PostPreview post={post} />
+    ))}
   </main>
 </BaseLayout>

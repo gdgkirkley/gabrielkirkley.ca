@@ -13,7 +13,11 @@ const { x = 0, y = 0, rotation = 0, scale = 1, timing = 150 } = Astro.props;
 const boopTransform = `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`;
 ---
 
-<span class="boop" data-boop-timing={timing} style={{ "--boop-transform": boopTransform }}>
+<span
+  class="boop"
+  data-boop-timing={timing}
+  style={{ "--boop-transform": boopTransform }}
+>
   <slot />
 </span>
 
@@ -45,7 +49,10 @@ const boopTransform = `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${
     el.addEventListener("mouseenter", () => {
       el.classList.add("booped");
       window.clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(() => el.classList.remove("booped"), timing);
+      timeoutId = window.setTimeout(
+        () => el.classList.remove("booped"),
+        timing,
+      );
     });
   }
 </script>

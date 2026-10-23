@@ -1,22 +1,21 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-type Props = (HTMLAttributes<"a"> & { href: string }) | HTMLAttributes<"button">;
+type Props =
+  (HTMLAttributes<"a"> & { href: string }) | HTMLAttributes<"button">;
 
 const { class: className, ...rest } = Astro.props;
 ---
 
-{
-  "href" in rest ? (
-    <a class:list={["button", className]} {...rest}>
-      <slot />
-    </a>
-  ) : (
-    <button class:list={["button", className]} type="button" {...rest}>
-      <slot />
-    </button>
-  )
-}
+{"href" in rest ? (
+  <a class:list={["button", className]} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button class:list={["button", className]} type="button" {...rest}>
+    <slot />
+  </button>
+)}
 
 <style>
   .button {

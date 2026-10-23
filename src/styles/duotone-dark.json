@@ -18,11 +18,7 @@
       }
     },
     {
-      "scope": [
-        "keyword.operator",
-        "constant.numeric",
-        "entity.name.tag"
-      ],
+      "scope": ["keyword.operator", "constant.numeric", "entity.name.tag"],
       "settings": {
         "foreground": "#e09142"
       }
@@ -42,9 +38,7 @@
       }
     },
     {
-      "scope": [
-        "entity.other.attribute-name"
-      ],
+      "scope": ["entity.other.attribute-name"],
       "settings": {
         "foreground": "#c4b9fe"
       }

@@ -4,3 +4,5 @@ package-lock.json
 src/content/posts/01-theatre-stream
 dist
 .astro
+.vercel
+public
