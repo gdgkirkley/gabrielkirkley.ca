@@ -2,22 +2,16 @@
 import "../styles/global.css";
 import config from "../../config/website";
 import Header from "../components/Header.astro";
+import Seo, { type Props as SeoProps } from "../components/Seo.astro";
 
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const { title, description = config.siteDescription } = Astro.props;
-const fullTitle = title ? `${title} | ${config.siteTitle}` : config.siteTitle;
+type Props = SeoProps;
 ---
 
 <html lang={config.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <Seo {...Astro.props} />
     <script is:inline>
       // Apply the saved theme before first paint to avoid a light-mode flash.
       try {

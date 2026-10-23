@@ -75,12 +75,16 @@ from Netlify to Vercel hosting.
 
 ### 4. SEO and meta
 
-- [ ] Create `BaseHead.astro` to replace `seo.js` / `react-helmet` (title template, canonical, OG, Twitter, keywords)
-- [ ] Port JSON-LD from `schema-org.js`
-- [ ] OG images via `getImage()`; default to `Gabe-Headshotbw.jpg`
-- [ ] Sitemap via `@astrojs/sitemap`
-- [ ] Static `public/robots.txt`
-- [ ] Static `manifest.webmanifest` with icons generated from `images/gk.png`
+- [x] `Seo.astro` replaces `seo.js` / `react-helmet` (title template, canonical, OG, Twitter, keywords, icons); `BaseLayout` takes its props
+- [x] Canonical URL is each page's own URL (Gatsby pointed every non-post page at the homepage)
+- [x] No trailing slashes, matching the canonical URLs/sitemap Gatsby published: `trailingSlash: "never"` + `vercel.json` redirect
+- [x] Port JSON-LD from `schema-org.js`, fixing page URL, post image, and `datePublished` (all were wrong/missing)
+- [x] OG images via `getImage()` (max 1200px JPEG); default `Gabe-Headshotbw.jpg`
+- [x] `excerpt()` helper replaces Gatsby's 160-char `excerpt` for post descriptions
+- [x] Sitemap via `@astrojs/sitemap`; `/sitemap.xml` → `/sitemap-index.xml` redirect in `vercel.json`
+- [x] Static `public/robots.txt` pointing at the new sitemap
+- [x] Static `manifest.webmanifest`, favicon, apple-touch-icon, and icons from `images/gk.png` (128px source; larger sizes are upscaled, as before)
+- [ ] Verify the `vercel.json` redirects on a preview deploy
 
 ### 5. Pages and routes
 
