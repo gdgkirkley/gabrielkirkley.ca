@@ -99,14 +99,19 @@ from Netlify to Vercel hosting.
 - [x] Convert `src/lib/dates.js` to TypeScript; delete unused `src/data/portfolio.js` and `techskill.js`
 - [x] Delete ported Gatsby sources (`legacy/`, `src/templates/`, `src/hooks/`, old components, `gatsby-*.js`) and unused packages
 - [x] URL check against the live sitemap: same pages; Gatsby's duplicate `/portfolio/x/x/` pages redirect to `/portfolio/x` via `vercel.json`
-- [ ] Visual comparison of every page against the live site (browser extension disconnected mid-step)
+- [x] Visual comparison against the live site (done during step 6)
 
 ### 6. MDX and markdown features
 
-- [ ] Replace `prism-react-renderer` CodeBlock with built-in Shiki; pick a theme matching the `#061526` background
-- [ ] Bare Twitter/YouTube URL embeds via `astro-embed` (replaces `gatsby-remark-embedder` and `gatsby-plugin-twitter`)
-- [ ] Re-add `remark-unwrap-images` (current major) to MDX remark plugins
-- [ ] Fix MDX 1 → MDX 3 syntax issues flagged by the build
+- [x] Replace `prism-react-renderer` CodeBlock with Shiki, using a custom theme with prism's duotone-dark palette (what the old site actually rendered) and CSS line numbers
+- [x] Bare Twitter/YouTube URL embeds via `astro-embed` (replaces `gatsby-remark-embedder` and `gatsby-plugin-twitter`); tweets are static, no Twitter JS
+- [x] Posts renamed `.md` → `.mdx` (astro-embed only works in MDX)
+- [x] Use the `unified()` Markdown processor (Astro 7 defaults to Sätteri; astro-embed needs remark)
+- [x] `rehype-unwrap-images` (successor to `remark-unwrap-images`)
+- [x] MDX 3 parses all content; no syntax fixes needed
+- [x] Fix missing spaces next to links (Astro's HTML compression drops newline whitespace) on home, about, and author box
+- [x] Visual comparison with the live site: header, home, portfolio, code blocks, embeds (desktop and mobile)
+- [ ] Decide what to do with the deleted @gelliottmorris tweet in "How I Learned to Code" (now renders nothing)
 
 ### 7. Interactive islands
 
@@ -137,7 +142,7 @@ from Netlify to Vercel hosting.
 
 - [x] Remove `gatsby-*.js`, `legacy/`, `src/templates/`, and `src/hooks/` (done in step 5)
 - [x] Remove Gatsby packages and React-era libraries no longer imported (done in steps 1 and 5)
-- [ ] Remove `styled-components`, `prism-react-renderer`, and their types once steps 6–7 drop the last users
+- [ ] Remove `styled-components` and its types once step 7 drops the last users
 - [ ] Delete images in `images/` that nothing references
 - [ ] Upgrade Prettier, add `prettier-plugin-astro`, and add `astro,mdx` to the `format` glob
 - [ ] Update README

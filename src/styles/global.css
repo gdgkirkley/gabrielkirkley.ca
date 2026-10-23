@@ -219,11 +219,26 @@ pre {
   }
 }
 
-.highlight-line {
-  background-color: rgba(201, 167, 255, 0.2);
-  margin: 0 -10px;
-  padding: 0 5px;
-  border-left: 5px solid #c9a7ff;
+/* Shiki code blocks: padding and line numbers, matching the old prism-react-renderer CodeBlock. */
+.astro-code {
+  padding: 20px;
+
+  & code {
+    padding: 0;
+    background: none;
+    color: inherit;
+    border-radius: 0;
+    counter-reset: line;
+  }
+
+  & .line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 2em;
+    user-select: none;
+    opacity: 0.3;
+  }
 }
 
 .visually-hidden {
