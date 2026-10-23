@@ -1,0 +1,91 @@
+---
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
+import config from "../../config/website";
+import defaultImage from "../../images/Gabe-Headshotbw.jpg";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: ImageMetadata;
+  keywords?: string[];
+  /** Set for blog posts: switches og:type to article and adds BlogPosting JSON-LD. */
+  article?: { datePublished: Date; author: string };
+}
+
+const {
+  title,
+  description = config.siteDescription,
+  image = defaultImage,
+  keywords = [],
+  article,
+} = Astro.props;
+
+const site = Astro.site!;
+const fullTitle = title ? `${title} | ${config.siteTitle}` : config.siteTitle;
+const canonical = new URL(Astro.url.pathname, site).href;
+const socialImage = await getImage({
+  src: image,
+  width: Math.min(1200, image.width),
+  format: "jpg",
+});
+const imageUrl = new URL(socialImage.src, site).href;
+const keywordContent = keywords.length
+  ? keywords.join(",")
+  : "gabriel kirkley,kirkley,developer,javascript,nodejs,react,theatre";
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  url: site.href,
+  name: config.siteTitle,
+  alternateName: config.siteTitleAlt,
+};
+
+const schema = article
+  ? [
+      website,
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        url: canonical,
+        headline: title,
+        image: imageUrl,
+        description,
+        author: { "@type": "Person", name: article.author },
+        publisher: { "@type": "Person", name: config.author, url: site.href },
+        mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+        datePublished: article.datePublished.toISOString(),
+      },
+    ]
+  : [website];
+---
+
+<title>{fullTitle}</title>
+<link rel="canonical" href={canonical} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywordContent} />
+<meta name="image" content={imageUrl} />
+
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={config.ogSiteName} />
+<meta property="og:locale" content={config.ogLanguage} />
+<meta property="og:title" content={title ?? config.siteTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:image" content={imageUrl} />
+{article && <meta property="article:published_time" content={article.datePublished.toISOString()} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content={config.twitterHandle} />
+<meta name="twitter:title" content={title ?? config.siteTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<meta name="theme-color" content="#663399" />
+
+<script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />

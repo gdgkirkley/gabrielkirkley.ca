@@ -1,0 +1,51 @@
+---
+// Hover "boop" from Josh W. Comeau: https://www.joshwcomeau.com/react/boop/
+// Briefly applies a transform on mouseenter, then springs back.
+interface Props {
+  x?: number;
+  y?: number;
+  rotation?: number;
+  scale?: number;
+  timing?: number;
+}
+
+const { x = 0, y = 0, rotation = 0, scale = 1, timing = 150 } = Astro.props;
+const boopTransform = `translate(${x}px, ${y}px) rotate(${rotation}deg) scale(${scale})`;
+---
+
+<span class="boop" data-boop-timing={timing} style={{ "--boop-transform": boopTransform }}>
+  <slot />
+</span>
+
+<style>
+  .boop {
+    display: inline-block;
+    backface-visibility: hidden;
+    transition: transform 300ms cubic-bezier(0.34, 1.8, 0.64, 1);
+  }
+
+  .boop.booped {
+    transform: var(--boop-transform);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .boop {
+      transition: none;
+    }
+    .boop.booped {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  for (const el of document.querySelectorAll<HTMLElement>(".boop")) {
+    const timing = Number(el.dataset.boopTiming);
+    let timeoutId: number | undefined;
+    el.addEventListener("mouseenter", () => {
+      el.classList.add("booped");
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => el.classList.remove("booped"), timing);
+    });
+  }
+</script>

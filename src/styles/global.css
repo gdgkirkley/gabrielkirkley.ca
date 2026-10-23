@@ -1,0 +1,252 @@
+@import "./fonts.css";
+
+:root {
+  --grey1: #222222;
+  --grey2: #3b3b3b;
+  --grey3: #535353;
+  --grey4: #6e6e6e;
+  --grey5: #878787;
+  --grey6: #a1a1a1;
+  --grey7: #bababa;
+  --grey8: #d4d4d4;
+  --grey9: #ededed;
+  --grey10: #f6f6f6;
+
+  --primary1: #0a2540;
+  --primary2: #200a5c;
+  --primary3: #52419c;
+  --primary5: #635bff;
+  --primary9: #dbcffc;
+
+  --highlight: #02bcf5;
+  --highlight2: #0073e6;
+  --highlight3: #003ab9;
+  --highlight4: #002c59;
+
+  --accent: #be4242;
+  --accent5: #c5d7c0;
+
+  --white: #fff;
+
+  --portfolioBg: #45a9de;
+  --codeColor: #3a13d6;
+
+  --background: var(--grey10);
+  --headerBg: var(--white);
+  --footerBg: var(--primary1);
+
+  --linkColor: #3a13d6;
+  --navLinkColor: var(--grey3);
+  --titleColor: var(--primary1);
+  --textColor: #425466;
+  --boldColor: var(--accent);
+
+  --navLinkUnderlineInactiveColor: var(--white);
+  --navLinkUnderlineActiveColor: var(--accent);
+
+  --buttonColor: var(--white);
+  --buttonBorderColor: var(--primary5);
+  --buttonTextColor: var(--primary5);
+  --buttonHoverColor: var(--primary5);
+  --buttonHoverTextColor: var(--white);
+
+  --level-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --level-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --level-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --level-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --fontSize-smallPrint: 11px;
+  --fontSize-information: 14px;
+  --fontSize-reading: 17px;
+  --fontSize-emphasis: 21px;
+  --fontSize-highLevel: 25px;
+  --fontSize-subHeading: 34px;
+  --fontSize-title: 42px;
+  --fontSize-display: 51px;
+  --fontSize-banner: 68px;
+
+  --maxWidth: 900px;
+  --borderRadius: 4px;
+}
+
+/* Set on <html> by the inline script in BaseLayout before first paint. */
+html.dark-theme {
+  --background: var(--primary1);
+  --textColor: var(--grey10);
+  --titleColor: var(--white);
+  --boldColor: var(--accent);
+  --linkColor: var(--highlight);
+  --navLinkColor: var(--grey10);
+
+  --navLinkUnderlineInactiveColor: var(--highlight4);
+
+  --headerBg: var(--highlight4);
+  --footerBg: var(--highlight4);
+
+  --buttonColor: var(--primary1);
+  --buttonBorderColor: var(--primary5);
+  --buttonTextColor: var(--white);
+  --buttonHoverColor: var(--primary5);
+  --buttonHoverTextColor: var(--white);
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--textColor);
+  line-height: 1.5;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+svg {
+  width: 32px;
+  height: auto;
+  margin: 0px 8px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--linkColor);
+}
+
+nav a {
+  --linkColor: var(--navLinkColor);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  color: var(--titleColor);
+
+  & * {
+    margin-top: 0.5rem;
+  }
+}
+
+h1 {
+  font-size: var(--fontSize-title);
+}
+
+h2 {
+  font-size: var(--fontSize-subHeading);
+}
+
+strong {
+  color: var(--boldColor);
+  font-weight: 600;
+  font-style: italic;
+}
+
+label {
+  color: var(--titleColor);
+}
+
+header {
+  background: var(--headerBg);
+}
+
+main {
+  margin: 2rem auto 4rem;
+  max-width: 90vw;
+  width: var(--maxWidth);
+  z-index: 2;
+}
+
+footer {
+  text-align: center;
+  color: var(--grey10);
+  background: var(--footerBg);
+  padding: 20px 0px;
+  font-weight: 300;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  padding: 2px 4px;
+  background: var(--grey10);
+  color: var(--codeColor);
+  border-radius: 3px;
+}
+
+pre {
+  background-color: #061526;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 10px;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 100%;
+    height: 5px;
+    border-radius: 0 0 5px 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #061526;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+}
+
+/* Shiki code blocks: padding and line numbers, matching the old prism-react-renderer CodeBlock. */
+.astro-code {
+  padding: 20px;
+
+  & code {
+    padding: 0;
+    background: none;
+    color: inherit;
+    border-radius: 0;
+    counter-reset: line;
+  }
+
+  & .line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 2em;
+    user-select: none;
+    opacity: 0.3;
+  }
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

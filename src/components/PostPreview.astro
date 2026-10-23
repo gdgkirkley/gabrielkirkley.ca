@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { formatDate } from "../lib/dates";
+import { excerpt } from "../lib/excerpt";
+import Button from "./Button.astro";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { title, slug, date, image } = post.data;
+---
+
+<article class="preview">
+  <a href={slug} tabindex="-1" aria-hidden="true">
+    <Image src={image} alt={title} width={900} height={400} fit="cover" layout="constrained" />
+  </a>
+  <div>
+    <h2><a href={slug}>{title}</a></h2>
+    <p>{formatDate(date)}</p>
+    <p>{excerpt(post.body)}</p>
+    <Button href={slug} tabindex="-1">Read more &rarr;</Button>
+  </div>
+</article>
+
+<style>
+  .preview {
+    border-bottom: 1px solid var(--accent5);
+    margin-top: 0;
+    padding-bottom: 1rem;
+    display: grid;
+
+    &:first-of-type {
+      margin-top: 1rem;
+    }
+
+    & a {
+      margin: 1rem 1rem 0 0;
+      min-width: 100px;
+    }
+
+    & img {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>

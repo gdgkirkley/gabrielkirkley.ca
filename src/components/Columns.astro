@@ -1,0 +1,32 @@
+---
+interface Props {
+  /** `grid-template-columns` below 768px. */
+  columns?: string;
+  /** `grid-template-columns` from 768px up. Defaults to `columns`. */
+  mdColumns?: string;
+  gap?: string;
+  class?: string;
+}
+
+const { columns = "1fr", mdColumns = columns, gap = "2rem", class: className } = Astro.props;
+---
+
+<div
+  class:list={["columns", className]}
+  style={{ "--columns": columns, "--columns-md": mdColumns, "--gap": gap }}
+>
+  <slot />
+</div>
+
+<style>
+  .columns {
+    display: grid;
+    grid-template-columns: var(--columns);
+    gap: var(--gap);
+    max-width: 100%;
+
+    @media (min-width: 768px) {
+      grid-template-columns: var(--columns-md);
+    }
+  }
+</style>

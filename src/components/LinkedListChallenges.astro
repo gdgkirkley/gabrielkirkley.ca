@@ -1,0 +1,141 @@
+<div class="linked-list">
+  <h2>Linked Lists!</h2>
+  <form class="input">
+    <label for="new-node">Add a new value to the list</label>
+    <div class="inline-input">
+      <input id="new-node" type="text" />
+      <button type="submit">Add</button>
+    </div>
+  </form>
+
+  <div class="display" aria-live="polite">
+    <p>Add something to the Linked List!</p>
+  </div>
+  <div class="actions">
+    <button type="button" data-action="remove-duplicates">Remove Duplicates</button>
+    <button type="button" data-action="reset">Reset List</button>
+  </div>
+</div>
+
+<style>
+  .input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & label {
+      width: 100%;
+      margin: 8px 0px;
+      font-weight: 600;
+      color: var(--grey3);
+    }
+  }
+
+  .inline-input {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    & input {
+      flex: 1;
+      padding: 1em;
+      border: 1px solid var(--grey3);
+      font-size: 17px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+
+      & input {
+        border-right: none;
+      }
+
+      & button {
+        border-left: none;
+      }
+    }
+  }
+
+  button {
+    background: #866bff;
+    padding: 1em;
+    border: 1px solid var(--grey3);
+    font-size: 17px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+
+    &:hover {
+      background: #8e79ec;
+      cursor: pointer;
+    }
+  }
+
+  .display {
+    background: white;
+    margin: 10px 0px;
+    border-radius: var(--borderRadius);
+    padding: 20px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    & button {
+      margin-top: 8px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+</style>
+
+<script>
+  import { LinkedList } from "../scripts/linked-list";
+
+  const root = document.querySelector<HTMLElement>(".linked-list")!;
+  const form = root.querySelector("form")!;
+  const input = root.querySelector<HTMLInputElement>("#new-node")!;
+  const display = root.querySelector<HTMLElement>(".display")!;
+
+  let list = new LinkedList<string>();
+
+  const render = () => {
+    const items = list.iterateList();
+    if (!items.length) {
+      const empty = document.createElement("p");
+      empty.textContent = "Add something to the Linked List!";
+      display.replaceChildren(empty);
+      return;
+    }
+    display.replaceChildren(
+      ...items.map((item, i) => {
+        const span = document.createElement("span");
+        span.textContent = i + 1 === items.length ? item : `${item} -> `;
+        return span;
+      }),
+    );
+  };
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    if (!input.value) return;
+    list.add(input.value);
+    input.value = "";
+    render();
+  });
+
+  root.querySelector('[data-action="remove-duplicates"]')!.addEventListener("click", () => {
+    list.removeDuplicates();
+    render();
+  });
+
+  root.querySelector('[data-action="reset"]')!.addEventListener("click", () => {
+    list = new LinkedList<string>();
+    render();
+  });
+</script>
