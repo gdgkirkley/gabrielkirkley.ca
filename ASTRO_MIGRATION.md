@@ -84,7 +84,7 @@ from Netlify to Vercel hosting.
 - [x] Sitemap via `@astrojs/sitemap`; `/sitemap.xml` → `/sitemap-index.xml` redirect in `vercel.json`
 - [x] Static `public/robots.txt` pointing at the new sitemap
 - [x] Static `manifest.webmanifest`, favicon, apple-touch-icon, and icons from `images/gk.png` (128px source; larger sizes are upscaled, as before)
-- [ ] Verify the `vercel.json` redirects on a preview deploy (see step 8)
+- [x] Verify the `vercel.json` redirects on a preview deploy (see step 8)
 
 ### 5. Pages and routes
 
@@ -134,7 +134,7 @@ from Netlify to Vercel hosting.
 - [x] Visual check against the live site: home, about, blog list, posts, portfolio and entries, contact, 404 (desktop and mobile; dark mode on post, author box, and portfolio)
 - [x] Embeds, code blocks, Skunk game, and linked list work
 - [x] Vercel preview builds succeed on every commit (Node version is fine)
-- [ ] Verify `vercel.json` redirects (`/blog/` → `/blog`, `/sitemap.xml`, `/portfolio/x/x`) on the preview — blocked by Vercel deployment protection
+- [x] Verify `vercel.json` redirects on the preview: `/blog/` → `/blog`, `/sitemap.xml` → `/sitemap-index.xml`, `/portfolio/x/x` → `/portfolio/x`; custom 404 served with status 404
 
 ### 9. Launch on Vercel
 
