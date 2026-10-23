@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "prettier": "2.2.1",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2",
     "typescript": "^6.0.3"
   },
   "keywords": [
@@ -28,8 +29,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "check": "astro check"
+    "format": "prettier --write .",
+    "check": "astro check",
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
