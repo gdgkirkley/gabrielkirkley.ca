@@ -164,8 +164,7 @@ Netlify to Vercel hosting.
 - [x] Fix missing spaces next to links (Astro's HTML compression drops newline
       whitespace) on home, about, and author box
 - [x] Visual comparison with the live site: code blocks and embeds
-- [ ] Decide what to do with the deleted @gelliottmorris tweet in "How I Learned
-      to Code" (now renders nothing)
+- [x] Remove the deleted @gelliottmorris tweet from "How I Learned to Code"
 
 ### 7. Interactive components
 
@@ -209,7 +208,7 @@ Netlify to Vercel hosting.
 
 ### 9. Launch on Vercel
 
-- [ ] Merge `astro-migration` → `main`
+- [x] Merge `astro-migration` → `main` (PR #4)
 - [x] Add `gabrielkirkley.ca` and `www` as Vercel domains (`www` → apex 308);
       DNS moved to Vercel
 - [x] Verify production: HTTPS (Let's Encrypt), HTTP → HTTPS, `www` → apex,
@@ -223,10 +222,11 @@ Netlify to Vercel hosting.
 - [x] Remove Gatsby packages and React-era libraries no longer imported (done in
       steps 1 and 5)
 - [x] Remove `styled-components`, React, and their types (done in step 7)
-- [ ] Delete images in `images/` that nothing references
-- [ ] Upgrade Prettier, add `prettier-plugin-astro`, and add `astro,mdx` to the
-      `format` glob
-- [ ] Update README
+- [x] Delete images nothing references (10 files, ~58 MB); keep `gk.png` as the
+      icon source
+- [x] Upgrade Prettier to 3, add `prettier-plugin-astro`, and format the repo
+      (`npm run format` / `format:check`)
+- [x] Update README and the post frontmatter template
 
 ## Notes
 
