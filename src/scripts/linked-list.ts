@@ -1,14 +1,37 @@
-import { ListNode } from "./ListNode";
+export class ListNode<T> {
+  private _next: ListNode<T> | null = null;
+  private _value!: T;
 
-export class LinkedList {
-  _head;
-  _count;
+  constructor(value: T) {
+    this.value = value;
+  }
+
+  get next(): ListNode<T> | null {
+    return this._next;
+  }
+
+  set next(node: ListNode<T> | null) {
+    this._next = node;
+  }
+
+  get value(): T {
+    return this._value;
+  }
+
+  set value(value: T) {
+    this._value = value;
+  }
+}
+
+export class LinkedList<T> {
+  private _head: ListNode<T> | null = null;
+  private _count: number;
 
   constructor() {
     this._count = 0;
   }
 
-  add(value) {
+  add(value: T) {
     const node = new ListNode(value);
 
     if (!this.head) {
@@ -27,13 +50,13 @@ export class LinkedList {
     this.incrementCount();
   }
 
-  iterateList() {
-    const listItems = [];
+  iterateList(): T[] {
+    const listItems: T[] = [];
     let current = this.head;
 
     for (let i = 0; i < this.count; i++) {
-      listItems.push(current.value);
-      current = current.next;
+      listItems.push(current!.value);
+      current = current!.next;
     }
 
     return listItems;
@@ -43,27 +66,27 @@ export class LinkedList {
     let it = this.count;
     let current = this.head;
     let prev = this.head;
-    let previouslySeen = new Map();
+    let previouslySeen = new Map<T, ListNode<T>>();
 
     for (let i = 0; i < it; i++) {
-      if (previouslySeen.has(current.value)) {
-        if (current.next) {
-          prev.next = current.next;
+      if (previouslySeen.has(current!.value)) {
+        if (current!.next) {
+          prev!.next = current!.next;
         } else {
-          prev.next = null;
+          prev!.next = null;
         }
 
         this.decrementCount();
       } else {
-        previouslySeen.set(current.value, current);
+        previouslySeen.set(current!.value, current!);
         prev = current;
       }
 
-      current = current.next;
+      current = current!.next;
     }
   }
 
-  removeNode(node) {
+  removeNode(node: ListNode<T>) {
     let current = this.head;
     let prev = this.head;
 
@@ -72,7 +95,7 @@ export class LinkedList {
         if (current === this.head) {
           this.head = current.next;
         } else {
-          prev.next = current.next;
+          prev!.next = current.next;
         }
 
         this.decrementCount();
@@ -80,7 +103,7 @@ export class LinkedList {
       }
 
       prev = current;
-      current = current.next;
+      current = current!.next;
     }
   }
 
@@ -89,17 +112,17 @@ export class LinkedList {
     let list = "";
 
     for (let i = 0; i < this.count; i++) {
-      list += check.value + " ";
-      check = check.next;
+      list += check!.value + " ";
+      check = check!.next;
     }
     console.log(list);
   }
 
-  set head(node) {
+  set head(node: ListNode<T> | null) {
     this._head = node;
   }
 
-  get head() {
+  get head(): ListNode<T> | null {
     return this._head;
   }
 

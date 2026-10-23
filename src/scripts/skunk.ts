@@ -1,8 +1,8 @@
-let rootDiv = null;
-let gameRoot = null;
+let rootDiv: Element | null = null;
+let gameRoot!: HTMLDivElement;
 
 function setUpGame() {
-  rootDiv = document.querySelector("#game");
+  rootDiv = document.querySelector("#game")!;
 
   gameRoot = document.createElement("div");
   gameRoot.classList.add("game-root");
@@ -15,9 +15,9 @@ class GameLibrary {
   SKUNK_ID = 1;
   TIC_TAC_TOE_ID = 2;
 
-  playerInput;
-  choosing;
-  gameRoot;
+  playerInput: Input;
+  choosing: boolean;
+  gameRoot?: HTMLDivElement;
 
   constructor() {
     this.playerInput = new Input();
@@ -50,10 +50,10 @@ class Render {
    * @param {string} line the string or HTML string to add
    * @param {string} element the element tag to add to the DOM. Defaults to <p>
    */
-  static printNewLine(line, element = "p") {
+  static printNewLine(line?: string, element = "p"): HTMLElement {
     const newLine = document.createElement(element);
 
-    newLine.innerHTML = line;
+    newLine.innerHTML = String(line);
 
     gameRoot.appendChild(newLine);
 
@@ -64,7 +64,7 @@ class Render {
    * Add a new node to the DOM
    * @param {HTMLElement} node an HTMLElement to add to the game root
    */
-  static addNode(node) {
+  static addNode(node: HTMLElement) {
     this.isNode(node);
 
     gameRoot.appendChild(node);
@@ -75,8 +75,8 @@ class Render {
    * @param {string} line a string of existing text to search for in the DOM
    * @param {string} textToAdd a string to add to the end of the found string
    */
-  static addToLine(line, textToAdd) {
-    let node = this.getLine(line);
+  static addToLine(line: string, textToAdd: string) {
+    let node = this.getLine(line)!;
     node.textContent += textToAdd;
   }
 
@@ -85,7 +85,7 @@ class Render {
    * @param {HTMLElement} node the element to add to
    * @param {string} textToAdd the text to add to the element
    */
-  static addToNode(node, textToAdd) {
+  static addToNode(node: HTMLElement, textToAdd: string) {
     this.isNode(node);
 
     node.textContent += textToAdd;
@@ -102,7 +102,7 @@ class Render {
    * Search the DOM for an element containing text. Uses XPath.
    * @param {string} search the text to search for within the DOM
    */
-  static getLine(search) {
+  static getLine(search: string): Node | null {
     let nodes = document.evaluate(
       "//p[contains(.,'" + search + "')]",
       gameRoot,
@@ -117,8 +117,8 @@ class Render {
    * Remove an element from the DOM by its text
    * @param {string} search the text of an element to remove
    */
-  static clearLine(search) {
-    let node = this.getLine(search);
+  static clearLine(search: string) {
+    let node = this.getLine(search)!;
 
     gameRoot.removeChild(node);
   }
@@ -127,7 +127,7 @@ class Render {
    * Remove an element from the game root
    * @param {HTMLElement} node the HTML element to remove
    */
-  static clearNode(node) {
+  static clearNode(node: HTMLElement) {
     this.isNode(node);
 
     gameRoot.removeChild(node);
@@ -137,23 +137,23 @@ class Render {
    * Check if a passed object is an HTMLElement
    * @param {object} o the object to evaluate
    */
-  static isNode(o) {
+  static isNode(o: unknown) {
     if (!(o instanceof HTMLElement)) {
       throw new Error(o + " is not a valid HTMLElement");
     }
   }
 }
 
-class Game {
-  players;
-  playing;
+class Game<P extends Player = Player> {
+  players: P[];
+  playing: boolean;
 
   constructor() {
     this.playing = true;
     this.players = [];
   }
 
-  setPlaying(playing) {
+  setPlaying(playing: boolean) {
     this.playing = playing;
   }
 
@@ -161,11 +161,11 @@ class Game {
     return this.playing;
   }
 
-  addPlayer(player) {
+  addPlayer(player: P) {
     this.players.push(player);
   }
 
-  setPlayers(players) {
+  setPlayers(players: P[]) {
     if (typeof players === "object") {
       this.players = players;
     }
@@ -178,17 +178,17 @@ class Game {
   displayAllScores() {
     Render.printNewLine("Scores <br /> -------");
 
-    for (let player in this.players) {
+    for (let player of this.players) {
       Render.printNewLine(player.getName() + ": " + player.getScore());
     }
   }
 
-  getPlayerByName(name) {
+  getPlayerByName(name: string): P | null {
     if (!name) {
       throw new Error("Invalid name");
     }
 
-    let foundPlayer = null;
+    let foundPlayer: P | null = null;
 
     this.players.map(player => {
       if (player.getName().toLowerCase() === name.toLowerCase()) {
@@ -202,11 +202,11 @@ class Game {
 }
 
 class Player {
-  score;
-  computer;
-  name;
+  score: Score;
+  computer: boolean;
+  name: string;
 
-  constructor(name, startingScore, computer) {
+  constructor(name: string, startingScore: number, computer: boolean) {
     this.score = new Score(startingScore);
     this.name = name;
     this.computer = computer;
@@ -228,20 +228,20 @@ class Player {
     return this.name;
   }
 
-  setName(name) {
+  setName(name: string) {
     this.name = name;
   }
 }
 
 class Score {
-  score;
+  score: number;
 
-  constructor(startingScore) {
+  constructor(startingScore: number) {
     this.checkScore(startingScore);
     this.score = startingScore;
   }
 
-  incrementScore(scoreToAdd) {
+  incrementScore(scoreToAdd: number) {
     if (scoreToAdd < 0) {
       throw new Error("Score " + scoreToAdd + " is invalid for this method.");
     }
@@ -251,7 +251,7 @@ class Score {
     this.setScore(newScore);
   }
 
-  decrementScore(scoreToSubtract) {
+  decrementScore(scoreToSubtract: number) {
     if (scoreToSubtract < 0) {
       throw new Error(
         "Score " + scoreToSubtract + " is invalid for this method."
@@ -269,13 +269,13 @@ class Score {
     return this.score;
   }
 
-  setScore(score) {
+  setScore(score: number) {
     this.checkScore(score);
 
     this.score = score;
   }
 
-  checkScore(startingScore) {
+  checkScore(startingScore: number) {
     if (startingScore < 0) {
       throw new Error("Score cannot start below 0");
     }
@@ -294,7 +294,7 @@ const Controls = {
 };
 
 class SkunkControls {
-  runOtherControls(input, board, players) {
+  runOtherControls(input: string, board: Board, players: Player[]) {
     if (null == input) {
       Render.printNewLine("Hmmm... input can't be null");
     }
@@ -304,7 +304,7 @@ class SkunkControls {
     } else if (input === Controls.DISPLAY_CONTROLS) {
       this.listControls();
     } else if (input === Controls.DISPLAY_SCORES) {
-      for (let player in players) {
+      for (let player of players) {
         Render.printNewLine(player.getName() + ": " + player.getScoreValue());
       }
     } else if (input === Controls.DISPLAY_RULES) {
@@ -327,7 +327,7 @@ class SkunkControls {
     Render.printNewLine();
   }
 
-  listRules(numberOfDice) {
+  listRules(numberOfDice: number) {
     Render.printNewLine(
       "There are " +
         Skunk.ROUNDS +
@@ -374,11 +374,11 @@ class SkunkControls {
 }
 
 class RandomGenerator {
-  value;
-  min;
-  max;
+  value?: number;
+  min: number;
+  max: number;
 
-  constructor(min, max) {
+  constructor(min: number, max: number) {
     this.min = min;
     this.max = max;
   }
@@ -393,10 +393,10 @@ class RandomGenerator {
 }
 
 class Input {
-  textbox;
-  input;
-  button;
-  hasInput;
+  textbox: HTMLInputElement | null;
+  input: string;
+  button: HTMLButtonElement | null;
+  hasInput: boolean;
 
   constructor() {
     this.textbox = null;
@@ -405,14 +405,14 @@ class Input {
     this.hasInput = false;
   }
 
-  createInput(message, callback) {
+  createInput(message: string, callback: () => void) {
     Render.printNewLine(message);
     this.textbox = document.createElement("input");
     gameRoot.appendChild(this.textbox);
     this.button = document.createElement("button");
     this.button.textContent = "Go";
     this.button.addEventListener("click", () => {
-      this.input = this.textbox.value;
+      this.input = this.textbox!.value;
       callback();
     });
     gameRoot.appendChild(this.button);
@@ -420,7 +420,7 @@ class Input {
     return true;
   }
 
-  createButton(message, callback) {
+  createButton(message: string, callback: () => void) {
     this.button = document.createElement("button");
     this.button.textContent = message;
     this.button.addEventListener("click", () => {
@@ -448,26 +448,26 @@ class Input {
 
   clearInput() {
     this.hasInput = false;
-    this.textbox.value = "";
+    this.textbox!.value = "";
     this.input = "";
   }
 
-  removeListener(callback) {
-    this.button.removeEventListener("click", () => {
-      this.input = this.textbox.value;
-      callback();
+  removeListener(callback?: () => void) {
+    this.button!.removeEventListener("click", () => {
+      this.input = this.textbox!.value;
+      callback!();
     });
   }
 
-  removeButtonListener(callback) {
-    this.button.removeEventListener("click", () => {
+  removeButtonListener(callback: () => void) {
+    this.button!.removeEventListener("click", () => {
       callback();
     });
   }
 
   removeInput() {
-    Render.clearNode(this.textbox);
-    Render.clearNode(this.button);
+    Render.clearNode(this.textbox!);
+    Render.clearNode(this.button!);
   }
 }
 
@@ -488,7 +488,7 @@ const SkunkConstants = {
   DOUBLE_SKUNK_ODDS: 0.03125,
 };
 
-class Skunk extends Game {
+class Skunk extends Game<SkunkPlayer> {
   static get MIN_DICE() {
     return SkunkConstants.MIN_DICE;
   }
@@ -532,18 +532,23 @@ class Skunk extends Game {
     return SkunkConstants.DOUBLE_SKUNK_ODDS;
   }
 
-  numberOfDice;
-  numberOfComputerPlayers;
-  die;
-  currentRound;
-  playerInput;
-  currentRolls;
-  board;
-  controls;
-  playerName;
-  roundScore;
+  numberOfDice: number;
+  numberOfComputerPlayers: number;
+  die: RandomGenerator;
+  currentRound: number;
+  playerInput: Input;
+  currentRolls: number[];
+  board: Board;
+  controls: SkunkControls;
+  playerName: string;
+  roundScore: number;
 
-  constructor(numberofDice, numberOfComputerPlayers, playerInput, playerName) {
+  constructor(
+    numberofDice: number,
+    numberOfComputerPlayers: number,
+    playerInput: Input,
+    playerName: string
+  ) {
     super();
 
     if (!playerInput) {
@@ -614,7 +619,7 @@ class Skunk extends Game {
 
     Render.clearLines();
 
-    if (winningPlayer.getName() === this.playerName) {
+    if (winningPlayer!.getName() === this.playerName) {
       Render.printNewLine("YOU WIN!!!!", "h2");
     } else {
       Render.printNewLine("You lost...", "h2");
@@ -633,7 +638,7 @@ class Skunk extends Game {
       handlePlayAgain.bind(this)
     );
 
-    function handlePlayAgain() {
+    function handlePlayAgain(this: Skunk) {
       if (this.playerInput.hasNext()) {
         let input = this.playerInput.getStringInput();
 
@@ -656,8 +661,8 @@ class Skunk extends Game {
     }
   }
 
-  getWinningPlayer() {
-    let winningPlayer = null;
+  getWinningPlayer(): SkunkPlayer | null {
+    let winningPlayer: SkunkPlayer | null = null;
 
     this.getPlayers().map(player => {
       if (null === winningPlayer) {
@@ -673,7 +678,7 @@ class Skunk extends Game {
     return winningPlayer;
   }
 
-  async playSkunkRound(newRound) {
+  async playSkunkRound(newRound: boolean) {
     let playingRound = true;
 
     if (this.areAllPlayersSitting() && newRound) {
@@ -716,8 +721,8 @@ class Skunk extends Game {
         }
       }
     } else {
-      if (this.numberOfDice === this.MAX_DICE && triple) {
-        score = this.TRIPLE_SCORE;
+      if (this.numberOfDice === Skunk.MAX_DICE && triple) {
+        score = Skunk.TRIPLE_SCORE;
       }
 
       this.scorePlayers(score);
@@ -741,7 +746,7 @@ class Skunk extends Game {
     }
     this.playerInput.createButton("Continue?", continueRound.bind(this));
 
-    function continueRound() {
+    function continueRound(this: Skunk) {
       let newRound;
       if (this.areAllPlayersSitting()) {
         if (this.currentRound + 1 === SkunkConstants.ROUNDS) {
@@ -757,7 +762,7 @@ class Skunk extends Game {
   }
 
   runChoices() {
-    let player = this.getPlayerByName(this.playerName);
+    let player = this.getPlayerByName(this.playerName)!;
     let playerScore = player.getScoreValue();
     let playerStanding = player.isStanding();
 
@@ -795,13 +800,12 @@ class Skunk extends Game {
       this.currentRolls[i] = this.die.getNewRandom();
       Render.printNewLine(
         "DIE #" + (i + 1) + ": " + this.currentRolls[i] + " ",
-        false,
-        "h3"
+        "false"
       );
     }
   }
 
-  sleep(ms) {
+  sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
@@ -871,7 +875,7 @@ class Skunk extends Game {
     return allSitting;
   }
 
-  scorePlayers(score) {
+  scorePlayers(score: number) {
     this.getPlayers().map(player => {
       if (player instanceof SkunkPlayer) {
         let skunkPlayer = player;
@@ -885,7 +889,7 @@ class Skunk extends Game {
     });
   }
 
-  skunkPlayersRound(roundScore) {
+  skunkPlayersRound(roundScore: number) {
     this.getPlayers().map(player => {
       if (player.isStanding()) {
         let score = player.getScore();
@@ -919,7 +923,7 @@ class Skunk extends Game {
   }
 
   playerChoice() {
-    let player = this.getPlayerByName(this.playerName);
+    let player = this.getPlayerByName(this.playerName)!;
 
     if (player.isStanding()) {
       player.checkPlayerStandChoice(
@@ -948,7 +952,7 @@ class Skunk extends Game {
     return board;
   }
 
-  updateBoard(roundScore) {
+  updateBoard(roundScore: number) {
     let rowString = "";
     let scoreString = "";
 
@@ -978,11 +982,11 @@ class Board {
   ROW_DIVIDER = "-";
   EXTRA_SPACE = 1;
 
-  columns;
-  rows;
-  board;
+  columns: number;
+  rows: number;
+  board: string[][];
 
-  constructor(rows, columns) {
+  constructor(rows: number, columns: number) {
     if (columns < 0) {
       throw new Error("Invalid columns");
     }
@@ -1053,7 +1057,7 @@ class Board {
     }
   }
 
-  drawColumns(rowIndex) {
+  drawColumns(rowIndex: number) {
     let columnString = "";
     for (let i = 0; i < this.columns; i++) {
       let longest = this.getLongestForColumn(i);
@@ -1083,13 +1087,13 @@ class Board {
     Render.printNewLine(columnString);
   }
 
-  checkFinalRow(i) {
+  checkFinalRow(i: number) {
     if (i === this.columns - 1) {
       Render.printNewLine("");
     }
   }
 
-  getLongestForColumn(columnIndex) {
+  getLongestForColumn(columnIndex: number) {
     if (
       this.board[0][columnIndex] === null ||
       this.board[0][columnIndex] === undefined
@@ -1138,7 +1142,7 @@ class Board {
     return lengthOfRows;
   }
 
-  setPosition(row, column, data) {
+  setPosition(row: number, column: number, data: string) {
     this.checkBounds(column, row);
 
     if (!data) {
@@ -1148,7 +1152,7 @@ class Board {
     this.board[row][column] = data;
   }
 
-  getPosition(column, row) {
+  getPosition(column: number, row: number) {
     this.checkBounds(column, row);
 
     return this.board[row][column];
@@ -1170,7 +1174,7 @@ class Board {
     }
   }
 
-  checkBounds(column, row) {
+  checkBounds(column: number, row: number) {
     if (column < 0 || column > this.columns) {
       throw new Error("Column " + column + " doesn't exist.");
     }
@@ -1192,9 +1196,9 @@ class SkunkPlayer extends Player {
   DOUBLE_SKUNK_ODDS = 0.03125;
   TRIPLE_ODDS = 0.0278;
 
-  standing;
-  roundScore;
-  playerInput;
+  standing: boolean;
+  roundScore: Score;
+  playerInput!: Input;
 
   /**
    * Create a player for the game of SKUNK and set up a new
@@ -1203,7 +1207,7 @@ class SkunkPlayer extends Player {
    * @param startingScore - the starting score of the player
    * @param computer      - is the player playable or computer controlled
    */
-  constructor(name, startingScore, computer) {
+  constructor(name: string, startingScore: number, computer: boolean) {
     super(name, startingScore, computer);
 
     this.standing = true;
@@ -1215,7 +1219,7 @@ class SkunkPlayer extends Player {
    * Set the round score value for this player
    * @param score - the value of the round score for this player
    */
-  setRoundScore(score) {
+  setRoundScore(score: number) {
     this.roundScore.setScore(score);
   }
 
@@ -1239,7 +1243,7 @@ class SkunkPlayer extends Player {
    * Set whether the player is standing or sitting
    * @param standing - if the player is standing
    */
-  setStanding(standing) {
+  setStanding(standing: boolean) {
     this.standing = standing;
   }
 
@@ -1256,7 +1260,13 @@ class SkunkPlayer extends Player {
    * @param playerInput - the player input object
    * @return true if the player would like to remain standing
    */
-  checkPlayerStandChoice(playerInput, board, players, controls, game) {
+  checkPlayerStandChoice(
+    playerInput: Input,
+    board: Board,
+    players: SkunkPlayer[],
+    controls: SkunkControls,
+    game: Skunk
+  ) {
     this.playerInput = playerInput;
 
     this.playerInput.createInput(
@@ -1270,7 +1280,7 @@ class SkunkPlayer extends Player {
       handleSit.bind(this)
     );
 
-    function handleSit() {
+    function handleSit(this: SkunkPlayer) {
       if (this.playerInput.hasNext()) {
         let input = this.playerInput.getStringInput();
 
@@ -1299,11 +1309,11 @@ class SkunkPlayer extends Player {
    * @param numberOfDice - the number of dice the game is played with
    */
   computerChoice(
-    currentRound,
-    playerScore,
-    numberOfDice,
-    playerStanding,
-    game
+    currentRound: number,
+    playerScore: number,
+    numberOfDice: number,
+    playerStanding: boolean,
+    game: Skunk
   ) {
     let r = new RandomGenerator(0, 1);
 
@@ -1357,17 +1367,17 @@ class SkunkConfig {
   PLAYER_NAME_MAX_LENGTH = 12;
   PLAYER_DEFAULT_NAME = "Player";
 
-  numberOfDice;
-  numberOfComputerPlayers;
-  playerInput;
-  playerName;
+  numberOfDice!: number;
+  numberOfComputerPlayers!: number;
+  playerInput!: Input;
+  playerName!: string;
 
   /**
    * Start the config for a game of SKUNK
    * @param playerInput - the player input object
    * @return true if the game is still running
    */
-  startSkunk(playerInput) {
+  startSkunk(playerInput: Input) {
     this.playerInput = playerInput;
 
     Render.clearLines();
@@ -1390,7 +1400,7 @@ class SkunkConfig {
       handleDiceSetup.bind(this)
     );
 
-    function handleDiceSetup() {
+    function handleDiceSetup(this: SkunkConfig) {
       if (this.playerInput.hasNextInt()) {
         let input = this.playerInput.getIntInput();
 
@@ -1421,7 +1431,7 @@ class SkunkConfig {
       handlePlayerSetup.bind(this)
     );
 
-    function handlePlayerSetup() {
+    function handlePlayerSetup(this: SkunkConfig) {
       if (this.playerInput.hasNextInt()) {
         let input = this.playerInput.getIntInput();
 
@@ -1454,7 +1464,7 @@ class SkunkConfig {
       handlePlayerNameSetup.bind(this)
     );
 
-    function handlePlayerNameSetup() {
+    function handlePlayerNameSetup(this: SkunkConfig) {
       if (this.playerInput.hasNext()) {
         let input = this.playerInput.getStringInput();
 

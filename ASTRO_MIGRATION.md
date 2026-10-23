@@ -21,14 +21,14 @@ from Netlify to Vercel hosting.
   with typed props; collection schemas type all frontmatter. `npm run build`
   runs `astro check` first, so type errors fail the build.
 - **Hosting:** Vercel, static output (no adapter needed).
-- **Contact form:** Netlify Forms won't work on Vercel. Replacement TBD
-  (e.g. Formspree/Web3Forms, or a Vercel function + email API).
+- **Contact form:** removed (Netlify Forms won't work on Vercel). The Contact
+  page links to LinkedIn instead.
 
 - **Styling:** move off styled-components to global CSS (existing CSS custom
   properties from `layout.js`) plus scoped `<style>` in `.astro` components.
-- **React only where interactive:** layout, cards, post previews, author, and SEO
-  become `.astro`. React islands stay for the Skunk game and linked-list
-  challenges. Boop, the dark-mode toggle, and the hamburger menu are vanilla JS.
+- **No React:** everything is `.astro` plus small vanilla TypeScript scripts.
+  The Skunk game was already vanilla DOM code behind a thin React wrapper, and
+  the linked-list challenge was small enough to rewrite, so no islands needed.
 - **URL parity:** routes are driven by the frontmatter `slug` field so every
   existing URL is preserved and no redirects are needed.
 
@@ -114,36 +114,37 @@ from Netlify to Vercel hosting.
 - [x] Visual comparison with the live site: code blocks and embeds
 - [ ] Decide what to do with the deleted @gelliottmorris tweet in "How I Learned to Code" (now renders nothing)
 
-### 7. Interactive islands
+### 7. Interactive components
 
-- [ ] `SkunkGame` as a `client:visible` React island, styled-components removed
-- [ ] `LinkedListChallenges` as a `client:visible` React island, styled-components removed
-- [x] Boop: rewritten as `Boop.astro` (done in step 3); remove `react-spring`
-- [ ] Add `@astrojs/react` and upgrade React to 19
-- [ ] Restore the `TODO(astro-migration step 7)` component imports in `skunkgame.mdx` and `linkedlist.mdx`
-- [ ] Convert `challenges/SKUNK.js` and `challenges/LinkedList/*` to TypeScript
-- [ ] Choose a contact form backend that works on Vercel and rebuild the form against it
+- [x] Skunk game: `SkunkGame.astro` + `src/scripts/skunk.ts` (no React wrapper needed)
+- [x] Convert the Skunk game to TypeScript (strict, 0 errors); two type errors were real bugs and are fixed: the "S" (scores) command crashed, and the 3-dice triple bonus never applied
+- [x] Linked list challenge: `LinkedListChallenges.astro` + `src/scripts/linked-list.ts` (original algorithm, now typed); portfolio "View Code" link updated to the new path
+- [x] Restore the `TODO(astro-migration step 7)` components in `skunkgame.mdx` and `linkedlist.mdx`
+- [x] Boop: rewritten as `Boop.astro` (done in step 3)
 - [x] Replace `react-share` Twitter button with a plain tweet-intent link (done in step 5)
+- [x] Remove the contact form; Contact page links to LinkedIn
+- [x] Remove `react`, `react-dom`, `styled-components`
+- [x] Browser-tested the Skunk game (setup, rolling, scores command, sitting) and the linked list (add, remove duplicates, reset)
+- [ ] Optional: known gameplay bugs left as-is in the original code (double-skunk soft-lock, final-round computer logic never runs, stray "undefined" lines)
 
 ### 8. Parity checks
 
 - [ ] Diff HTML file lists from Gatsby `public/` vs Astro `dist/` to confirm no URL changes
 - [ ] Visual check of every page in light and dark mode, desktop and mobile
 - [ ] Check embeds, code blocks, games, 404 page, and OG tags on a post
-- [ ] Vercel preview: send a test contact form submission and confirm it arrives
 
 ### 9. Launch on Vercel
 
 - [ ] Merge `astro-migration` → `main`
 - [ ] Add `gabrielkirkley.ca` (and `www`) as Vercel domains; update DNS
-- [ ] Verify production: HTTPS, canonical URLs, sitemap, contact form
+- [ ] Verify production: HTTPS, canonical URLs, sitemap
 - [ ] Disconnect or delete the Netlify site
 
 ### 10. Cleanup
 
 - [x] Remove `gatsby-*.js`, `legacy/`, `src/templates/`, and `src/hooks/` (done in step 5)
 - [x] Remove Gatsby packages and React-era libraries no longer imported (done in steps 1 and 5)
-- [ ] Remove `styled-components` and its types once step 7 drops the last users
+- [x] Remove `styled-components`, React, and their types (done in step 7)
 - [ ] Delete images in `images/` that nothing references
 - [ ] Upgrade Prettier, add `prettier-plugin-astro`, and add `astro,mdx` to the `format` glob
 - [ ] Update README
@@ -151,4 +152,4 @@ from Netlify to Vercel hosting.
 ## Notes
 
 - Order: 1 → 2 → 3, then 4/5/6 in parallel, then 7 → 8 → 9 → 10.
-- Biggest risks: MDX 1 → 3 syntax changes and replacing styled-components.
+- Biggest risks: MDX 1 → 3 syntax changes and replacing styled-components (both done).

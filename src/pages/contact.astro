@@ -1,11 +1,15 @@
 ---
-import ContactForm from "../components/ContactForm.astro";
+import config from "../../config/website";
+import Button from "../components/Button.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Contact Me">
   <main>
     <h1>Contact</h1>
-    <ContactForm />
+    <p>The best way to reach me is a message on LinkedIn.</p>
+    <Button href={config.linkedin} target="_blank" rel="noreferrer noopener">
+      Message me on LinkedIn &rarr;
+    </Button>
   </main>
 </BaseLayout>
