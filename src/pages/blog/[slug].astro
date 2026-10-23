@@ -35,6 +35,9 @@ shareUrl.searchParams.set("via", config.twitterHandle.replace(/^@/, ""));
   <main>
     <article class="post">
       <h1>{title}</h1>
+      <time class="post-date label" datetime={date.toISOString().slice(0, 10)}>
+        {formatDate(date)}
+      </time>
       <Image
         src={image}
         alt={imageAltText}
@@ -43,10 +46,14 @@ shareUrl.searchParams.set("via", config.twitterHandle.replace(/^@/, ""));
         quality={80}
         priority
       />
-      <p class="post-date">{formatDate(date)}</p>
       <Content />
       <div class="post-share">
-        <a href={shareUrl.href} target="_blank" rel="noreferrer noopener">
+        <a
+          class="label"
+          href={shareUrl.href}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
           Share on Twitter
         </a>
       </div>
@@ -75,13 +82,26 @@ shareUrl.searchParams.set("via", config.twitterHandle.replace(/^@/, ""));
     }
   }
 
+  .post h1 {
+    margin-bottom: 1.6rem;
+  }
+
   .post-date {
-    font-size: var(--fontSize-information);
-    text-align: right;
+    display: block;
+    margin-bottom: 3.2rem;
+  }
+
+  .post > :global(img) {
+    border-radius: var(--borderRadius);
   }
 
   .post-share {
     display: flex;
     justify-content: flex-end;
+    margin-top: 4rem;
+
+    & a {
+      color: var(--linkColor);
+    }
   }
 </style>

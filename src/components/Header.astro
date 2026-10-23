@@ -98,36 +98,45 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
   header {
     display: flex;
     align-items: center;
-    min-height: 80px;
-    justify-content: space-between;
+    min-height: 64px;
+    border-bottom: 1px solid var(--ruleColor);
   }
 
   nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: 80px;
-    margin: 0px 32px 0px 0px;
+    height: 64px;
+    padding: 0 16px 0 24px;
     position: relative;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      background: none;
+    }
   }
 
   .site-title {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    min-width: 120px;
-    margin: 0px 0px 0px 32px;
-    padding: 8px 12px;
-    font-weight: bolder;
-    font-size: 22px;
-    z-index: 2;
+    gap: 10px;
+    font-family: var(--font-display-stack);
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--titleColor);
-    border-radius: 1000px;
-    transition: all 0.4s ease-in-out;
+    z-index: 2;
 
     & :global(svg) {
-      width: 12%;
+      width: 30px;
       height: auto;
+      margin: 0;
     }
   }
 
@@ -136,19 +145,18 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 7px;
-    width: 48px;
-    height: 48px;
-    margin: auto 0;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     border: none;
     background: none;
-    color: var(--navLinkColor);
+    color: var(--titleColor);
 
     & span {
       display: block;
-      width: 28px;
-      height: 3px;
+      width: 24px;
+      height: 2px;
       border-radius: 2px;
       background: currentColor;
       transition:
@@ -157,13 +165,13 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
     }
 
     &[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
+      transform: translateY(8px) rotate(45deg);
     }
     &[aria-expanded="true"] span:nth-child(2) {
       opacity: 0;
     }
     &[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
+      transform: translateY(-8px) rotate(-45deg);
     }
   }
 
@@ -171,17 +179,16 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
     display: none;
 
     &.open {
-      display: grid;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      grid-template-rows: 2fr 1fr;
+      gap: 40px;
       position: fixed;
-      top: 80px;
+      top: 64px;
       bottom: 0;
       left: 0;
       z-index: 999;
-      overflow-y: scroll;
-      overflow-x: hidden;
+      overflow-y: auto;
       background: var(--background);
       width: 100%;
     }
@@ -190,49 +197,49 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
   .nav-group {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 0px 24px;
-    margin-bottom: 24px;
+    gap: 24px;
 
     & :global(svg) {
-      width: 2.8rem;
+      width: 2rem;
       height: auto;
     }
   }
 
   .nav-link {
-    font-size: var(--fontSize-emphasis);
-    font-weight: bold;
-    line-height: 1;
-    margin: 0;
-    margin-top: 30px;
-    padding: 0.25rem;
-    border-bottom: 2px solid var(--navLinkUnderlineInactiveColor);
-    transition: 0.1s ease-in-out;
-    position: relative;
-    height: 100%;
+    font-family: var(--font-mono-stack);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--titleColor);
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s ease;
 
-    &:first-of-type {
-      margin-top: 80px;
+    &:hover {
+      border-bottom-color: var(--lavender);
     }
 
     &.current {
-      border-bottom-color: var(--navLinkUnderlineActiveColor);
+      border-bottom-color: var(--amber);
     }
   }
 
   .theme-toggle {
+    display: inline-flex;
+    padding: 6px;
     border: none;
     background: none;
-    color: var(--linkColor);
+    color: var(--titleColor);
 
     &:hover {
-      color: var(--textColor);
+      color: var(--mutedColor);
     }
 
-    &:focus {
-      outline: none;
+    & svg {
+      width: 2rem;
+      margin: 0;
     }
 
     & .moon {
@@ -253,11 +260,10 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
     overflow: hidden;
   }
 
-  /* Below this width the nav collapses into the hamburger menu (keep in sync with the script). */
-  @media (min-width: 1245px) {
+  /* Below this width the nav collapses into the menu button (keep in sync with the script). */
+  @media (min-width: 768px) {
     nav {
-      margin: 0px 0px 0px 32px;
-      flex-direction: row;
+      padding: 0 24px;
     }
 
     .menu-button {
@@ -267,21 +273,16 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
     .menu {
       display: flex;
       align-items: center;
-      overflow-y: auto;
+      gap: 28px;
     }
 
     .nav-group {
-      margin-bottom: 0px;
       flex-direction: row;
+      gap: 24px;
     }
 
-    .nav-link {
-      height: auto;
-      margin: 0 2rem 0 0;
-
-      &:first-of-type {
-        margin-top: 0px;
-      }
+    .nav-group + .nav-group {
+      gap: 4px;
     }
   }
 </style>
@@ -290,7 +291,7 @@ const isCurrent = (href: string, partiallyActive: boolean) =>
   const root = document.documentElement;
   const menuButton = document.querySelector<HTMLButtonElement>(".menu-button")!;
   const menu = document.querySelector<HTMLElement>("#site-menu")!;
-  const desktop = window.matchMedia("(min-width: 1245px)");
+  const desktop = window.matchMedia("(min-width: 768px)");
 
   const setMenuOpen = (open: boolean) => {
     menu.classList.toggle("open", open);

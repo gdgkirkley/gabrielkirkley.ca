@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import "../styles/global.css";
 import config from "../../config/website";
 import Header from "../components/Header.astro";
@@ -12,11 +13,27 @@ type Props = SeoProps;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Seo {...Astro.props} />
+    <Font cssVariable="--font-display" preload />
+    <Font
+      cssVariable="--font-body"
+      preload={[{ weight: 400, style: "normal" }]}
+    />
+    <Font cssVariable="--font-mono" />
     <script is:inline>
       // Apply the saved theme before first paint to avoid a light-mode flash.
       try {
         if (JSON.parse(localStorage.getItem("gabrielkirkley.ca_darkmode"))) {
           document.documentElement.classList.add("dark-theme");
+        }
+      } catch {}
+      // Fade the page up from dark on the first page load of a visit.
+      try {
+        if (
+          !sessionStorage.getItem("gabrielkirkley.ca_house-lights") &&
+          !matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          document.documentElement.classList.add("house-lights");
+          sessionStorage.setItem("gabrielkirkley.ca_house-lights", "1");
         }
       } catch {}
     </script>

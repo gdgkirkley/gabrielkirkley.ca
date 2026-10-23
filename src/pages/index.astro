@@ -10,14 +10,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="content">
       <div class="title">
         <h1>Gabe Kirkley</h1>
-        <p class="tagline">Creative Software Developer</p>
+        <p class="tagline label">Senior Software Engineer</p>
         <Fox />
         <p>
-          Writing Go, Scala/Java, and Typescript these days. Working at{" "}
-          <a href="https://bench.co/" target="_blank" rel="noreferrer noopener">
-            Bench Accounting.
+          Building features for{" "}
+          <a
+            href="https://www.quo.com/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Quo
           </a>{" "}
-          Learning more about DevOps and cloud architecture.
+          and running{" "}
+          <a
+            href="https://patronsend.com/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            PatronSend
+          </a>
+          . Directing and designing film and theatre. Learning more about
+          running companies.
         </p>
       </div>
       <Columns mdColumns="2fr 1fr" class="actions">
@@ -37,10 +50,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     justify-content: center;
     align-items: stretch;
     height: 100%;
+    padding-top: 4rem;
 
     & :global(svg) {
-      width: 30%;
+      width: 22%;
+      max-width: 180px;
       height: auto;
+      margin: 2.4rem 0;
     }
   }
 
@@ -52,31 +68,63 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     align-items: center;
 
     & h1 {
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 0px;
-      font-size: var(--fontSize-banner);
+      margin: 0;
+      font-size: clamp(64px, 14vw, var(--fontSize-banner));
+      text-transform: uppercase;
+    }
+
+    & p {
+      margin: 0;
     }
 
     @media (min-width: 768px) {
-      & p {
-        max-width: 54%;
+      & p:not(.tagline) {
+        max-width: 60%;
       }
     }
   }
 
-  .tagline {
-    color: var(--primary5);
+  .title .tagline {
+    margin-top: 1.2rem;
   }
 
   .content :global(.actions) {
     justify-content: center;
     align-items: center;
-    margin: 1rem auto;
+    margin: 4rem auto 0;
   }
 
   .contact {
     display: flex;
     justify-content: center;
+  }
+
+  /* During the house-lights fade, the intro rises in sequence. */
+  :global(html.house-lights) .title > :global(*),
+  :global(html.house-lights) .content :global(.actions) {
+    animation: rise 0.7s ease-out both;
+  }
+
+  :global(html.house-lights) .title > :nth-child(2) {
+    animation-delay: 0.55s;
+  }
+  :global(html.house-lights) .title > :nth-child(3) {
+    animation-delay: 0.7s;
+  }
+  :global(html.house-lights) .title > :nth-child(4) {
+    animation-delay: 0.85s;
+  }
+  :global(html.house-lights) .content :global(.actions) {
+    animation-delay: 1s;
+  }
+  :global(html.house-lights) .title > :nth-child(1) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
   }
 </style>
