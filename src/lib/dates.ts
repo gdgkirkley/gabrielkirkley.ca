@@ -6,3 +6,11 @@ export const formatDate = (date: Date) =>
     month: "long",
     year: "numeric",
   });
+
+export const formatShortDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });

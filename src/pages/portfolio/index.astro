@@ -1,13 +1,4 @@
 ---
-import CSS from "../../../images/CSS3_logo.svg";
-import HTML5 from "../../../images/HTML5_logo.svg";
-import Java from "../../../images/java_logo.svg";
-import JavascriptLogo from "../../../images/javascript-logo.svg";
-import NodeJS from "../../../images/node.js_logo.svg";
-import PostgreSQL from "../../../images/postgresql_elephant.svg";
-import RLogo from "../../../images/r-logo.svg";
-import ReactLogo from "../../../images/react-icon.svg";
-import Boop from "../../components/Boop.astro";
 import Card from "../../components/Card.astro";
 import Columns from "../../components/Columns.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -16,40 +7,14 @@ import { getPortfolio } from "../../lib/content";
 const entries = await getPortfolio();
 const projects = entries.filter(entry => entry.data.type === "project");
 const challenges = entries.filter(entry => entry.data.type === "challenge");
-
-const skills = [
-  {
-    name: "Javascript",
-    Logo: JavascriptLogo,
-    boop: { y: -10, scale: 1.2, timing: 300 },
-  },
-  {
-    name: "React",
-    Logo: ReactLogo,
-    boop: { rotation: 180, scale: 1.5, timing: 200 },
-  },
-  { name: "NodeJS", Logo: NodeJS, boop: { rotation: 20, timing: 300 } },
-  { name: "PostgreSQL", Logo: PostgreSQL, boop: { scale: 0.8, timing: 200 } },
-  { name: "Java", Logo: Java, boop: { y: 10, scale: 0.7, timing: 300 } },
-  {
-    name: "HTML5",
-    Logo: HTML5,
-    boop: { scale: 1.5, rotation: 30, timing: 400 },
-  },
-  { name: "CSS", Logo: CSS, boop: { scale: 1.5, rotation: -30, timing: 400 } },
-  { name: "R", Logo: RLogo, boop: { y: -20, rotation: 90, timing: 300 } },
-];
 ---
 
 <BaseLayout title="Portfolio">
   <main>
+    <h1>Portfolio</h1>
     <section class="block">
-      <div class="block-title">
-        <div class="decorator"></div>
-        <h2>Projects</h2>
-        <div class="decorator"></div>
-      </div>
-      <Columns mdColumns="1fr 1fr" gap="5rem">
+      <h2 class="block-title">Projects</h2>
+      <Columns mdColumns="1fr 1fr" gap="4rem">
         {projects.map(({ data }) => (
           <Card
             image={data.image}
@@ -62,12 +27,8 @@ const skills = [
       </Columns>
     </section>
     <section class="block">
-      <div class="block-title">
-        <div class="decorator"></div>
-        <h2>Challenges</h2>
-        <div class="decorator"></div>
-      </div>
-      <div class="challenges">
+      <h2 class="block-title">Challenges</h2>
+      <Columns mdColumns="1fr 1fr" gap="4rem">
         {challenges.map(({ data }) => (
           <Card
             image={data.image}
@@ -77,22 +38,7 @@ const skills = [
             source={data.source}
           />
         ))}
-      </div>
-    </section>
-    <section class="block">
-      <div class="block-title">
-        <div class="decorator"></div>
-        <h2>Technical Expertise</h2>
-        <div class="decorator"></div>
-      </div>
-      <div class="tech">
-        {skills.map(({ name, Logo, boop }) => (
-          <Boop {...boop}>
-            <Logo />
-            <p class="visually-hidden">{name}</p>
-          </Boop>
-        ))}
-      </div>
+      </Columns>
     </section>
   </main>
 </BaseLayout>
@@ -103,53 +49,21 @@ const skills = [
   }
 
   .block-title {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-bottom: 20px;
-
-    & h2 {
-      margin: 10px 0px;
-      text-align: center;
-    }
-
-    @media (min-width: 768px) {
-      grid-template-columns: 1fr 1fr 1fr;
-
-      & h2 {
-        margin: 0px;
-      }
-    }
-  }
-
-  .decorator {
-    border-top: 1px solid var(--grey10);
-    width: 100%;
-  }
-
-  .challenges {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
     align-items: center;
-    text-align: center;
-    padding-top: 1rem;
-  }
+    gap: 2rem;
+    margin: 0 0 3rem;
+    font-family: var(--font-mono-stack);
+    font-size: var(--fontSize-information);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mutedColor);
 
-  .tech {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    justify-content: center;
-    align-items: flex-end;
-    text-align: center;
-
-    & :global(svg) {
-      width: 60%;
-      transition: all 0.4s ease-in-out;
-    }
-
-    @media (min-width: 768px) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+    &::after {
+      content: "";
+      flex: 1;
+      border-top: 1px solid var(--ruleColor);
     }
   }
 </style>
