@@ -1,28 +1,21 @@
 ---
-import "../styles/fonts.css";
-import config from "../../config/website";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { getPortfolio, getPosts } from "../lib/content";
 
 const posts = await getPosts();
 const portfolio = await getPortfolio();
 ---
 
-<html lang={config.lang}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{config.siteTitle}</title>
-  </head>
-  <body style="font-family: 'Inter', Arial, Helvetica, sans-serif">
-    <h1>{config.siteTitle}</h1>
-    <p>Astro migration in progress.</p>
+<BaseLayout>
+  <main>
+    <h1>Astro migration in progress</h1>
     <h2>Posts</h2>
     <ul>
-      {posts.map(post => <li>{post.data.date.toISOString().slice(0, 10)} {post.data.slug}: {post.data.title}</li>)}
+      {posts.map(post => <li>{post.data.date.toISOString().slice(0, 10)} <code>{post.data.slug}</code> {post.data.title}</li>)}
     </ul>
     <h2>Portfolio</h2>
     <ul>
-      {portfolio.map(entry => <li>[{entry.data.type}] {entry.data.slug}: {entry.data.title}</li>)}
+      {portfolio.map(entry => <li>[{entry.data.type}] <code>{entry.data.slug}</code> {entry.data.title}</li>)}
     </ul>
-  </body>
-</html>
+  </main>
+</BaseLayout>

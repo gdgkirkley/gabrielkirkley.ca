@@ -28,7 +28,7 @@ from Netlify to Vercel hosting.
   properties from `layout.js`) plus scoped `<style>` in `.astro` components.
 - **React only where interactive:** layout, cards, post previews, author, and SEO
   become `.astro`. React islands stay for the Skunk game, linked-list challenges,
-  and (optionally) Boop. Dark-mode toggle and hamburger menu become vanilla JS.
+  Boop, the dark-mode toggle, and the hamburger menu become vanilla JS.
 - **URL parity:** routes are driven by the frontmatter `slug` field so every
   existing URL is preserved and no redirects are needed.
 
@@ -63,12 +63,15 @@ from Netlify to Vercel hosting.
 
 ### 3. Layout and global styles
 
-- [ ] Create `BaseLayout.astro` (global CSS, footer) to replace `layout.js`
-- [ ] Convert `props.theme` usages (`fontSize.*`, `maxWidth`, colours) to CSS variables
-- [ ] Dark mode: inline `<head>` script reading `gabrielkirkley.ca_darkmode` from localStorage, applied before paint
-- [ ] Header: active nav link via `Astro.url.pathname`
-- [ ] Header: mobile menu (replaces `hamburger-react`)
-- [ ] Header: theme toggle and social links
+- [x] Create `BaseLayout.astro` (global CSS, footer) to replace `layout.js`; `head` slot for step 4
+- [x] Port `GlobalStyle` to `src/styles/global.css`; theme values (`fontSize.*`, `maxWidth`, colours) are CSS variables
+- [x] Drop unused `colour`/`invert` layout props and never-passed header hover-colour props
+- [x] Dark mode: inline `<head>` script reading `gabrielkirkley.ca_darkmode` from localStorage, applied to `<html>` before paint (same storage key/format, so saved preferences carry over)
+- [x] Header: active nav link via `Astro.url.pathname` (Portfolio/Blog also active on child pages)
+- [x] Header: mobile menu below 1245px (replaces `hamburger-react`), with `aria-expanded` and scroll lock
+- [x] Header: theme toggle (sun/moon swap via CSS) and social links
+- [x] `Boop.astro`: vanilla JS + CSS rewrite of the React Boop (pulled forward from step 7)
+- [x] Visually compared header/menu against the live site at desktop and mobile widths, light and dark
 
 ### 4. SEO and meta
 
@@ -105,7 +108,7 @@ from Netlify to Vercel hosting.
 
 - [ ] `SkunkGame` as a `client:visible` React island, styled-components removed
 - [ ] `LinkedListChallenges` as a `client:visible` React island, styled-components removed
-- [ ] Boop: upgrade `react-spring` or rewrite as CSS/vanilla JS
+- [x] Boop: rewritten as `Boop.astro` (done in step 3); remove `react-spring`
 - [ ] Add `@astrojs/react` and upgrade React to 19
 - [ ] Restore the `TODO(astro-migration step 7)` component imports in `skunkgame.mdx` and `linkedlist.mdx`
 - [ ] Convert `challenges/SKUNK.js` and `challenges/LinkedList/*` to TypeScript
