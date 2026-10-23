@@ -1,11 +1,10 @@
 ---
-templateKey: post
 title: The 7 Best (Paid) Resources To Learn React from a Past Beginner
 slug: /blog/best-resources-to-learn-react
 author: Gabe Kirkley
 image: ./react.jpeg
 imageAltText: The ReactJS logo and code
-imageCredt:
+imageCredit:
   Photo by <a
   href="https://unsplash.com/@lautaroandreani?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lautaro
   Andreani</a> on <a

@@ -1,11 +1,10 @@
 ---
-templateKey: post
 title: "Apple M1 Macbook Pro: Developer First Impressions"
 slug: /blog/apple-m1-developer
 author: Gabe Kirkley
 image: ./macbook.jpg
 imageAltText: Two guys look at a Macbook
-imageCredt:
+imageCredit:
   <span>Photo by <a
   href="https://unsplash.com/@neonbrand?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">NeONBRAND</a>
   on <a

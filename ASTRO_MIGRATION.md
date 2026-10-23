@@ -51,12 +51,15 @@ from Netlify to Vercel hosting.
 
 ### 2. Content collections
 
-- [ ] Create `src/content.config.ts` with `posts` and `portfolio` collections and Zod schemas (use `image()` for `image` fields)
-- [ ] Move `posts/*` into the `posts` collection
-- [ ] Move `src/pages/portfolio/*/*.mdx` and images into the `portfolio` collection (out of `src/pages`)
-- [ ] Keep filters: posts shown unless `published: false`; portfolio shown only if `published: true`
-- [ ] Keep sorting: posts by date desc; portfolio by `sortOrder`
-- [ ] Fix `imageCredt` → `imageCredit` typo in `where-to-learn-react.md`
+- [x] Create `src/content.config.ts` with `posts` and `portfolio` collections and Zod schemas (use `image()` for `image` fields)
+- [x] Entry IDs derived from the frontmatter `slug` (`/blog/foo` → `foo`); slugs validated by regex
+- [x] Move `posts/*` → `src/content/posts/`; frontmatter template → `src/content/posts/_template.md` (excluded from the collection)
+- [x] Move portfolio MDX and images → `src/content/portfolio/` (out of the routed pages dir)
+- [x] Keep filters: posts shown unless `published: false`; portfolio shown only if `published: true` (`src/lib/content.ts`)
+- [x] Keep sorting: posts by date desc; portfolio by `sortOrder`, entries without one last
+- [x] Fix `imageCredt` → `imageCredit` typo (was in 3 posts and the template)
+- [x] Drop Gatsby-only `templateKey` frontmatter
+- [x] Temporarily comment out `<SkunkGame />` and `<LinkedListChallenges />` in MDX (they need React; restore in step 7)
 
 ### 3. Layout and global styles
 
@@ -97,7 +100,6 @@ from Netlify to Vercel hosting.
 - [ ] Bare Twitter/YouTube URL embeds via `astro-embed` (replaces `gatsby-remark-embedder` and `gatsby-plugin-twitter`)
 - [ ] Re-add `remark-unwrap-images` (current major) to MDX remark plugins
 - [ ] Fix MDX 1 → MDX 3 syntax issues flagged by the build
-- [ ] Update component import paths in `skunkgame.mdx` and `linkedlist.mdx`
 
 ### 7. Interactive islands
 
@@ -105,6 +107,7 @@ from Netlify to Vercel hosting.
 - [ ] `LinkedListChallenges` as a `client:visible` React island, styled-components removed
 - [ ] Boop: upgrade `react-spring` or rewrite as CSS/vanilla JS
 - [ ] Add `@astrojs/react` and upgrade React to 19
+- [ ] Restore the `TODO(astro-migration step 7)` component imports in `skunkgame.mdx` and `linkedlist.mdx`
 - [ ] Convert `challenges/SKUNK.js` and `challenges/LinkedList/*` to TypeScript
 - [ ] Choose a contact form backend that works on Vercel and rebuild the form against it
 - [ ] Replace `react-share` Twitter button with a plain tweet-intent link

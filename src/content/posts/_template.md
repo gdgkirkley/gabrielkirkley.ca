@@ -1,11 +1,10 @@
 ---
-templateKey: post
 title: Frontmatter
 slug: /blog/insert-slug-here
 author: Gabe Kirkley
 image: null
 imageAltText: null
-imageCredt: null
+imageCredit: null
 keywords:
   - null
 published: false

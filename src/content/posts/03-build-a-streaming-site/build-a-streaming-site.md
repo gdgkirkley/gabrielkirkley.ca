@@ -1,5 +1,4 @@
 ---
-templateKey: post
 title:
   How to Build an Authenticated Video Streaming Site with NextJS and Apollo
   GraphQL
@@ -7,7 +6,7 @@ slug: /blog/build-a-streaming-site
 author: Gabe Kirkley
 image: ./deskcoding.jpg
 imageAltText: A desk with a few monitors and a laptop.
-imageCredt:
+imageCredit:
   <span>Photo by <a
   href="https://unsplash.com/@thisisengineering?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">ThisisEngineering
   RAEng</a> on <a

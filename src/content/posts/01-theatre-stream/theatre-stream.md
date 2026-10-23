@@ -1,5 +1,4 @@
 ---
-templateKey: post
 title: A Complete Guide to Theatre Streaming Equipment
 slug: /blog/streaming-live-theatre
 author: Gabe Kirkley

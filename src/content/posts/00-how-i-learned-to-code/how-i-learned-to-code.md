@@ -1,5 +1,4 @@
 ---
-templateKey: post
 title: How I Learned to Code in R from an Election Model
 slug: /blog/how-i-learned-to-code-part-1
 author: Gabe Kirkley

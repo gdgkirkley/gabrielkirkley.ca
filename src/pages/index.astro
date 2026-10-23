@@ -1,6 +1,10 @@
 ---
 import "../styles/fonts.css";
 import config from "../../config/website";
+import { getPortfolio, getPosts } from "../lib/content";
+
+const posts = await getPosts();
+const portfolio = await getPortfolio();
 ---
 
 <html lang={config.lang}>
@@ -12,5 +16,13 @@ import config from "../../config/website";
   <body style="font-family: 'Inter', Arial, Helvetica, sans-serif">
     <h1>{config.siteTitle}</h1>
     <p>Astro migration in progress.</p>
+    <h2>Posts</h2>
+    <ul>
+      {posts.map(post => <li>{post.data.date.toISOString().slice(0, 10)} {post.data.slug}: {post.data.title}</li>)}
+    </ul>
+    <h2>Portfolio</h2>
+    <ul>
+      {portfolio.map(entry => <li>[{entry.data.type}] {entry.data.slug}: {entry.data.title}</li>)}
+    </ul>
   </body>
 </html>
