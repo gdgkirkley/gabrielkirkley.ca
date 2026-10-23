@@ -20,22 +20,27 @@ const { class: className, ...rest } = Astro.props;
 <style>
   .button {
     display: inline-flex;
+    gap: 12px;
     background-color: var(--buttonColor);
     border: 2px solid var(--buttonBorderColor);
     justify-content: center;
     align-items: center;
-    font-family: inherit;
-    font-size: var(--fontSize-emphasis);
+    font-family: var(--font-mono-stack);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     line-height: 1;
     cursor: pointer;
     user-select: none;
-    padding: 1.6rem 3.2rem;
+    padding: 1.4rem 2.4rem;
     text-decoration: none;
     color: var(--buttonTextColor);
     position: relative;
-    box-shadow: var(--level-2);
-    border-radius: 1rem;
-    transition: 0.2s linear;
+    border-radius: var(--borderRadius);
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
 
     &:hover {
       background: var(--buttonHoverColor);
@@ -43,19 +48,17 @@ const { class: className, ...rest } = Astro.props;
     }
 
     & :global(svg) {
-      width: var(--fontSize-information);
+      width: 1.4rem;
       margin: 0;
-      margin-left: 16px;
     }
 
     &:disabled {
-      color: #999;
-      border-color: #999;
+      opacity: 0.5;
+      cursor: not-allowed;
 
       &:hover {
-        background-color: #fff;
-        color: #999;
-        cursor: initial;
+        background: var(--buttonColor);
+        color: var(--buttonTextColor);
       }
     }
   }

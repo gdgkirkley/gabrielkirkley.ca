@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import embeds from "@astro-community/astro-embed-integration";
 import { unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
@@ -19,6 +19,34 @@ export default defineConfig({
     // Same palette as prism-react-renderer's default theme, which the Gatsby site used.
     shikiConfig: { theme: { ...duotoneDark, type: "dark" } },
   },
+  // Self-hosted at build time, with metric-matched fallbacks to avoid layout shift.
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Big Shoulders Display",
+      cssVariable: "--font-display",
+      weights: [800],
+      subsets: ["latin"],
+      fallbacks: ["sans-serif"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "IBM Plex Sans",
+      cssVariable: "--font-body",
+      weights: [400, 600],
+      styles: ["normal", "italic"],
+      subsets: ["latin"],
+      fallbacks: ["sans-serif"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "IBM Plex Mono",
+      cssVariable: "--font-mono",
+      weights: [400, 500],
+      subsets: ["latin"],
+      fallbacks: ["monospace"],
+    },
+  ],
   image: {
     // Constrained images scale down with their container.
     responsiveStyles: true,

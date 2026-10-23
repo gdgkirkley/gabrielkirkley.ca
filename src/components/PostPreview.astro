@@ -1,60 +1,55 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
-import { formatDate } from "../lib/dates";
+import { formatShortDate } from "../lib/dates";
 import { excerpt } from "../lib/excerpt";
-import Button from "./Button.astro";
 
 interface Props {
   post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
-const { title, slug, date, image } = post.data;
+const { title, slug, date } = post.data;
 ---
 
 <article class="preview">
-  <a href={slug} tabindex="-1" aria-hidden="true">
-    <Image
-      src={image}
-      alt={title}
-      width={900}
-      height={400}
-      fit="cover"
-      layout="constrained"
-    />
-  </a>
-  <div>
-    <h2>
-      <a href={slug}>{title}</a>
-    </h2>
-    <p>{formatDate(date)}</p>
-    <p>{excerpt(post.body)}</p>
-    <Button href={slug} tabindex="-1">
-      Read more &rarr;
-    </Button>
-  </div>
+  <time class="label" datetime={date.toISOString().slice(0, 10)}>
+    {formatShortDate(date)}
+  </time>
+  <h2>
+    <a href={slug}>{title}</a>
+  </h2>
+  <p>{excerpt(post.body)}</p>
 </article>
 
 <style>
   .preview {
-    border-bottom: 1px solid var(--accent5);
-    margin-top: 0;
-    padding-bottom: 1rem;
-    display: grid;
+    padding: 2.8rem 0;
+    border-bottom: 1px solid var(--ruleColor);
 
     &:first-of-type {
-      margin-top: 1rem;
+      border-top: 1px solid var(--ruleColor);
     }
+  }
+
+  h2 {
+    margin: 0.8rem 0;
+    font-size: var(--fontSize-highLevel);
 
     & a {
-      margin: 1rem 1rem 0 0;
-      min-width: 100px;
-    }
+      color: var(--titleColor);
+      text-decoration: none;
 
-    & img {
-      width: 100%;
-      height: auto;
+      &:hover {
+        background: none;
+        text-decoration: underline;
+        text-decoration-color: var(--amber);
+        text-decoration-thickness: 2px;
+      }
     }
+  }
+
+  p {
+    margin: 0;
+    max-width: 65ch;
   }
 </style>
