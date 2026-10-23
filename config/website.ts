@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   siteTitle: "Gabe Kirkley",
   siteTitleShort: "gabekirkley",
   siteTitleAlt: "The personal site of Gabe Kirkley",
