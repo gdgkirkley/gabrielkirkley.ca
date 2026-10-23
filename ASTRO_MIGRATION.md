@@ -99,7 +99,8 @@ from Netlify to Vercel hosting.
 - [x] Convert `src/lib/dates.js` to TypeScript; delete unused `src/data/portfolio.js` and `techskill.js`
 - [x] Delete ported Gatsby sources (`legacy/`, `src/templates/`, `src/hooks/`, old components, `gatsby-*.js`) and unused packages
 - [x] URL check against the live sitemap: same pages; Gatsby's duplicate `/portfolio/x/x/` pages redirect to `/portfolio/x` via `vercel.json`
-- [x] Visual comparison against the live site (done during step 6)
+- [x] Visual comparison against the live site: home, portfolio, Readingly, React and M1 posts (during step 6)
+- [ ] Visual comparison of the remaining pages (about, blog list, contact, 404) and dark mode — fold into step 8
 
 ### 6. MDX and markdown features
 
@@ -110,7 +111,7 @@ from Netlify to Vercel hosting.
 - [x] `rehype-unwrap-images` (successor to `remark-unwrap-images`)
 - [x] MDX 3 parses all content; no syntax fixes needed
 - [x] Fix missing spaces next to links (Astro's HTML compression drops newline whitespace) on home, about, and author box
-- [x] Visual comparison with the live site: header, home, portfolio, code blocks, embeds (desktop and mobile)
+- [x] Visual comparison with the live site: code blocks and embeds
 - [ ] Decide what to do with the deleted @gelliottmorris tweet in "How I Learned to Code" (now renders nothing)
 
 ### 7. Interactive islands
