@@ -18,23 +18,35 @@ const { image, title, description, url, source } = Astro.props;
 ---
 
 <article class="card">
-  <Image src={image} alt="" width={900} height={400} fit="cover" layout="constrained" />
+  <Image
+    src={image}
+    alt=""
+    width={900}
+    height={400}
+    fit="cover"
+    layout="constrained"
+  />
   <div class="card-content">
     <div>
       <h3>{title}</h3>
       {description && <p>{description}</p>}
     </div>
     <Columns columns="1fr 1fr">
-      {
-        source ? (
-          <Button class="above-link" href={source} target="_blank" rel="noreferrer noopener">
-            Code <Source />
-          </Button>
-        ) : (
-          <SourceUnavailable />
-        )
-      }
-      <Button class="card-link" href={url} aria-label={`View ${title}`}>View &rarr;</Button>
+      {source ? (
+        <Button
+          class="above-link"
+          href={source}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Code <Source />
+        </Button>
+      ) : (
+        <SourceUnavailable />
+      )}
+      <Button class="card-link" href={url} aria-label={`View ${title}`}>
+        View &rarr;
+      </Button>
     </Columns>
   </div>
 </article>

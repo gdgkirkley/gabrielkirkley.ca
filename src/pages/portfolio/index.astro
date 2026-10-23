@@ -18,12 +18,24 @@ const projects = entries.filter(entry => entry.data.type === "project");
 const challenges = entries.filter(entry => entry.data.type === "challenge");
 
 const skills = [
-  { name: "Javascript", Logo: JavascriptLogo, boop: { y: -10, scale: 1.2, timing: 300 } },
-  { name: "React", Logo: ReactLogo, boop: { rotation: 180, scale: 1.5, timing: 200 } },
+  {
+    name: "Javascript",
+    Logo: JavascriptLogo,
+    boop: { y: -10, scale: 1.2, timing: 300 },
+  },
+  {
+    name: "React",
+    Logo: ReactLogo,
+    boop: { rotation: 180, scale: 1.5, timing: 200 },
+  },
   { name: "NodeJS", Logo: NodeJS, boop: { rotation: 20, timing: 300 } },
   { name: "PostgreSQL", Logo: PostgreSQL, boop: { scale: 0.8, timing: 200 } },
   { name: "Java", Logo: Java, boop: { y: 10, scale: 0.7, timing: 300 } },
-  { name: "HTML5", Logo: HTML5, boop: { scale: 1.5, rotation: 30, timing: 400 } },
+  {
+    name: "HTML5",
+    Logo: HTML5,
+    boop: { scale: 1.5, rotation: 30, timing: 400 },
+  },
   { name: "CSS", Logo: CSS, boop: { scale: 1.5, rotation: -30, timing: 400 } },
   { name: "R", Logo: RLogo, boop: { y: -20, rotation: 90, timing: 300 } },
 ];
@@ -38,17 +50,15 @@ const skills = [
         <div class="decorator"></div>
       </div>
       <Columns mdColumns="1fr 1fr" gap="5rem">
-        {
-          projects.map(({ data }) => (
-            <Card
-              image={data.image}
-              title={data.title}
-              description={data.subtitle}
-              url={data.slug}
-              source={data.source}
-            />
-          ))
-        }
+        {projects.map(({ data }) => (
+          <Card
+            image={data.image}
+            title={data.title}
+            description={data.subtitle}
+            url={data.slug}
+            source={data.source}
+          />
+        ))}
       </Columns>
     </section>
     <section class="block">
@@ -58,17 +68,15 @@ const skills = [
         <div class="decorator"></div>
       </div>
       <div class="challenges">
-        {
-          challenges.map(({ data }) => (
-            <Card
-              image={data.image}
-              title={data.title}
-              description={data.using}
-              url={data.slug}
-              source={data.source}
-            />
-          ))
-        }
+        {challenges.map(({ data }) => (
+          <Card
+            image={data.image}
+            title={data.title}
+            description={data.using}
+            url={data.slug}
+            source={data.source}
+          />
+        ))}
       </div>
     </section>
     <section class="block">
@@ -78,14 +86,12 @@ const skills = [
         <div class="decorator"></div>
       </div>
       <div class="tech">
-        {
-          skills.map(({ name, Logo, boop }) => (
-            <Boop {...boop}>
-              <Logo />
-              <p class="visually-hidden">{name}</p>
-            </Boop>
-          ))
-        }
+        {skills.map(({ name, Logo, boop }) => (
+          <Boop {...boop}>
+            <Logo />
+            <p class="visually-hidden">{name}</p>
+          </Boop>
+        ))}
       </div>
     </section>
   </main>

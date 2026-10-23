@@ -8,9 +8,11 @@ export async function getPosts() {
 
 /** Published portfolio entries by `sortOrder`. Entries must opt in with `published: true`. */
 export async function getPortfolio() {
-  const entries = await getCollection("portfolio", ({ data }) => data.published);
+  const entries = await getCollection(
+    "portfolio",
+    ({ data }) => data.published,
+  );
   return entries.sort(
-    (a, b) =>
-      (a.data.sortOrder ?? Infinity) - (b.data.sortOrder ?? Infinity),
+    (a, b) => (a.data.sortOrder ?? Infinity) - (b.data.sortOrder ?? Infinity),
   );
 }

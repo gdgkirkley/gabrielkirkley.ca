@@ -25,17 +25,20 @@ const links = [
 ---
 
 <div>
-  {
-    links.map(({ href, label, viewBox, path }) => (
-      <Boop rotation={20} timing={200}>
-        <a href={href} aria-label={label} target="_blank" rel="noreferrer noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox={viewBox}>
-            <path fill="currentColor" d={path} />
-          </svg>
-        </a>
-      </Boop>
-    ))
-  }
+  {links.map(({ href, label, viewBox, path }) => (
+    <Boop rotation={20} timing={200}>
+      <a
+        href={href}
+        aria-label={label}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox={viewBox}>
+          <path fill="currentColor" d={path} />
+        </svg>
+      </a>
+    </Boop>
+  ))}
 </div>
 
 <style>

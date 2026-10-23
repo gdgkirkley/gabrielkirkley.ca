@@ -12,7 +12,10 @@ import { excerpt } from "../../lib/excerpt";
 
 export const getStaticPaths = (async () => {
   const entries = await getPortfolio();
-  return entries.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
@@ -20,29 +23,37 @@ const { title, subtitle, image, using, source, link } = entry.data;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={title} description={subtitle ?? excerpt(entry.body)} image={image}>
+<BaseLayout
+  title={title}
+  description={subtitle ?? excerpt(entry.body)}
+  image={image}
+>
   <main>
     <h1>{title}</h1>
-    <Image src={image} alt="" width={1200} height={600} fit="cover" layout="constrained" priority />
+    <Image
+      src={image}
+      alt=""
+      width={1200}
+      height={600}
+      fit="cover"
+      layout="constrained"
+      priority
+    />
     <div class="example-bar">
       {using && <p>{using}</p>}
-      {
-        source ? (
-          <Button href={source} target="_blank" rel="noreferrer noopener">
-            View Code <Source />
-          </Button>
-        ) : (
-          <SourceUnavailable />
-        )
-      }
-      {
-        link && (
-          <Button href={link} target="_blank" rel="noreferrer noopener">
-            Take Me There
-            <ExternalLinkIcon />
-          </Button>
-        )
-      }
+      {source ? (
+        <Button href={source} target="_blank" rel="noreferrer noopener">
+          View Code <Source />
+        </Button>
+      ) : (
+        <SourceUnavailable />
+      )}
+      {link && (
+        <Button href={link} target="_blank" rel="noreferrer noopener">
+          Take Me There
+          <ExternalLinkIcon />
+        </Button>
+      )}
     </div>
 
     <Content />
