@@ -5,7 +5,7 @@ export default {
   siteUrl: process.env.ROOT_URL || "https://gabrielkirkley.ca",
   lang: "en",
   siteDescription:
-    "Gabe Kirkley is a creative software/web developer building websites, applications, and games with HTML, CSS, JS, and React.",
+    "Gabe Kirkley is a senior software engineer in Vancouver, B.C., building features for Quo, running PatronSend, and directing and designing film and theatre.",
   author: "Gabe Kirkley",
 
   ogSiteName: "Gabe Kirkley",
